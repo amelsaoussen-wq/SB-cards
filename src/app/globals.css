@@ -131,10 +131,29 @@
   );
 }
 
+/* Préserve les couleurs et dégradés à l'impression / export PDF.
+   Sans cela, le navigateur applique "economy" et ternit les couleurs. */
+.print-card,
+.print-card *,
+.print-card *::before,
+.print-card *::after {
+  -webkit-print-color-adjust: exact !important;
+  print-color-adjust: exact !important;
+  color-adjust: exact !important;
+}
+
 @media print {
   @page {
     size: A4 landscape;
     margin: 8mm;
+  }
+
+  *,
+  *::before,
+  *::after {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
   }
 
   body {
