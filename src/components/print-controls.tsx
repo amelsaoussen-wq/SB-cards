@@ -48,6 +48,13 @@ export function PrintControls({
       >
         {copied ? "Lien copié ✓" : "Copier le lien public"}
       </button>
+      <p className="w-full text-[0.68rem] leading-relaxed text-plum-900/50">
+        Couleurs vives garanties. Si le PDF paraît pâle, activez{" "}
+        <span className="font-semibold text-blush-700">
+          «&nbsp;Graphiques d’arrière-plan&nbsp;»
+        </span>{" "}
+        (Background graphics) dans la fenêtre d’impression.
+      </p>
     </div>
   );
 }
