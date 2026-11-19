@@ -1,0 +1,21 @@
+# dependencies
+node_modules/
+
+# next.js
+.next/
+out/
+
+# environment (ne jamais publier de secrets)
+.env
+.env*.local
+
+# tunnel tooling (local preview only)
+.tunnel/
+
+# misc
+*.log
+.DS_Store
+next-env.d.ts
+
+# archive de téléchargement (artifact local)
+public/sb-cards-source.zip
