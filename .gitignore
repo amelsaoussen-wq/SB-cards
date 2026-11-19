@@ -22,3 +22,4 @@ public/sb-cards-source.zip
 
 # captures de vérification locales
 .preview/
+tsconfig.tsbuildinfo
