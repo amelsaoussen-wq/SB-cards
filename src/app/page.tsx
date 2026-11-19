@@ -8,6 +8,7 @@ import { qrDataUrl } from "@/lib/qr";
 export const dynamic = "force-dynamic";
 
 const SAMPLE = {
+  specialty: "Médecine materno-fœtale",
   diagnosis:
     "Syndrome de Bart de l’hémoglobine / Alpha-thalassémie majeure",
   questionLabel: "Quel est le diagnostic ?",

@@ -19,3 +19,6 @@ next-env.d.ts
 
 # archive de téléchargement (artifact local)
 public/sb-cards-source.zip
+
+# captures de vérification locales
+.preview/

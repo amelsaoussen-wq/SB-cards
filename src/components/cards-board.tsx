@@ -288,6 +288,7 @@ export function CardsBoard({
                     aria-label={`Ouvrir ${card.diagnosis}`}
                   >
                     <CardFront
+                      specialty={card.specialty}
                       diagnosis={card.diagnosis}
                       questionLabel={card.questionLabel}
                       clues={card.clues.map((clue) => clue.body)}

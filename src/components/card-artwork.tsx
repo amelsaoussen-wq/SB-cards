@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { CLUE_TONES, TONE_COUNT } from "@/lib/constants";
+import { SpecialtyArt } from "@/components/specialty-art";
 import {
   CrescentSwoosh,
   Crown,
@@ -19,16 +20,19 @@ export type ArtworkProps = {
   socialUrl: string;
   shareUrl: string;
   qrDataUrl?: string;
+  specialty?: string;
   className?: string;
 };
 
 function CardShell({
   children,
   watermark,
+  specialty,
   className = "",
 }: {
   children: ReactNode;
   watermark: string;
+  specialty?: string;
   className?: string;
 }) {
   return (
@@ -51,6 +55,12 @@ function CardShell({
           />
           <Sparkle className="pointer-events-none absolute left-[30%] top-[15cqw] w-[2.6cqw] opacity-90" />
           <Sparkle className="pointer-events-none absolute right-[26%] top-[22cqw] w-[2cqw] opacity-80" />
+
+          {/* Illustration de la spécialité, DERRIÈRE le texte (côté droit). */}
+          <SpecialtyArt
+            specialty={specialty}
+            className="absolute -right-[4cqw] top-[26cqw] h-[102cqw] w-[58cqw] opacity-[0.9]"
+          />
 
           <div className="relative flex min-h-[139cqw] flex-col px-[3.6cqw] pb-[2.4cqw] pt-[2.6cqw]">
             {children}
@@ -103,6 +113,7 @@ export function CardFront(props: ArtworkProps) {
     questionLabel,
     clues,
     logoInitials,
+    specialty,
     className = "",
   } = props;
 
@@ -113,7 +124,7 @@ export function CardFront(props: ArtworkProps) {
 
   return (
     <article aria-label={`Carte question — ${diagnosis}`} className={className}>
-      <CardShell watermark={logoInitials || "SB"}>
+      <CardShell watermark={logoInitials || "SB"} specialty={specialty}>
         <CardHeader logoInitials={logoInitials} compact />
 
         <div className="relative mx-auto mt-[2cqw] w-full rounded-full border-[0.5cqw] border-[#e2a63f] bg-[linear-gradient(180deg,#fffaf0,#ffe5bf)] px-[3cqw] py-[1.3cqw] text-center shadow-[inset_0_0_1.4cqw_rgba(243,197,108,0.6),0_0.4cqw_0.8cqw_rgba(190,120,30,0.18)]">
@@ -136,7 +147,9 @@ export function CardFront(props: ArtworkProps) {
               <div
                 className="-ml-[1.3cqw] flex-1 rounded-[2.4cqw] border-[0.42cqw] py-[1.05cqw] pl-[2.6cqw] pr-[1.8cqw] text-center"
                 style={{
-                  background: row.tone.card,
+                  // Translucidité : l'illustration de spécialité transparaît
+                  // DERRIÈRE le texte, sans changer la teinte ni le numéro.
+                  background: `${row.tone.card}8C`,
                   borderColor: row.tone.border,
                 }}
               >
@@ -164,12 +177,13 @@ export function CardBack(props: ArtworkProps) {
     socialUrl,
     shareUrl,
     qrDataUrl,
+    specialty,
     className = "",
   } = props;
 
   return (
     <article aria-label={`Carte réponse — ${diagnosis}`} className={className}>
-      <CardShell watermark={logoInitials || "SB"}>
+      <CardShell watermark={logoInitials || "SB"} specialty={specialty}>
         <CardHeader logoInitials={logoInitials} />
 
         <div className="relative mx-auto mt-[7cqw] w-full rounded-[3.4cqw] border-[0.55cqw] border-[#e2a63f] bg-[linear-gradient(180deg,#fffaf0,#ffe8c8)] px-[2.6cqw] py-[2.4cqw] text-center shadow-[inset_0_0_1.6cqw_rgba(243,197,108,0.55),0_0.5cqw_1cqw_rgba(190,120,30,0.2)]">

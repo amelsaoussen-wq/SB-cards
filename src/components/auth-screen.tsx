@@ -4,6 +4,7 @@ import { CardFront } from "@/components/card-artwork";
 import { Crown } from "@/components/ornaments";
 
 const PREVIEW = {
+  specialty: "Médecine materno-fœtale",
   diagnosis: "Syndrome de Bart de l’hémoglobine / Alpha-thalassémie majeure",
   questionLabel: "Quel est le diagnostic ?",
   logoInitials: "SB",

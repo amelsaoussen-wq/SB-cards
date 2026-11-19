@@ -138,6 +138,7 @@ export default async function DashboardPage() {
                 >
                   <div className="mx-auto w-full max-w-[180px]">
                     <CardFront
+                      specialty={card.specialty}
                       diagnosis={card.diagnosis}
                       questionLabel={card.questionLabel}
                       clues={card.clues.map((clue) => clue.body)}

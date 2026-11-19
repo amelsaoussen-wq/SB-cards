@@ -211,6 +211,7 @@ export function CardEditor({
   }
 
   const previewProps = {
+    specialty: form.specialty,
     diagnosis: form.diagnosis,
     questionLabel: form.questionLabel,
     clues: form.clues,

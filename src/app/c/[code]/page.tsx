@@ -41,6 +41,7 @@ export default async function PublicCardPage({
   }
 
   const artwork = {
+    specialty: card.specialty,
     diagnosis: card.diagnosis,
     questionLabel: card.questionLabel,
     clues: card.clues.map((clue) => clue.body),

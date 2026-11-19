@@ -12,6 +12,7 @@ export const dynamic = "force-dynamic";
 export const metadata = { title: "Modèle & design — SB Cards" };
 
 const FALLBACK = {
+  specialty: "Médecine materno-fœtale",
   diagnosis: "Syndrome de Bart de l’hémoglobine / Alpha-thalassémie majeure",
   questionLabel: "Quel est le diagnostic ?",
   logoInitials: "SB",
@@ -42,6 +43,7 @@ export default async function TemplatesPage() {
 
   const artwork = sample
     ? {
+        specialty: sample.specialty,
         diagnosis: sample.diagnosis,
         questionLabel: sample.questionLabel,
         clues: sample.clues.map((clue) => clue.body),

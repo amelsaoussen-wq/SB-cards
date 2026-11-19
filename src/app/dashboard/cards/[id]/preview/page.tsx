@@ -26,6 +26,7 @@ export default async function PreviewCardPage({
   const qr = await qrDataUrl(shareUrl);
 
   const artwork = {
+    specialty: card.specialty,
     diagnosis: card.diagnosis,
     questionLabel: card.questionLabel,
     clues: card.clues.map((clue) => clue.body),
