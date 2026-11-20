@@ -29,7 +29,6 @@ export default async function DashboardPage() {
     getWorkspaceStats(user.id),
   ]);
 
-  const firstName = user.name.replace(/^Dr\.?\s*/i, "").split(" ")[0] ?? user.name;
   const recent = cards.slice(0, 3);
   const maxSpecialty = Math.max(1, ...stats.specialties.map((item) => item.count));
 
@@ -37,7 +36,7 @@ export default async function DashboardPage() {
     <div className="space-y-7">
       <PageHeader
         eyebrow="Vue d’ensemble"
-        title={`${greeting()}, Dr ${firstName}`}
+        title={`${greeting()}, ${user.name}`}
         description="Votre studio de cartes cliniques. Le modèle rose & or est verrouillé : seuls le diagnostic et les six indices varient."
         actions={
           <>

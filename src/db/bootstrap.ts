@@ -1,6 +1,6 @@
 import "server-only";
 
-import { sql } from "drizzle-orm";
+import { and, eq, sql } from "drizzle-orm";
 import { db, pool } from "@/db";
 import { cards, clues, users } from "@/db/schema";
 import { hashPassword } from "@/lib/password";
@@ -75,6 +75,10 @@ CREATE TABLE IF NOT EXISTS auth_attempts (
 
 export const DEMO_EMAIL = "demo@sb-cards.app";
 export const DEMO_PASSWORD = "demo1234";
+// La chaîne de démonstration porte la marque (pas un nom de personne).
+export const DEMO_NAME = "SB Cards — Officiel";
+export const DEMO_CLINIC = "La chaîne officielle de la marque SB Cards";
+export const DEMO_ROLE = "Chaîne officielle";
 
 type SeedCard = {
   diagnosis: string;
@@ -223,17 +227,23 @@ async function runBootstrap(): Promise<void> {
   }
   await pool.query(DDL);
 
+  // Renomme l'ancienne persona de démo vers la marque officielle (idempotent).
+  await db
+    .update(users)
+    .set({ name: DEMO_NAME, clinic: DEMO_CLINIC, role: DEMO_ROLE })
+    .where(and(eq(users.email, DEMO_EMAIL), eq(users.name, "Dr Sarah Benali")));
+
   const existing = await db.select({ id: users.id }).from(users).limit(1);
   if (existing.length > 0) return;
 
   const [demoUser] = await db
     .insert(users)
     .values({
-      name: "Dr Sarah Benali",
+      name: DEMO_NAME,
       email: DEMO_EMAIL,
       passwordHash: hashPassword(DEMO_PASSWORD),
-      clinic: "Hôpital Mère-Enfant — Service de médecine materno-fœtale",
-      role: "Conceptrice de cartes",
+      clinic: DEMO_CLINIC,
+      role: DEMO_ROLE,
     })
     .returning({ id: users.id });
 
