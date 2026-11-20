@@ -123,7 +123,7 @@ export function CardFront(props: ArtworkProps) {
   }));
 
   return (
-    <article aria-label={`Carte question — ${diagnosis}`} className={className}>
+    <article aria-label="Carte question — six indices" className={className}>
       <CardShell watermark={logoInitials || "SB"} specialty={specialty}>
         <CardHeader logoInitials={logoInitials} compact />
 

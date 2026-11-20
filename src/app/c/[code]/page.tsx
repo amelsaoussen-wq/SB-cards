@@ -19,8 +19,9 @@ export async function generateMetadata({
   await safeEnsureDatabaseReady();
   const card = await getPublicCard(code);
   return {
-    title: card ? `${card.diagnosis} — SB Cards` : "Carte introuvable — SB Cards",
-    description: card?.summary,
+    // Le titre ne révèle pas la réponse (page publique à réponse masquée).
+    title: card ? "Cas clinique à résoudre — SB Cards" : "Carte introuvable — SB Cards",
+    description: card?.summary || "Six indices pour raisonner, réponse à révéler.",
   };
 }
 
