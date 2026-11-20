@@ -53,6 +53,16 @@ CREATE TABLE IF NOT EXISTS clues (
 );
 CREATE INDEX IF NOT EXISTS clues_card_id_idx ON clues(card_id);
 
+CREATE TABLE IF NOT EXISTS follows (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  follower_id uuid NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  channel_id uuid NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  created_at timestamptz NOT NULL DEFAULT now(),
+  CONSTRAINT follows_pair_unique UNIQUE (follower_id, channel_id)
+);
+CREATE INDEX IF NOT EXISTS follows_follower_idx ON follows(follower_id);
+CREATE INDEX IF NOT EXISTS follows_channel_idx ON follows(channel_id);
+
 CREATE TABLE IF NOT EXISTS auth_attempts (
   id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
   email text NOT NULL DEFAULT '',

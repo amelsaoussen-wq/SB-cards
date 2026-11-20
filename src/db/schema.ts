@@ -85,6 +85,26 @@ export const clues = pgTable(
   (table) => [index("clues_card_id_idx").on(table.cardId)],
 );
 
+export const follows = pgTable(
+  "follows",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    followerId: uuid("follower_id")
+      .notNull()
+      .references(() => users.id, { onDelete: "cascade" }),
+    channelId: uuid("channel_id")
+      .notNull()
+      .references(() => users.id, { onDelete: "cascade" }),
+    createdAt: timestamp("created_at", { withTimezone: true })
+      .notNull()
+      .defaultNow(),
+  },
+  (table) => [
+    index("follows_follower_idx").on(table.followerId),
+    index("follows_channel_idx").on(table.channelId),
+  ],
+);
+
 export const authAttempts = pgTable("auth_attempts", {
   id: uuid("id").primaryKey().defaultRandom(),
   email: text("email").notNull().default(""),

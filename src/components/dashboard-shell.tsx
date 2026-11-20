@@ -44,6 +44,20 @@ const NAV: NavItem[] = [
     ),
   },
   {
+    href: "/explore",
+    label: "Découvrir",
+    icon: (
+      <Icon path="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18Zm0 0c2.5 2.4 3.8 5.6 3.8 9s-1.3 6.6-3.8 9m0-18C9.5 5.4 8.2 8.6 8.2 12s1.3 6.6 3.8 9M3.5 9h17M3.5 15h17" />
+    ),
+  },
+  {
+    href: "/dashboard/feed",
+    label: "Mes abonnements",
+    icon: (
+      <Icon path="M4 11a9 9 0 0 1 9 9M4 4a16 16 0 0 1 16 16M5 19a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z" />
+    ),
+  },
+  {
     href: "/dashboard/templates",
     label: "Modèle & design",
     icon: (
@@ -72,7 +86,7 @@ export function DashboardShell({
   user,
   children,
 }: {
-  user: { name: string; email: string; role: string; clinic: string };
+  user: { id: string; name: string; email: string; role: string; clinic: string };
   children: ReactNode;
 }) {
   const pathname = usePathname();
@@ -137,6 +151,25 @@ export function DashboardShell({
             </Link>
           );
         })}
+        <Link
+          href={`/ch/${user.id}`}
+          className={`group flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-semibold transition ${
+            pathname.startsWith("/ch/")
+              ? "bg-[linear-gradient(100deg,#fbe4ef,#fdf3f8)] text-blush-800 shadow-[inset_0_0_0_1px_rgba(241,184,210,0.7)]"
+              : "text-plum-900/65 hover:bg-blush-50 hover:text-blush-800"
+          }`}
+        >
+          <span
+            className={`flex h-8 w-8 items-center justify-center rounded-lg transition ${
+              pathname.startsWith("/ch/")
+                ? "bg-white text-blush-600 shadow-sm"
+                : "bg-blush-50 text-blush-500 group-hover:bg-white"
+            }`}
+          >
+            <Icon path="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm-7 8a7 7 0 0 1 14 0" />
+          </span>
+          Ma chaîne
+        </Link>
       </nav>
 
       <div className="mt-auto flex flex-col gap-3">

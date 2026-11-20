@@ -69,6 +69,9 @@ export default async function LandingPage() {
         </Link>
 
         <nav className="flex items-center gap-2">
+          <Link href="/explore" className="sb-btn-ghost hidden sm:inline-flex">
+            Découvrir
+          </Link>
           {user ? (
             <Link href="/dashboard" className="sb-btn-primary">
               Ouvrir le studio
