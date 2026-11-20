@@ -17,7 +17,7 @@ export function PublicCardTile({ card }: { card: CommunityCard }) {
       <Link
         href={`/c/${card.shareCode}`}
         className="mx-auto block w-full max-w-[200px]"
-        aria-label={`Ouvrir ${card.diagnosis}`}
+        aria-label="Ouvrir le cas clinique"
       >
         <CardFront
           diagnosis={card.diagnosis}
@@ -42,8 +42,8 @@ export function PublicCardTile({ card }: { card: CommunityCard }) {
           <span className="truncate">{card.channel.name}</span>
         </Link>
         <Link href={`/c/${card.shareCode}`}>
-          <h3 className="mt-1 line-clamp-2 font-serif text-sm font-bold leading-snug text-plum-900 hover:text-blush-700">
-            {card.diagnosis}
+          <h3 className="mt-1 flex items-center gap-1.5 font-serif text-sm font-bold leading-snug text-plum-900 hover:text-blush-700">
+            <span aria-hidden="true">🔒</span> Cas clinique à résoudre
           </h3>
         </Link>
         <div className="mt-1.5 flex items-center justify-between gap-2">

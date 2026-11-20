@@ -5,6 +5,7 @@ import { safeEnsureDatabaseReady } from "@/db/bootstrap";
 import { getOrigin } from "@/lib/origin";
 import { qrDataUrl } from "@/lib/qr";
 import { CardBack, CardFront } from "@/components/card-artwork";
+import { RevealAnswer } from "@/components/reveal-answer";
 import { Crown } from "@/components/ornaments";
 
 export const dynamic = "force-dynamic";
@@ -85,26 +86,31 @@ export default async function PublicCardPage({
           </h1>
           <p className="mt-2 text-sm text-plum-900/55">
             {card.summary ||
-              "Six indices pour raisonner — la réponse se trouve au verso."}
+              "Six indices pour raisonner — révélez la réponse quand vous êtes prêt."}
           </p>
         </div>
 
-        <div className="flex flex-wrap items-start justify-center gap-6">
+        <div className="flex justify-center">
           <CardFront {...artwork} className="w-full max-w-[400px]" />
-          <CardBack {...artwork} qrDataUrl={qr} className="w-full max-w-[400px]" />
         </div>
 
-        <div className="mx-auto mt-8 max-w-2xl rounded-3xl border border-gold-300/60 bg-[linear-gradient(150deg,#fffaf0,#fdf0f6)] p-6 text-center">
-          <p className="text-[0.68rem] font-bold uppercase tracking-[0.2em] text-gold-500">
-            Réponse
-          </p>
-          <p className="mt-2 font-serif text-xl font-bold leading-snug text-plum-900 sm:text-2xl">
-            {card.diagnosis}
-          </p>
-          <p className="mt-2 text-xs text-plum-900/50">
-            {card.clues.length} indices · niveau {card.difficulty} ·{" "}
-            {card.views.toLocaleString("fr-FR")} lectures
-          </p>
+        {/* Réponse masquée : révélée uniquement au clic (page publique). */}
+        <div className="mt-6">
+          <RevealAnswer>
+            <CardBack {...artwork} qrDataUrl={qr} className="w-full max-w-[400px]" />
+            <div className="mx-auto max-w-2xl rounded-3xl border border-gold-300/60 bg-[linear-gradient(150deg,#fffaf0,#fdf0f6)] p-6 text-center">
+              <p className="text-[0.68rem] font-bold uppercase tracking-[0.2em] text-gold-500">
+                Réponse
+              </p>
+              <p className="mt-2 font-serif text-xl font-bold leading-snug text-plum-900 sm:text-2xl">
+                {card.diagnosis}
+              </p>
+              <p className="mt-2 text-xs text-plum-900/50">
+                {card.clues.length} indices · niveau {card.difficulty} ·{" "}
+                {card.views.toLocaleString("fr-FR")} lectures
+              </p>
+            </div>
+          </RevealAnswer>
         </div>
 
         <div className="mt-8 text-center">
