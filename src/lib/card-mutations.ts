@@ -156,11 +156,13 @@ export async function updateCard(
 export async function deleteCard(
   userId: string,
   cardId: string,
+  isOwner = false,
 ): Promise<MutationResult> {
   try {
+    // Le propriétaire peut supprimer n'importe quelle carte (modération).
     await db
       .delete(cards)
-      .where(and(eq(cards.id, cardId), eq(cards.userId, userId)));
+      .where(isOwner ? eq(cards.id, cardId) : and(eq(cards.id, cardId), eq(cards.userId, userId)));
     return { ok: true };
   } catch {
     return { ok: false, error: "Impossible de supprimer cette carte.", status: 500 };

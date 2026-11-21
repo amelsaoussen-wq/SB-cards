@@ -50,6 +50,11 @@ export function PublicCardTile({
             {initials(card.channel.name)}
           </span>
           <span className="truncate">{card.channel.name}</span>
+          {card.channel.isAdmin && (
+            <span className="shrink-0 rounded-full bg-gold-300/40 px-1.5 py-0.5 text-[0.55rem] font-bold text-gold-500">
+              👑 Officiel
+            </span>
+          )}
         </Link>
         <Link href={`/c/${card.shareCode}`}>
           <h3 className="mt-1 flex items-center gap-1.5 font-serif text-sm font-bold leading-snug text-plum-900 hover:text-blush-700">
@@ -69,6 +74,7 @@ export function PublicCardTile({
             initialLiked={engagement.liked}
             initialComments={engagement.comments}
             loggedIn={loggedIn}
+            printHref={`/c/${card.shareCode}/print`}
           />
         </div>
       </div>

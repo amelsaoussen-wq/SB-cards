@@ -86,7 +86,14 @@ export function DashboardShell({
   user,
   children,
 }: {
-  user: { id: string; name: string; email: string; role: string; clinic: string };
+  user: {
+    id: string;
+    name: string;
+    email: string;
+    role: string;
+    clinic: string;
+    isAdmin: boolean;
+  };
   children: ReactNode;
 }) {
   const pathname = usePathname();
@@ -170,6 +177,27 @@ export function DashboardShell({
           </span>
           Ma chaîne
         </Link>
+        {user.isAdmin && (
+          <Link
+            href="/dashboard/admin"
+            className={`group flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-semibold transition ${
+              pathname.startsWith("/dashboard/admin")
+                ? "bg-[linear-gradient(100deg,#fbe4ef,#fdf3f8)] text-blush-800 shadow-[inset_0_0_0_1px_rgba(241,184,210,0.7)]"
+                : "text-plum-900/65 hover:bg-blush-50 hover:text-blush-800"
+            }`}
+          >
+            <span
+              className={`flex h-8 w-8 items-center justify-center rounded-lg transition ${
+                pathname.startsWith("/dashboard/admin")
+                  ? "bg-white text-blush-600 shadow-sm"
+                  : "bg-blush-50 text-blush-500 group-hover:bg-white"
+              }`}
+            >
+              <Icon path="M12 3l7 3v5c0 5-3.5 8.5-7 10-3.5-1.5-7-5-7-10V6l7-3z" />
+            </span>
+            Administration
+          </Link>
+        )}
       </nav>
 
       <div className="mt-auto flex flex-col gap-3">

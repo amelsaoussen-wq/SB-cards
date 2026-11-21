@@ -71,7 +71,7 @@ export async function DELETE(_request: Request, { params }: Params) {
   if (!user) return response;
   const { id } = await params;
 
-  const result = await deleteCard(user.id, id);
+  const result = await deleteCard(user.id, id, user.isAdmin);
   return Response.json(
     result.ok ? { ok: true } : { ok: false, error: result.error },
     { status: result.ok ? 200 : (result.status ?? 400) },

@@ -6,6 +6,7 @@ import { ensureDatabaseReady } from "@/db/bootstrap";
 import { createSession } from "@/lib/auth";
 import { hashPassword } from "@/lib/password";
 import { logAuthAttempt } from "@/lib/auth-log";
+import { isOwnerEmail } from "@/lib/owner";
 
 export const dynamic = "force-dynamic";
 
@@ -63,6 +64,7 @@ export async function POST(request: Request) {
         email,
         clinic: clinic.slice(0, 160),
         passwordHash: hashPassword(password),
+        isAdmin: isOwnerEmail(email),
       })
       .returning({ id: users.id });
 

@@ -122,8 +122,14 @@ export async function addComment(
 export async function deleteComment(
   userId: string,
   commentId: string,
+  isOwner = false,
 ): Promise<void> {
+  // Le propriétaire peut modérer n'importe quel commentaire.
   await db
     .delete(comments)
-    .where(and(eq(comments.id, commentId), eq(comments.userId, userId)));
+    .where(
+      isOwner
+        ? eq(comments.id, commentId)
+        : and(eq(comments.id, commentId), eq(comments.userId, userId)),
+    );
 }

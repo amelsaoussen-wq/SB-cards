@@ -9,6 +9,7 @@ export type ChannelInfo = {
   id: string;
   name: string;
   clinic: string;
+  isAdmin: boolean;
 };
 
 export type CommunityCard = CardRecord & { channel: ChannelInfo };
@@ -53,6 +54,7 @@ const cardCols = {
   channelId: users.id,
   channelName: users.name,
   channelClinic: users.clinic,
+  channelAdmin: users.isAdmin,
 };
 
 type Row = Awaited<ReturnType<typeof queryRows>>[number];
@@ -83,6 +85,7 @@ function toCommunity(row: Row, clueList: CommunityCard["clues"]): CommunityCard 
       id: row.channelId,
       name: row.channelName,
       clinic: row.channelClinic,
+      isAdmin: row.channelAdmin,
     },
   };
 }
@@ -119,7 +122,7 @@ export async function listPublishedCards(options: {
 /** Chaîne publique d'un utilisateur : ses cartes publiées + stats. */
 export async function getChannel(channelId: string) {
   const u = await db
-    .select({ id: users.id, name: users.name, clinic: users.clinic, role: users.role })
+    .select({ id: users.id, name: users.name, clinic: users.clinic, role: users.role, isAdmin: users.isAdmin })
     .from(users)
     .where(eq(users.id, channelId))
     .limit(1);

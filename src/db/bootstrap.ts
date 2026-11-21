@@ -16,6 +16,9 @@ CREATE TABLE IF NOT EXISTS users (
   created_at timestamptz NOT NULL DEFAULT now()
 );
 
+ALTER TABLE users ADD COLUMN IF NOT EXISTS is_admin boolean NOT NULL DEFAULT false;
+UPDATE users SET is_admin = true WHERE lower(email) = 'amelsaoussen@gmail.com';
+
 CREATE TABLE IF NOT EXISTS sessions (
   token text PRIMARY KEY,
   user_id uuid NOT NULL REFERENCES users(id) ON DELETE CASCADE,

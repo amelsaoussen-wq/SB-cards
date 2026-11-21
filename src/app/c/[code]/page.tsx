@@ -110,6 +110,7 @@ export default async function PublicCardPage({
             initialLiked={engagement.liked}
             initialComments={engagement.comments}
             loggedIn={!!user}
+            printHref={`/c/${card.shareCode}/print`}
           />
         </div>
 

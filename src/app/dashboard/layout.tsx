@@ -21,6 +21,7 @@ export default async function DashboardLayout({
         email: user.email,
         role: user.role,
         clinic: user.clinic,
+        isAdmin: user.isAdmin,
       }}
     >
       {children}

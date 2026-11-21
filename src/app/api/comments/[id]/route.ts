@@ -12,6 +12,6 @@ export async function DELETE(
     return Response.json({ ok: false, error: "Session expirée." }, { status: 401 });
   }
   const { id } = await params;
-  await deleteComment(user.id, id);
+  await deleteComment(user.id, id, user.isAdmin);
   return Response.json({ ok: true });
 }

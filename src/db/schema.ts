@@ -1,4 +1,5 @@
 import {
+  boolean,
   index,
   integer,
   pgTable,
@@ -14,6 +15,7 @@ export const users = pgTable("users", {
   passwordHash: text("password_hash").notNull(),
   clinic: text("clinic").notNull().default(""),
   role: text("role").notNull().default("Concepteur de cartes"),
+  isAdmin: boolean("is_admin").notNull().default(false),
   createdAt: timestamp("created_at", { withTimezone: true })
     .notNull()
     .defaultNow(),

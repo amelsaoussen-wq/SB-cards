@@ -55,7 +55,14 @@ export default async function ChannelPage({
               {channel.name.split(/\s+/).slice(0, 2).map((p) => p[0]?.toUpperCase()).join("")}
             </span>
             <div>
-              <h1 className="font-serif text-2xl font-bold text-plum-900">{channel.name}</h1>
+              <h1 className="flex items-center gap-2 font-serif text-2xl font-bold text-plum-900">
+                {channel.name}
+                {channel.isAdmin && (
+                  <span className="rounded-full bg-gold-300/40 px-2 py-0.5 text-[0.6rem] font-bold text-gold-500">
+                    👑 Compte officiel · SB Cards
+                  </span>
+                )}
+              </h1>
               <p className="text-sm text-plum-900/55">{channel.clinic || channel.role}</p>
               <p className="mt-1 text-xs text-plum-900/45">
                 {cardCount} carte{cardCount > 1 ? "s" : ""} publiée{cardCount > 1 ? "s" : ""} ·{" "}

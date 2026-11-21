@@ -34,12 +34,14 @@ export function PostActions({
   initialLiked,
   initialComments,
   loggedIn,
+  printHref,
 }: {
   cardId: string;
   initialLikes: number;
   initialLiked: boolean;
   initialComments: number;
   loggedIn: boolean;
+  printHref?: string;
 }) {
   const [liked, setLiked] = useState(initialLiked);
   const [likes, setLikes] = useState(initialLikes);
@@ -159,6 +161,22 @@ export function PostActions({
           </svg>
           {count}
         </button>
+
+        {printHref && (
+          <a
+            href={printHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Télécharger en PDF"
+            title="Télécharger en PDF"
+            className="ml-auto flex items-center gap-1.5 rounded-full px-2.5 py-1.5 text-xs font-semibold text-plum-900/55 transition hover:bg-blush-50 hover:text-blush-700"
+          >
+            <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <path d="M12 3v12m0 0 4-4m-4 4-4-4M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2" />
+            </svg>
+            PDF
+          </a>
+        )}
       </div>
 
       {open && (

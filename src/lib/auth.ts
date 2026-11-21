@@ -11,7 +11,7 @@ const SESSION_DAYS = 30;
 
 export type SessionUser = Pick<
   UserRow,
-  "id" | "name" | "email" | "clinic" | "role" | "createdAt"
+  "id" | "name" | "email" | "clinic" | "role" | "isAdmin" | "createdAt"
 >;
 
 export async function createSession(userId: string): Promise<void> {
@@ -54,6 +54,7 @@ export async function getCurrentUser(): Promise<SessionUser | null> {
         email: users.email,
         clinic: users.clinic,
         role: users.role,
+        isAdmin: users.isAdmin,
         createdAt: users.createdAt,
       })
       .from(sessions)
