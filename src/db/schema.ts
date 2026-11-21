@@ -159,6 +159,18 @@ export const attempts = pgTable(
   (table) => [index("attempts_card_idx").on(table.cardId)],
 );
 
+export const passwordResets = pgTable("password_resets", {
+  token: text("token").primaryKey(),
+  userId: uuid("user_id")
+    .notNull()
+    .references(() => users.id, { onDelete: "cascade" }),
+  expiresAt: timestamp("expires_at", { withTimezone: true }).notNull(),
+  usedAt: timestamp("used_at", { withTimezone: true }),
+  createdAt: timestamp("created_at", { withTimezone: true })
+    .notNull()
+    .defaultNow(),
+});
+
 export const authAttempts = pgTable("auth_attempts", {
   id: uuid("id").primaryKey().defaultRandom(),
   email: text("email").notNull().default(""),

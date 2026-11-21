@@ -100,6 +100,14 @@ CREATE TABLE IF NOT EXISTS attempts (
 );
 CREATE INDEX IF NOT EXISTS attempts_card_idx ON attempts(card_id);
 
+CREATE TABLE IF NOT EXISTS password_resets (
+  token text PRIMARY KEY,
+  user_id uuid NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  expires_at timestamptz NOT NULL,
+  used_at timestamptz,
+  created_at timestamptz NOT NULL DEFAULT now()
+);
+
 CREATE TABLE IF NOT EXISTS auth_attempts (
   id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
   email text NOT NULL DEFAULT '',

@@ -182,6 +182,15 @@ export function LoginForm({
         </div>
       </div>
 
+      <div className="text-right">
+        <Link
+          href="/forgot-password"
+          className="text-xs font-semibold text-blush-700 hover:underline"
+        >
+          Mot de passe oublié ?
+        </Link>
+      </div>
+
       <SubmitButton label="Se connecter" pendingLabel="Connexion…" pending={pending} />
 
       <button
