@@ -2,7 +2,8 @@ import Link from "next/link";
 import type { CommunityCard } from "@/lib/community";
 import type { Engagement } from "@/lib/engagement";
 import { CardFront } from "@/components/card-artwork";
-import { PostActions } from "@/components/post-actions";
+import { PostBody } from "@/components/post-body";
+import { optionsFromPool } from "@/lib/quiz";
 
 function initials(name: string): string {
   return name
@@ -17,30 +18,44 @@ export function PublicCardTile({
   card,
   engagement,
   loggedIn,
+  pool,
+  platform,
 }: {
   card: CommunityCard;
   engagement: Engagement;
   loggedIn: boolean;
+  pool: string[];
+  platform: { correct: number; wrong: number };
 }) {
+  const options = optionsFromPool(pool, card.diagnosis);
+
+  const front = (
+    <CardFront
+      diagnosis={card.diagnosis}
+      questionLabel={card.questionLabel}
+      clues={card.clues.map((c) => c.body)}
+      logoInitials={card.logoInitials}
+      footerLabel={card.footerLabel}
+      socialUrl={card.socialUrl}
+      shareUrl={card.shareCode}
+      specialty={card.specialty}
+      className="mx-auto w-full max-w-[230px]"
+    />
+  );
+
+  const reveal = (
+    <div className="mx-auto max-w-[230px] rounded-2xl border border-gold-300/60 bg-[linear-gradient(150deg,#fffaf0,#fdf0f6)] px-3 py-2 text-center">
+      <p className="text-[0.6rem] font-bold uppercase tracking-[0.16em] text-gold-500">
+        Réponse
+      </p>
+      <p className="mt-1 font-serif text-sm font-bold leading-snug text-plum-900">
+        {card.diagnosis}
+      </p>
+    </div>
+  );
+
   return (
     <div className="sb-panel flex flex-col gap-2.5 p-3 transition hover:-translate-y-0.5 hover:shadow-lg">
-      <Link
-        href={`/c/${card.shareCode}`}
-        className="mx-auto block w-full max-w-[200px]"
-        aria-label="Ouvrir le cas clinique"
-      >
-        <CardFront
-          diagnosis={card.diagnosis}
-          questionLabel={card.questionLabel}
-          clues={card.clues.map((c) => c.body)}
-          logoInitials={card.logoInitials}
-          footerLabel={card.footerLabel}
-          socialUrl={card.socialUrl}
-          shareUrl={card.shareCode}
-          specialty={card.specialty}
-        />
-      </Link>
-
       <div className="min-w-0">
         <Link
           href={`/ch/${card.channel.id}`}
@@ -67,17 +82,20 @@ export function PublicCardTile({
             {card.views} scans
           </span>
         </div>
-        <div className="mt-2">
-          <PostActions
-            cardId={card.id}
-            initialLikes={engagement.likes}
-            initialLiked={engagement.liked}
-            initialComments={engagement.comments}
-            loggedIn={loggedIn}
-            printHref={`/c/${card.shareCode}/print`}
-          />
-        </div>
       </div>
+
+      <PostBody
+        cardId={card.id}
+        options={options}
+        initialPlatform={platform}
+        initialLikes={engagement.likes}
+        initialLiked={engagement.liked}
+        initialComments={engagement.comments}
+        loggedIn={loggedIn}
+        printHref={`/c/${card.shareCode}/print`}
+        front={front}
+        reveal={reveal}
+      />
     </div>
   );
 }

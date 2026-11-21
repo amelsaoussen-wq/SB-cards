@@ -30,6 +30,22 @@ export async function buildOptions(
   return shuffle([diagnosis, ...distractors]);
 }
 
+/** Réservoir de diagnostics publiés (pour construire les choix sans N requêtes). */
+export async function publishedDiagnosisPool(): Promise<string[]> {
+  const rows = await db
+    .select({ diagnosis: cards.diagnosis })
+    .from(cards)
+    .where(eq(cards.status, "published"))
+    .limit(200);
+  return Array.from(new Set(rows.map((r) => r.diagnosis)));
+}
+
+/** Construit 4 choix à partir d'un réservoir partagé (synchrone). */
+export function optionsFromPool(pool: string[], diagnosis: string): string[] {
+  const distractors = shuffle(pool.filter((d) => d !== diagnosis)).slice(0, 3);
+  return shuffle([diagnosis, ...distractors]);
+}
+
 export async function recordAttempt(
   cardId: string,
   userId: string | null,
