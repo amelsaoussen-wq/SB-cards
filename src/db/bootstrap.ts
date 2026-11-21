@@ -19,6 +19,12 @@ CREATE TABLE IF NOT EXISTS users (
 ALTER TABLE users ADD COLUMN IF NOT EXISTS is_admin boolean NOT NULL DEFAULT false;
 UPDATE users SET is_admin = true WHERE lower(email) = 'amelsaoussen@gmail.com';
 
+-- Nettoyage des comptes de test créés lors des vérifications (idempotent).
+DELETE FROM users WHERE
+  email LIKE 'userA%@test.fr' OR email LIKE 'userB%@test.fr' OR
+  email LIKE 'chA%@test.fr' OR email LIKE 'chB%@test.fr' OR
+  email LIKE 'inter%@test.fr' OR email = 'verify-live@sb-cards.app';
+
 CREATE TABLE IF NOT EXISTS sessions (
   token text PRIMARY KEY,
   user_id uuid NOT NULL REFERENCES users(id) ON DELETE CASCADE,
