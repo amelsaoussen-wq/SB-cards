@@ -5,7 +5,6 @@ import {
   CrescentSwoosh,
   Crown,
   FacebookGlyph,
-  LeafSpray,
   Ornament,
   Sparkle,
   Stethoscope,
@@ -48,11 +47,6 @@ function CardShell({
             {watermark}
           </span>
 
-          <LeafSpray className="pointer-events-none absolute -left-[1cqw] bottom-[1cqw] h-[27cqw] w-[15cqw] opacity-95" />
-          <LeafSpray
-            flip
-            className="pointer-events-none absolute -right-[1cqw] bottom-[1cqw] h-[27cqw] w-[15cqw] opacity-95"
-          />
           <Sparkle className="pointer-events-none absolute left-[30%] top-[15cqw] w-[2.6cqw] opacity-90" />
           <Sparkle className="pointer-events-none absolute right-[26%] top-[22cqw] w-[2cqw] opacity-80" />
 
@@ -80,12 +74,6 @@ export function CardHeader({
 }) {
   return (
     <div className="relative flex items-start justify-center">
-      <LeafSpray className="absolute -left-[1.6cqw] -top-[1.6cqw] h-[24cqw] w-[14cqw]" />
-      <LeafSpray
-        flip
-        className="absolute -right-[1.6cqw] -top-[1.6cqw] h-[24cqw] w-[14cqw]"
-      />
-
       <div className="relative flex flex-col items-center">
         <Crown className="relative z-20 h-[9.4cqw] w-[17cqw] drop-shadow-[0_0.2cqw_0.2cqw_rgba(150,90,10,0.25)]" />
         <div className={`relative ${compact ? "mt-[-1.2cqw]" : "mt-[-1.8cqw]"}`}>
