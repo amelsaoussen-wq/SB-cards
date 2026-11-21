@@ -1,6 +1,6 @@
 import "server-only";
 
-import { and, asc, eq, inArray, sql } from "drizzle-orm";
+import { and, asc, desc, eq, inArray, sql } from "drizzle-orm";
 import { db } from "@/db";
 import { comments, likes, users } from "@/db/schema";
 
@@ -47,6 +47,19 @@ export async function engagementForCards(
   }
 
   return map;
+}
+
+export type Liker = { id: string; name: string; isAdmin: boolean };
+
+/** Liste des comptes ayant aimé la publication (pour l'appui long). */
+export async function listLikers(cardId: string): Promise<Liker[]> {
+  return db
+    .select({ id: users.id, name: users.name, isAdmin: users.isAdmin })
+    .from(likes)
+    .innerJoin(users, eq(users.id, likes.userId))
+    .where(eq(likes.cardId, cardId))
+    .orderBy(desc(likes.createdAt))
+    .limit(100);
 }
 
 export async function likeCard(userId: string, cardId: string): Promise<void> {

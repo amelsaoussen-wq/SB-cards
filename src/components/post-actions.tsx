@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState, type ReactNode } from "react";
+import { useRef, useState, type ReactNode } from "react";
 
 type Comment = {
   id: string;
@@ -54,6 +54,46 @@ export function PostActions({
   const [loading, setLoading] = useState(false);
   const [draft, setDraft] = useState("");
   const [sending, setSending] = useState(false);
+  const [likersOpen, setLikersOpen] = useState(false);
+  const [likers, setLikers] = useState<
+    { id: string; name: string; isAdmin: boolean }[] | null
+  >(null);
+  const holdTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const holdFired = useRef(false);
+
+  // Appui long sur J’aime → liste des comptes qui aiment la publication.
+  function startHold() {
+    holdTimer.current = setTimeout(() => {
+      holdFired.current = true;
+      setLikersOpen(true);
+      fetch(`/api/cards/${cardId}/likes`)
+        .then((r) => r.json())
+        .then((d) => {
+          if (d.ok) setLikers(d.likers);
+        })
+        .catch(() => undefined);
+    }, 500);
+  }
+  function endHold() {
+    if (holdTimer.current) {
+      clearTimeout(holdTimer.current);
+      holdTimer.current = null;
+    }
+  }
+  function likeClick(e: React.MouseEvent) {
+    if (holdFired.current) {
+      holdFired.current = false;
+      e.preventDefault();
+      return;
+    }
+    toggleLike();
+  }
+  function likeLinkClick(e: React.MouseEvent) {
+    if (holdFired.current) {
+      holdFired.current = false;
+      e.preventDefault();
+    }
+  }
 
   async function toggleLike() {
     if (!loggedIn) return;
@@ -130,10 +170,16 @@ export function PostActions({
         {loggedIn ? (
           <button
             type="button"
-            onClick={toggleLike}
+            onClick={likeClick}
+            onPointerDown={startHold}
+            onPointerUp={endHold}
+            onPointerLeave={endHold}
+            onPointerCancel={endHold}
+            onContextMenu={(e) => e.preventDefault()}
             aria-pressed={liked}
-            aria-label="J’aime"
-            className={`flex items-center gap-1.5 rounded-full px-2.5 py-1.5 text-xs font-semibold transition ${
+            aria-label="J’aime (appui long : voir les comptes)"
+            title="Appui long : voir les comptes qui aiment"
+            className={`flex touch-none items-center gap-1.5 rounded-full px-2.5 py-1.5 text-xs font-semibold transition select-none ${
               liked ? "bg-rose-50 text-rose-600" : "text-plum-900/55 hover:bg-blush-50"
             }`}
           >
@@ -143,7 +189,14 @@ export function PostActions({
         ) : (
           <Link
             href="/login"
-            className="flex items-center gap-1.5 rounded-full px-2.5 py-1.5 text-xs font-semibold text-plum-900/55 hover:bg-blush-50"
+            onClick={likeLinkClick}
+            onPointerDown={startHold}
+            onPointerUp={endHold}
+            onPointerLeave={endHold}
+            onPointerCancel={endHold}
+            onContextMenu={(e) => e.preventDefault()}
+            title="Appui long : voir les comptes qui aiment"
+            className="flex touch-none items-center gap-1.5 rounded-full px-2.5 py-1.5 text-xs font-semibold text-plum-900/55 select-none hover:bg-blush-50"
           >
             <Heart filled={false} />
             {likes}
@@ -182,6 +235,44 @@ export function PostActions({
           </a>
         )}
       </div>
+
+      {likersOpen && (
+        <div className="mt-2 rounded-xl bg-rose-50/70 p-2.5">
+          <div className="flex items-center justify-between gap-2">
+            <p className="text-xs font-bold text-rose-700">
+              ❤️ Comptes qui aiment ({likers ? likers.length : likes})
+            </p>
+            <button
+              type="button"
+              onClick={() => setLikersOpen(false)}
+              className="text-[0.65rem] text-plum-900/40 hover:text-rose-600"
+            >
+              fermer
+            </button>
+          </div>
+          {likers === null ? (
+            <p className="mt-1 text-xs text-plum-900/45">Chargement…</p>
+          ) : likers.length === 0 ? (
+            <p className="mt-1 text-xs text-plum-900/45">
+              Aucun like pour l’instant.
+            </p>
+          ) : (
+            <ul className="mt-1.5 flex flex-wrap gap-1.5">
+              {likers.map((l) => (
+                <li key={l.id}>
+                  <Link
+                    href={`/ch/${l.id}`}
+                    className="inline-flex items-center gap-1 rounded-full border border-rose-200 bg-white px-2 py-0.5 text-[0.65rem] font-semibold text-plum-900/75 hover:border-rose-400"
+                  >
+                    {l.name}
+                    {l.isAdmin && <span aria-hidden="true">👑</span>}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      )}
 
       {open && (
         <div className="mt-2 space-y-2 rounded-xl bg-blush-50/60 p-2.5">
