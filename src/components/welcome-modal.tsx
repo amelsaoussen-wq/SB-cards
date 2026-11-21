@@ -8,9 +8,10 @@ import { Crown } from "@/components/ornaments";
  * Message de bienvenue affiché une seule fois, juste après la première
  * inscription : « أهلاً بك 🎉 لقد أصبحت فردًا من عائلة SB Cards ».
  */
-export function WelcomeModal() {
+export function WelcomeModal({ name }: { name: string }) {
   const router = useRouter();
   const [open, setOpen] = useState(true);
+  const firstName = name.trim().split(/\s+/)[0] || name;
 
   if (!open) return null;
 
@@ -38,7 +39,7 @@ export function WelcomeModal() {
         <p className="mt-4 text-4xl" aria-hidden="true">🎉</p>
 
         <h2 dir="rtl" className="mt-2 font-serif text-2xl font-bold leading-snug text-plum-900">
-          أهلاً بك 🎉
+          أهلاً بك يا {firstName} 🎉
           <span className="mt-1 block text-lg text-blush-700">
             لقد أصبحت فردًا من عائلة SB Cards
           </span>

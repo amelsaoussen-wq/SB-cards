@@ -40,7 +40,7 @@ export default async function DashboardPage({
 
   return (
     <div className="space-y-7">
-      {params.welcome === "1" && <WelcomeModal />}
+      {params.welcome === "1" && <WelcomeModal name={user.name} />}
       <PageHeader
         eyebrow="Vue d’ensemble"
         title={`${greeting()}, ${user.name}`}
