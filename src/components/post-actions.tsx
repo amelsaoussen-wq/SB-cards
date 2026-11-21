@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 
 type Comment = {
   id: string;
@@ -35,6 +35,7 @@ export function PostActions({
   initialComments,
   loggedIn,
   printHref,
+  modeToggle,
 }: {
   cardId: string;
   initialLikes: number;
@@ -42,6 +43,7 @@ export function PostActions({
   initialComments: number;
   loggedIn: boolean;
   printHref?: string;
+  modeToggle?: ReactNode;
 }) {
   const [liked, setLiked] = useState(initialLiked);
   const [likes, setLikes] = useState(initialLikes);
@@ -161,6 +163,8 @@ export function PostActions({
           </svg>
           {count}
         </button>
+
+        {modeToggle}
 
         {printHref && (
           <a

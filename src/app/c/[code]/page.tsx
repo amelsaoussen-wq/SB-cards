@@ -6,9 +6,7 @@ import { safeEnsureDatabaseReady } from "@/db/bootstrap";
 import { getOrigin } from "@/lib/origin";
 import { qrDataUrl } from "@/lib/qr";
 import { CardBack, CardFront } from "@/components/card-artwork";
-import { RevealAnswer } from "@/components/reveal-answer";
-import { PostActions } from "@/components/post-actions";
-import { QuizPost } from "@/components/quiz-post";
+import { PostBody } from "@/components/post-body";
 import { buildOptions, platformAnswerStats } from "@/lib/quiz";
 import { engagementForCards } from "@/lib/engagement";
 import { Crown } from "@/components/ornaments";
@@ -104,39 +102,34 @@ export default async function PublicCardPage({
         </div>
 
         <div className="mx-auto w-full max-w-[440px]">
-          <QuizPost cardId={card.id} options={options} initialPlatform={platform}>
-            <CardFront {...artwork} className="w-full" />
-          </QuizPost>
-        </div>
-
-        <div className="mx-auto mt-4 w-full max-w-[400px]">
-          <PostActions
+          <PostBody
             cardId={card.id}
+            options={options}
+            initialPlatform={platform}
             initialLikes={engagement.likes}
             initialLiked={engagement.liked}
             initialComments={engagement.comments}
             loggedIn={!!user}
             printHref={`/c/${card.shareCode}/print`}
+            front={<CardFront {...artwork} className="w-full" />}
+            reveal={
+              <>
+                <CardBack {...artwork} qrDataUrl={qr} className="w-full max-w-[400px]" />
+                <div className="mx-auto max-w-2xl rounded-3xl border border-gold-300/60 bg-[linear-gradient(150deg,#fffaf0,#fdf0f6)] p-6 text-center">
+                  <p className="text-[0.68rem] font-bold uppercase tracking-[0.2em] text-gold-500">
+                    Réponse
+                  </p>
+                  <p className="mt-2 font-serif text-xl font-bold leading-snug text-plum-900 sm:text-2xl">
+                    {card.diagnosis}
+                  </p>
+                  <p className="mt-2 text-xs text-plum-900/50">
+                    {card.clues.length} indices · niveau {card.difficulty} ·{" "}
+                    {card.views.toLocaleString("fr-FR")} lectures
+                  </p>
+                </div>
+              </>
+            }
           />
-        </div>
-
-        {/* Réponse masquée : révélée uniquement au clic (page publique). */}
-        <div className="mt-6">
-          <RevealAnswer>
-            <CardBack {...artwork} qrDataUrl={qr} className="w-full max-w-[400px]" />
-            <div className="mx-auto max-w-2xl rounded-3xl border border-gold-300/60 bg-[linear-gradient(150deg,#fffaf0,#fdf0f6)] p-6 text-center">
-              <p className="text-[0.68rem] font-bold uppercase tracking-[0.2em] text-gold-500">
-                Réponse
-              </p>
-              <p className="mt-2 font-serif text-xl font-bold leading-snug text-plum-900 sm:text-2xl">
-                {card.diagnosis}
-              </p>
-              <p className="mt-2 text-xs text-plum-900/50">
-                {card.clues.length} indices · niveau {card.difficulty} ·{" "}
-                {card.views.toLocaleString("fr-FR")} lectures
-              </p>
-            </div>
-          </RevealAnswer>
         </div>
 
         <div className="mt-8 text-center">
