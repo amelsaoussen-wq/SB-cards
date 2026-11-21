@@ -33,16 +33,9 @@ function Icon({ path }: { path: string }) {
 const NAV: NavItem[] = [
   {
     href: "/dashboard",
-    label: "Tableau de bord",
+    label: "Mon studio",
     exact: true,
     icon: <Icon path="M4 13h6V4H4v9Zm0 7h6v-4H4v4Zm10 0h6v-9h-6v9Zm0-16v4h6V4h-6Z" />,
-  },
-  {
-    href: "/dashboard/cards",
-    label: "Mes cartes",
-    icon: (
-      <Icon path="M7 4h10a2 2 0 0 1 2 2v13l-7-3-7 3V6a2 2 0 0 1 2-2Zm1 4h8M8 12h5" />
-    ),
   },
   {
     href: "/explore",
@@ -160,25 +153,6 @@ export function DashboardShell({
             </Link>
           );
         })}
-        <Link
-          href={`/ch/${user.id}`}
-          className={`group flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-semibold transition ${
-            pathname.startsWith("/ch/")
-              ? "bg-[linear-gradient(100deg,#fbe4ef,#fdf3f8)] text-blush-800 shadow-[inset_0_0_0_1px_rgba(241,184,210,0.7)]"
-              : "text-plum-900/65 hover:bg-blush-50 hover:text-blush-800"
-          }`}
-        >
-          <span
-            className={`flex h-8 w-8 items-center justify-center rounded-lg transition ${
-              pathname.startsWith("/ch/")
-                ? "bg-white text-blush-600 shadow-sm"
-                : "bg-blush-50 text-blush-500 group-hover:bg-white"
-            }`}
-          >
-            <Icon path="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm-7 8a7 7 0 0 1 14 0" />
-          </span>
-          Ma chaîne
-        </Link>
         {user.isAdmin && (
           <Link
             href="/dashboard/admin"
