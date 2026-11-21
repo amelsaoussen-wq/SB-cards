@@ -1,11 +1,14 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getPublicCard, incrementCardViews } from "@/lib/cards";
+import { getCurrentUser } from "@/lib/auth";
 import { safeEnsureDatabaseReady } from "@/db/bootstrap";
 import { getOrigin } from "@/lib/origin";
 import { qrDataUrl } from "@/lib/qr";
 import { CardBack, CardFront } from "@/components/card-artwork";
 import { RevealAnswer } from "@/components/reveal-answer";
+import { PostActions } from "@/components/post-actions";
+import { engagementForCards } from "@/lib/engagement";
 import { Crown } from "@/components/ornaments";
 
 export const dynamic = "force-dynamic";
@@ -34,6 +37,11 @@ export default async function PublicCardPage({
   await safeEnsureDatabaseReady();
   const card = await getPublicCard(code);
   if (!card) notFound();
+
+  const user = await getCurrentUser();
+  const engagement =
+    (await engagementForCards([card.id], user?.id)).get(card.id) ??
+    { likes: 0, comments: 0, liked: false };
 
   const origin = await getOrigin();
   try {
@@ -93,6 +101,16 @@ export default async function PublicCardPage({
 
         <div className="flex justify-center">
           <CardFront {...artwork} className="w-full max-w-[400px]" />
+        </div>
+
+        <div className="mx-auto mt-4 w-full max-w-[400px]">
+          <PostActions
+            cardId={card.id}
+            initialLikes={engagement.likes}
+            initialLiked={engagement.liked}
+            initialComments={engagement.comments}
+            loggedIn={!!user}
+          />
         </div>
 
         {/* Réponse masquée : révélée uniquement au clic (page publique). */}

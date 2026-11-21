@@ -1,6 +1,8 @@
 import Link from "next/link";
 import type { CommunityCard } from "@/lib/community";
+import type { Engagement } from "@/lib/engagement";
 import { CardFront } from "@/components/card-artwork";
+import { PostActions } from "@/components/post-actions";
 
 function initials(name: string): string {
   return name
@@ -11,7 +13,15 @@ function initials(name: string): string {
     .join("");
 }
 
-export function PublicCardTile({ card }: { card: CommunityCard }) {
+export function PublicCardTile({
+  card,
+  engagement,
+  loggedIn,
+}: {
+  card: CommunityCard;
+  engagement: Engagement;
+  loggedIn: boolean;
+}) {
   return (
     <div className="sb-panel flex flex-col gap-2.5 p-3 transition hover:-translate-y-0.5 hover:shadow-lg">
       <Link
@@ -51,6 +61,15 @@ export function PublicCardTile({ card }: { card: CommunityCard }) {
           <span className="shrink-0 text-[0.65rem] text-plum-900/40">
             {card.views} scans
           </span>
+        </div>
+        <div className="mt-2">
+          <PostActions
+            cardId={card.id}
+            initialLikes={engagement.likes}
+            initialLiked={engagement.liked}
+            initialComments={engagement.comments}
+            loggedIn={loggedIn}
+          />
         </div>
       </div>
     </div>

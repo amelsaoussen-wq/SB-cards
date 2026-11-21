@@ -63,6 +63,24 @@ CREATE TABLE IF NOT EXISTS follows (
 CREATE INDEX IF NOT EXISTS follows_follower_idx ON follows(follower_id);
 CREATE INDEX IF NOT EXISTS follows_channel_idx ON follows(channel_id);
 
+CREATE TABLE IF NOT EXISTS likes (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  card_id uuid NOT NULL REFERENCES cards(id) ON DELETE CASCADE,
+  user_id uuid NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  created_at timestamptz NOT NULL DEFAULT now(),
+  CONSTRAINT likes_pair_unique UNIQUE (card_id, user_id)
+);
+CREATE INDEX IF NOT EXISTS likes_card_idx ON likes(card_id);
+
+CREATE TABLE IF NOT EXISTS comments (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  card_id uuid NOT NULL REFERENCES cards(id) ON DELETE CASCADE,
+  user_id uuid NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  body text NOT NULL,
+  created_at timestamptz NOT NULL DEFAULT now()
+);
+CREATE INDEX IF NOT EXISTS comments_card_idx ON comments(card_id);
+
 CREATE TABLE IF NOT EXISTS auth_attempts (
   id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
   email text NOT NULL DEFAULT '',

@@ -7,6 +7,7 @@ import {
   listPublishedCards,
 } from "@/lib/community";
 import { PublicCardTile } from "@/components/public-card-tile";
+import { engagementForCards } from "@/lib/engagement";
 import { FollowButton } from "@/components/follow-button";
 import { Crown } from "@/components/ornaments";
 import { EmptyState } from "@/components/ui";
@@ -32,6 +33,8 @@ export default async function ExplorePage({
     listChannels(10),
     user ? followedChannelIds(user.id) : Promise.resolve(new Set<string>()),
   ]);
+
+  const engagement = await engagementForCards(cards.map((c) => c.id), user?.id);
 
   return (
     <div className="sb-app-bg min-h-screen">
@@ -145,7 +148,7 @@ export default async function ExplorePage({
           ) : (
             <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               {cards.map((card) => (
-                <PublicCardTile key={card.id} card={card} />
+                <PublicCardTile key={card.id} card={card} engagement={engagement.get(card.id) ?? { likes: 0, comments: 0, liked: false }} loggedIn={!!user} />
               ))}
             </div>
           )}
