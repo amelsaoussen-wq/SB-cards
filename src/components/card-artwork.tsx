@@ -5,6 +5,7 @@ import {
   CrescentSwoosh,
   Crown,
   FacebookGlyph,
+  LeafBranch,
   Ornament,
   Sparkle,
   Stethoscope,
@@ -55,6 +56,20 @@ function CardShell({
             specialty={specialty}
             className="absolute -right-[4cqw] top-[26cqw] h-[102cqw] w-[58cqw] opacity-[0.9]"
           />
+
+          {/* Feuillages décoratifs épousant les quatre côtés (design de référence). */}
+          <div className="pointer-events-none absolute -left-[2cqw] bottom-0 h-[46cqw] w-[26cqw]">
+            <LeafBranch className="h-full w-full" />
+          </div>
+          <div className="pointer-events-none absolute -right-[2cqw] bottom-0 h-[46cqw] w-[26cqw]">
+            <LeafBranch flip className="h-full w-full" />
+          </div>
+          <div className="pointer-events-none absolute -left-[2cqw] -top-[2cqw] h-[46cqw] w-[26cqw] rotate-180">
+            <LeafBranch className="h-full w-full" />
+          </div>
+          <div className="pointer-events-none absolute -right-[2cqw] -top-[2cqw] h-[46cqw] w-[26cqw] rotate-180">
+            <LeafBranch flip className="h-full w-full" />
+          </div>
 
           <div className="relative flex min-h-[139cqw] flex-col px-[3.6cqw] pb-[2.4cqw] pt-[2.6cqw]">
             {children}
@@ -135,9 +150,9 @@ export function CardFront(props: ArtworkProps) {
               <div
                 className="-ml-[1.3cqw] flex-1 rounded-[2.4cqw] border-[0.42cqw] py-[1.05cqw] pl-[2.6cqw] pr-[1.8cqw] text-center"
                 style={{
-                  // Translucidité : l'illustration de spécialité transparaît
-                  // DERRIÈRE le texte, sans changer la teinte ni le numéro.
-                  background: `${row.tone.card}8C`,
+                  // Fond BLANC (comme le design de référence) ; seules la
+                  // bordure et la pastille numérotée gardent la couleur.
+                  background: "rgba(255,255,255,0.92)",
                   borderColor: row.tone.border,
                 }}
               >

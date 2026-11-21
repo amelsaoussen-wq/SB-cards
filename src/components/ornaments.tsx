@@ -177,3 +177,64 @@ export function FacebookGlyph({ className }: { className?: string }) {
     </svg>
   );
 }
+
+/**
+ * Branche de feuilles (rose + or) épousant les côtés de la carte,
+ * comme le design de référence (remplace les anciennes « colonnes »).
+ */
+export function LeafBranch({
+  className,
+  flip = false,
+}: {
+  className?: string;
+  flip?: boolean;
+}) {
+  return (
+    <svg
+      viewBox="0 0 140 240"
+      className={className}
+      style={{ transform: flip ? "scaleX(-1)" : undefined }}
+      aria-hidden="true"
+    >
+      <defs>
+        <linearGradient id="lbPink" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stopColor="#ff9ec6" />
+          <stop offset="55%" stopColor="#ef5f9e" />
+          <stop offset="100%" stopColor="#d84f8f" />
+        </linearGradient>
+        <linearGradient id="lbGold" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stopColor="#f8d68a" />
+          <stop offset="60%" stopColor="#eaa93c" />
+          <stop offset="100%" stopColor="#cf8120" />
+        </linearGradient>
+      </defs>
+      {/* tige */}
+      <path
+        d="M28 236 C 40 180, 44 130, 62 74 C 70 50, 80 30, 92 14"
+        fill="none"
+        stroke="url(#lbGold)"
+        strokeWidth="4"
+        strokeLinecap="round"
+      />
+      {/* feuilles lancées alternées rose / or */}
+      {[
+        { x: 30, y: 214, r: -100, f: "url(#lbPink)", s: 1.15 },
+        { x: 40, y: 186, r: -150, f: "url(#lbGold)", s: 1.0 },
+        { x: 42, y: 158, r: -95, f: "url(#lbPink)", s: 1.1 },
+        { x: 50, y: 130, r: -145, f: "url(#lbGold)", s: 0.95 },
+        { x: 56, y: 104, r: -90, f: "url(#lbPink)", s: 1.05 },
+        { x: 66, y: 78, r: -140, f: "url(#lbGold)", s: 0.9 },
+        { x: 76, y: 52, r: -85, f: "url(#lbPink)", s: 1.0 },
+        { x: 88, y: 28, r: -130, f: "url(#lbGold)", s: 0.85 },
+      ].map((l, i) => (
+        <path
+          key={i}
+          d="M0 0 C 12 -16, 34 -16, 46 0 C 34 16, 12 16, 0 0 Z"
+          fill={l.f}
+          opacity="0.95"
+          transform={`translate(${l.x} ${l.y}) rotate(${l.r}) scale(${l.s})`}
+        />
+      ))}
+    </svg>
+  );
+}
