@@ -8,6 +8,8 @@ import { qrDataUrl } from "@/lib/qr";
 import { CardBack, CardFront } from "@/components/card-artwork";
 import { RevealAnswer } from "@/components/reveal-answer";
 import { PostActions } from "@/components/post-actions";
+import { QuizPost } from "@/components/quiz-post";
+import { buildOptions, platformAnswerStats } from "@/lib/quiz";
 import { engagementForCards } from "@/lib/engagement";
 import { Crown } from "@/components/ornaments";
 
@@ -42,6 +44,8 @@ export default async function PublicCardPage({
   const engagement =
     (await engagementForCards([card.id], user?.id)).get(card.id) ??
     { likes: 0, comments: 0, liked: false };
+  const options = await buildOptions(card.id, card.diagnosis);
+  const platform = await platformAnswerStats();
 
   const origin = await getOrigin();
   try {
@@ -99,8 +103,10 @@ export default async function PublicCardPage({
           </p>
         </div>
 
-        <div className="flex justify-center">
-          <CardFront {...artwork} className="w-full max-w-[400px]" />
+        <div className="mx-auto w-full max-w-[440px]">
+          <QuizPost cardId={card.id} options={options} initialPlatform={platform}>
+            <CardFront {...artwork} className="w-full" />
+          </QuizPost>
         </div>
 
         <div className="mx-auto mt-4 w-full max-w-[400px]">

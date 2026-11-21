@@ -90,6 +90,15 @@ CREATE TABLE IF NOT EXISTS comments (
 );
 CREATE INDEX IF NOT EXISTS comments_card_idx ON comments(card_id);
 
+CREATE TABLE IF NOT EXISTS attempts (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  card_id uuid NOT NULL REFERENCES cards(id) ON DELETE CASCADE,
+  user_id uuid REFERENCES users(id) ON DELETE SET NULL,
+  correct boolean NOT NULL,
+  created_at timestamptz NOT NULL DEFAULT now()
+);
+CREATE INDEX IF NOT EXISTS attempts_card_idx ON attempts(card_id);
+
 CREATE TABLE IF NOT EXISTS auth_attempts (
   id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
   email text NOT NULL DEFAULT '',

@@ -8,6 +8,7 @@ import {
 } from "@/lib/community";
 import { PublicCardTile } from "@/components/public-card-tile";
 import { engagementForCards } from "@/lib/engagement";
+import { platformAnswerStats } from "@/lib/quiz";
 import { FollowButton } from "@/components/follow-button";
 import { Crown } from "@/components/ornaments";
 import { EmptyState } from "@/components/ui";
@@ -35,6 +36,7 @@ export default async function ExplorePage({
   ]);
 
   const engagement = await engagementForCards(cards.map((c) => c.id), user?.id);
+  const answerStats = await platformAnswerStats();
 
   return (
     <div className="sb-app-bg min-h-screen">
@@ -78,6 +80,11 @@ export default async function ExplorePage({
             enrichissent la bibliothèque SB Cards. Suivez vos chaînes préférées
             pour retrouver leurs nouveautés.
           </p>
+          <div className="mt-4 inline-flex items-center gap-4 rounded-full border border-blush-200 bg-white/80 px-5 py-2 text-sm font-semibold shadow-sm">
+            <span className="text-emerald-700">✅ {answerStats.correct} bonnes réponses</span>
+            <span className="text-plum-900/30">·</span>
+            <span className="text-rose-700">❌ {answerStats.wrong} mauvaises</span>
+          </div>
         </div>
 
         <form
