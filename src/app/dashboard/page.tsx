@@ -11,6 +11,7 @@ import {
   StatusBadge,
 } from "@/components/ui";
 import { formatRelative } from "@/lib/format";
+import { WelcomeModal } from "@/components/welcome-modal";
 
 export const dynamic = "force-dynamic";
 
@@ -22,8 +23,13 @@ function greeting(): string {
   return "Bonsoir";
 }
 
-export default async function DashboardPage() {
+export default async function DashboardPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ welcome?: string }>;
+}) {
   const user = await requireUser();
+  const params = await searchParams;
   const [cards, stats] = await Promise.all([
     listCards(user.id),
     getWorkspaceStats(user.id),
@@ -34,6 +40,7 @@ export default async function DashboardPage() {
 
   return (
     <div className="space-y-7">
+      {params.welcome === "1" && <WelcomeModal />}
       <PageHeader
         eyebrow="Vue d’ensemble"
         title={`${greeting()}, ${user.name}`}

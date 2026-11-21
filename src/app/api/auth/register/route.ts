@@ -80,5 +80,6 @@ export async function POST(request: Request) {
     redirect("/register?error=db");
   }
 
-  redirect("/dashboard");
+  // Première inscription → message de bienvenue une seule fois.
+  redirect("/dashboard?welcome=1");
 }
