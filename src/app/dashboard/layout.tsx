@@ -22,6 +22,7 @@ export default async function DashboardLayout({
         role: user.role,
         clinic: user.clinic,
         isAdmin: user.isAdmin,
+        avatar: user.avatar,
       }}
     >
       {children}

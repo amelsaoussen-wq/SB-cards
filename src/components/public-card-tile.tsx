@@ -3,6 +3,7 @@ import type { CommunityCard } from "@/lib/community";
 import type { Engagement } from "@/lib/engagement";
 import { CardFront } from "@/components/card-artwork";
 import { PostBody } from "@/components/post-body";
+import { Avatar } from "@/components/avatar";
 import { optionsFromPool } from "@/lib/quiz";
 
 function initials(name: string): string {
@@ -61,9 +62,7 @@ export function PublicCardTile({
           href={`/ch/${card.channel.id}`}
           className="flex items-center gap-1.5 text-[0.7rem] font-semibold text-blush-700 hover:underline"
         >
-          <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[linear-gradient(140deg,#e2569a,#a72c69)] text-[0.55rem] font-bold text-white">
-            {initials(card.channel.name)}
-          </span>
+          <Avatar name={card.channel.name} avatar={card.channel.avatar} className="h-5 w-5 text-[0.55rem]" />
           <span className="truncate">{card.channel.name}</span>
           {card.channel.isAdmin && (
             <span className="shrink-0 rounded-full bg-gold-300/40 px-1.5 py-0.5 text-[0.55rem] font-bold text-gold-500">

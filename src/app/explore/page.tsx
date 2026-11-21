@@ -11,6 +11,7 @@ import { engagementForCards } from "@/lib/engagement";
 import { platformAnswerStats, publishedDiagnosisPool } from "@/lib/quiz";
 import { FollowButton } from "@/components/follow-button";
 import { Crown } from "@/components/ornaments";
+import { Avatar } from "@/components/avatar";
 import { EmptyState } from "@/components/ui";
 import { SPECIALTIES } from "@/lib/constants";
 
@@ -31,7 +32,7 @@ export default async function ExplorePage({
 
   const [cards, channels, followed] = await Promise.all([
     listPublishedCards({ search: q, specialty }),
-    listChannels(10),
+    listChannels(12, q),
     user ? followedChannelIds(user.id) : Promise.resolve(new Set<string>()),
   ]);
 
@@ -111,14 +112,12 @@ export default async function ExplorePage({
 
         {channels.length > 0 && (
           <section className="mt-8">
-            <h2 className="font-serif text-lg font-bold text-plum-900">Chaînes à suivre</h2>
+            <h2 className="font-serif text-lg font-bold text-plum-900">{q ? `Chaînes trouvées pour « ${q} »` : "Chaînes à suivre"}</h2>
             <div className="mt-3 flex gap-3 overflow-x-auto pb-2">
               {channels.map((ch) => (
                 <div key={ch.id} className="sb-panel flex min-w-[220px] items-center gap-3 p-3">
                   <Link href={`/ch/${ch.id}`} className="flex min-w-0 flex-1 items-center gap-2">
-                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[linear-gradient(140deg,#e2569a,#a72c69)] text-xs font-bold text-white">
-                      {ch.name.split(/\s+/).slice(0, 2).map((p) => p[0]?.toUpperCase()).join("")}
-                    </span>
+                    <Avatar name={ch.name} avatar={ch.avatar} className="h-9 w-9 text-xs" />
                     <span className="min-w-0">
                       <span className="block truncate text-sm font-semibold text-plum-900">{ch.name}</span>
                       <span className="block text-[0.65rem] text-plum-900/45">{ch.cardCount} carte{ch.cardCount > 1 ? "s" : ""}</span>

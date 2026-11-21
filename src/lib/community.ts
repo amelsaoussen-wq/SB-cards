@@ -10,6 +10,7 @@ export type ChannelInfo = {
   name: string;
   clinic: string;
   isAdmin: boolean;
+  avatar: string;
 };
 
 export type CommunityCard = CardRecord & { channel: ChannelInfo };
@@ -55,6 +56,7 @@ const cardCols = {
   channelName: users.name,
   channelClinic: users.clinic,
   channelAdmin: users.isAdmin,
+  channelAvatar: users.avatar,
 };
 
 type Row = Awaited<ReturnType<typeof queryRows>>[number];
@@ -86,6 +88,7 @@ function toCommunity(row: Row, clueList: CommunityCard["clues"]): CommunityCard 
       name: row.channelName,
       clinic: row.channelClinic,
       isAdmin: row.channelAdmin,
+      avatar: row.channelAvatar,
     },
   };
 }
@@ -122,7 +125,7 @@ export async function listPublishedCards(options: {
 /** Chaîne publique d'un utilisateur : ses cartes publiées + stats. */
 export async function getChannel(channelId: string) {
   const u = await db
-    .select({ id: users.id, name: users.name, clinic: users.clinic, role: users.role, isAdmin: users.isAdmin })
+    .select({ id: users.id, name: users.name, clinic: users.clinic, role: users.role, isAdmin: users.isAdmin, avatar: users.avatar })
     .from(users)
     .where(eq(users.id, channelId))
     .limit(1);
@@ -209,16 +212,26 @@ export async function unfollowChannel(
 }
 
 /** Chaînes actives (ayant publié), pour la découverte. */
-export async function listChannels(limit = 12) {
+export async function listChannels(limit = 12, search?: string) {
   const rows = await db
     .select({
       id: users.id,
       name: users.name,
       clinic: users.clinic,
+      avatar: users.avatar,
+      isAdmin: users.isAdmin,
       cardCount: sql<number>`count(${cards.id})::int`,
     })
     .from(users)
-    .innerJoin(cards, and(eq(cards.userId, users.id), eq(cards.status, "published")))
+    .innerJoin(
+      cards,
+      and(eq(cards.userId, users.id), eq(cards.status, "published")),
+    )
+    .where(
+      search
+        ? sql`lower(${users.name}) LIKE ${"%" + search.toLowerCase() + "%"}`
+        : undefined,
+    )
     .groupBy(users.id)
     .orderBy(desc(sql`count(${cards.id})`))
     .limit(limit);

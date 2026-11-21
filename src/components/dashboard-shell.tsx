@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState, type ReactNode } from "react";
 import { Crown } from "@/components/ornaments";
+import { Avatar } from "@/components/avatar";
 
 type NavItem = {
   href: string;
@@ -93,6 +94,7 @@ export function DashboardShell({
     role: string;
     clinic: string;
     isAdmin: boolean;
+    avatar: string;
   };
   children: ReactNode;
 }) {
@@ -212,9 +214,7 @@ export function DashboardShell({
         </div>
 
         <div className="flex items-center gap-3 rounded-2xl border border-blush-100 bg-blush-50/60 p-2.5">
-          <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[linear-gradient(140deg,#e2569a,#a72c69)] text-xs font-bold text-white">
-            {initialsOf(user.name)}
-          </span>
+          <Avatar name={user.name} avatar={user.avatar} className="h-9 w-9 text-xs" />
           <div className="min-w-0 flex-1">
             <p className="truncate text-sm font-semibold text-plum-900">
               {user.name}

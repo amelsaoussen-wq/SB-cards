@@ -8,6 +8,7 @@ import { engagementForCards } from "@/lib/engagement";
 import { platformAnswerStats, publishedDiagnosisPool } from "@/lib/quiz";
 import { FollowButton } from "@/components/follow-button";
 import { Crown } from "@/components/ornaments";
+import { Avatar } from "@/components/avatar";
 import { EmptyState } from "@/components/ui";
 
 export const dynamic = "force-dynamic";
@@ -54,9 +55,7 @@ export default async function ChannelPage({
       <main className="mx-auto w-full max-w-6xl px-5 pb-16">
         <section className="sb-panel flex flex-col gap-4 p-6 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-center gap-4">
-            <span className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-[linear-gradient(140deg,#e2569a,#a72c69)] font-serif text-xl font-bold text-white">
-              {channel.name.split(/\s+/).slice(0, 2).map((p) => p[0]?.toUpperCase()).join("")}
-            </span>
+            <Avatar name={channel.name} avatar={channel.avatar} className="h-16 w-16 rounded-2xl text-xl" />
             <div>
               <h1 className="flex items-center gap-2 font-serif text-2xl font-bold text-plum-900">
                 {channel.name}

@@ -16,6 +16,7 @@ export const users = pgTable("users", {
   clinic: text("clinic").notNull().default(""),
   role: text("role").notNull().default("Concepteur de cartes"),
   isAdmin: boolean("is_admin").notNull().default(false),
+  avatar: text("avatar").notNull().default(""),
   createdAt: timestamp("created_at", { withTimezone: true })
     .notNull()
     .defaultNow(),

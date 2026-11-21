@@ -3,6 +3,7 @@ import { requireUser } from "@/lib/auth";
 import { getWorkspaceStats } from "@/lib/cards";
 import { SettingsForm } from "@/components/settings-form";
 import { ChangePasswordForm } from "@/components/change-password-form";
+import { AvatarUploader } from "@/components/avatar-uploader";
 import { PageHeader, StatCard } from "@/components/ui";
 import { formatDate } from "@/lib/format";
 
@@ -30,6 +31,11 @@ export default async function SettingsPage() {
 
       <div className="grid gap-5 lg:grid-cols-[1.4fr_1fr]">
         <div className="space-y-5">
+        <section className="sb-panel p-5 sm:p-6">
+          <h2 className="font-serif text-lg font-bold text-plum-900">Photo de profil</h2>
+          <p className="mt-1 text-sm text-plum-900/55">Votre photo apparaît sur votre chaîne et vos publications.</p>
+          <div className="mt-4"><AvatarUploader name={user.name} initialAvatar={user.avatar} /></div>
+        </section>
         <section className="sb-panel p-5 sm:p-6">
           <h2 className="font-serif text-lg font-bold text-plum-900">
             Profil auteur
