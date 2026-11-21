@@ -34,7 +34,9 @@ export function PostBody({
   front: ReactNode;
   reveal: ReactNode;
 }) {
-  const [mode, setMode] = useState<"quiz" | "reveal">("quiz");
+  // Par défaut RIEN n'est visible : ni options ni réponse.
+  // L'utilisateur clique sur 🎯 pour voir les options, ou 👁 pour la réponse.
+  const [mode, setMode] = useState<"hidden" | "quiz" | "reveal">("hidden");
 
   const toggle = (
     <div
@@ -44,7 +46,7 @@ export function PostBody({
     >
       <button
         type="button"
-        onClick={() => setMode("quiz")}
+        onClick={() => setMode((m) => (m === "quiz" ? "hidden" : "quiz"))}
         aria-pressed={mode === "quiz"}
         className={`rounded-full px-2.5 py-1 text-[0.68rem] font-bold transition ${
           mode === "quiz"
@@ -56,7 +58,7 @@ export function PostBody({
       </button>
       <button
         type="button"
-        onClick={() => setMode("reveal")}
+        onClick={() => setMode((m) => (m === "reveal" ? "hidden" : "reveal"))}
         aria-pressed={mode === "reveal"}
         className={`rounded-full px-2.5 py-1 text-[0.68rem] font-bold transition ${
           mode === "reveal"
@@ -90,6 +92,13 @@ export function PostBody({
           modeToggle={toggle}
         />
       </div>
+
+      {mode === "hidden" && (
+        <p className="mt-3 text-center text-[0.68rem] text-plum-900/45">
+          Options masquées — cliquez sur 🎯 Options pour jouer, ou 👁 Révéler
+          pour voir la réponse.
+        </p>
+      )}
 
       {mode === "reveal" && (
         <div className="mt-6">
