@@ -60,9 +60,9 @@ export function PublicCardTile({
       <div className="min-w-0">
         <Link
           href={`/ch/${card.channel.id}`}
-          className="flex items-center gap-1.5 text-[0.7rem] font-semibold text-blush-700 hover:underline"
+          className="flex items-center gap-2 text-sm font-semibold text-blush-700 hover:underline"
         >
-          <Avatar name={card.channel.name} avatar={card.channel.avatar} className="h-5 w-5 text-[0.55rem]" />
+          <Avatar name={card.channel.name} avatar={card.channel.avatar} className="h-9 w-9 text-[0.6rem]" />
           <span className="truncate">{card.channel.name}</span>
           {card.channel.isAdmin && (
             <span className="shrink-0 rounded-full bg-gold-300/40 px-1.5 py-0.5 text-[0.55rem] font-bold text-gold-500">

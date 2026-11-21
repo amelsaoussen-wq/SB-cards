@@ -117,9 +117,9 @@ export default async function ExplorePage({
               {channels.map((ch) => (
                 <div key={ch.id} className="sb-panel flex min-w-[220px] items-center gap-3 p-3">
                   <Link href={`/ch/${ch.id}`} className="flex min-w-0 flex-1 items-center gap-2">
-                    <Avatar name={ch.name} avatar={ch.avatar} className="h-9 w-9 text-xs" />
+                    <Avatar name={ch.name} avatar={ch.avatar} className="h-10 w-10 text-xs" />
                     <span className="min-w-0">
-                      <span className="block truncate text-sm font-semibold text-plum-900">{ch.name}</span>
+                      <span className="block truncate text-base font-semibold text-plum-900">{ch.name}</span>
                       <span className="block text-[0.65rem] text-plum-900/45">{ch.cardCount} carte{ch.cardCount > 1 ? "s" : ""}</span>
                     </span>
                   </Link>
