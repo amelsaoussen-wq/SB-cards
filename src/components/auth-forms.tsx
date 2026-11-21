@@ -239,7 +239,7 @@ export function RegisterForm({
           required
           minLength={2}
           autoComplete="name"
-          placeholder="Dr Amine Belkacem"
+          placeholder="SB Cards"
           className="sb-input"
         />
       </div>
