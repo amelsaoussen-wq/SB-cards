@@ -6,6 +6,7 @@ import { CardsBoard } from "@/components/cards-board";
 import { Avatar } from "@/components/avatar";
 import { PageHeader, StatCard } from "@/components/ui";
 import { WelcomeModal } from "@/components/welcome-modal";
+import { HealthFlash } from "@/components/health-flash";
 
 export const dynamic = "force-dynamic";
 
@@ -33,6 +34,8 @@ export default async function DashboardPage({
   return (
     <div className="space-y-6">
       {params.welcome === "1" && <WelcomeModal name={user.name} />}
+
+      <HealthFlash />
 
       <PageHeader
         eyebrow="Espace créateur"

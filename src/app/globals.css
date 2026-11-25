@@ -113,6 +113,19 @@
   animation: sb-fade-up 0.4s ease-out both;
 }
 
+@keyframes sb-flash-bar {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0%;
+  }
+}
+
+.sb-flash-bar {
+  animation: sb-flash-bar 5s linear forwards;
+}
+
 @keyframes sb-shimmer {
   0% {
     background-position: 0% 50%;
