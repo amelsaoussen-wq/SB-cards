@@ -5,6 +5,7 @@ import { CardFront } from "@/components/card-artwork";
 import { PostBody } from "@/components/post-body";
 import { Avatar } from "@/components/avatar";
 import { optionsFromPool } from "@/lib/quiz";
+import { formatDateTime } from "@/lib/format";
 
 function initials(name: string): string {
   return name
@@ -81,6 +82,9 @@ export function PublicCardTile({
             {card.views} scans
           </span>
         </div>
+        <p className="mt-1 text-[0.65rem] text-plum-900/45">
+          🕒 Publié le {formatDateTime(card.publishedAt ?? card.updatedAt)}
+        </p>
       </div>
 
       <PostBody

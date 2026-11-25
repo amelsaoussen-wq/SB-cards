@@ -27,6 +27,7 @@ export type CardRecord = {
   prints: number;
   createdAt: string;
   updatedAt: string;
+  publishedAt: string | null;
   clues: CardClue[];
 };
 
@@ -50,6 +51,7 @@ const cardColumns = {
   prints: cards.prints,
   createdAt: cards.createdAt,
   updatedAt: cards.updatedAt,
+  publishedAt: cards.publishedAt,
 };
 
 type CardRowLike = {
@@ -68,6 +70,7 @@ type CardRowLike = {
   prints: number;
   createdAt: Date;
   updatedAt: Date;
+  publishedAt: Date | null;
 };
 
 function normalize(row: CardRowLike, clueRows: CardClue[]): CardRecord {
@@ -76,6 +79,7 @@ function normalize(row: CardRowLike, clueRows: CardClue[]): CardRecord {
     status: row.status === "published" ? "published" : "draft",
     createdAt: row.createdAt.toISOString(),
     updatedAt: row.updatedAt.toISOString(),
+    publishedAt: row.publishedAt ? row.publishedAt.toISOString() : null,
     clues: clueRows,
   };
 }

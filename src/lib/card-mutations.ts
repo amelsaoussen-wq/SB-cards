@@ -1,6 +1,6 @@
 import "server-only";
 
-import { and, eq } from "drizzle-orm";
+import { and, eq, sql } from "drizzle-orm";
 import { db } from "@/db";
 import { cards, clues, users } from "@/db/schema";
 import { DEMO_EMAIL } from "@/db/bootstrap";
@@ -73,6 +73,7 @@ export async function createCard(
           specialty: input.specialty,
           difficulty: input.difficulty,
           status: input.status,
+          publishedAt: input.status === "published" ? new Date() : null,
           summary: input.summary.trim(),
           shareCode: newShareCode(input.diagnosis),
           logoInitials: (input.logoInitials || "SB").trim().slice(0, 3).toUpperCase(),
@@ -128,6 +129,7 @@ export async function updateCard(
           specialty: input.specialty,
           difficulty: input.difficulty,
           status: input.status,
+          publishedAt: input.status === "published" ? sql`coalesce(${cards.publishedAt}, now())` : cards.publishedAt,
           summary: input.summary.trim(),
           logoInitials: (input.logoInitials || "SB").trim().slice(0, 3).toUpperCase(),
           footerLabel: input.footerLabel.trim() || "Suivez notre page sur Facebook",
@@ -177,7 +179,7 @@ export async function setCardStatus(
   try {
     await db
       .update(cards)
-      .set({ status, updatedAt: new Date() })
+      .set({ status, updatedAt: new Date(), publishedAt: status === "published" ? sql`coalesce(${cards.publishedAt}, now())` : cards.publishedAt })
       .where(and(eq(cards.id, cardId), eq(cards.userId, userId)));
     return { ok: true };
   } catch {

@@ -18,6 +18,8 @@ CREATE TABLE IF NOT EXISTS users (
 
 ALTER TABLE users ADD COLUMN IF NOT EXISTS is_admin boolean NOT NULL DEFAULT false;
 ALTER TABLE users ADD COLUMN IF NOT EXISTS avatar text NOT NULL DEFAULT '';
+ALTER TABLE cards ADD COLUMN IF NOT EXISTS published_at timestamptz;
+UPDATE cards SET published_at = updated_at WHERE status = 'published' AND published_at IS NULL;
 UPDATE users SET is_admin = true WHERE lower(email) = 'amelsaoussen@gmail.com';
 
 -- Nettoyage des comptes de test créés lors des vérifications (idempotent).

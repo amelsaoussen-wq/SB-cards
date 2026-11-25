@@ -9,6 +9,7 @@ import { CardBack, CardFront } from "@/components/card-artwork";
 import { PostBody } from "@/components/post-body";
 import { buildOptions, platformAnswerStats } from "@/lib/quiz";
 import { engagementForCards } from "@/lib/engagement";
+import { formatDateTime } from "@/lib/format";
 import { Crown } from "@/components/ornaments";
 
 export const dynamic = "force-dynamic";
@@ -98,6 +99,9 @@ export default async function PublicCardPage({
           <p className="mt-2 text-sm text-plum-900/55">
             {card.summary ||
               "Six indices pour raisonner — révélez la réponse quand vous êtes prêt."}
+          </p>
+          <p className="mt-1 text-xs text-plum-900/45">
+            🕒 Publié le {formatDateTime(card.publishedAt ?? card.updatedAt)}
           </p>
         </div>
 

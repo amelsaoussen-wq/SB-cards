@@ -26,6 +26,25 @@ export function formatRelative(iso: string): string {
   return formatDate(iso);
 }
 
+/** Date + heure de publication, ex. « 12 mars 2026 à 14:30 ». */
+export function formatDateTime(iso: string): string {
+  try {
+    const d = new Date(iso);
+    const date = new Intl.DateTimeFormat("fr-FR", {
+      day: "numeric",
+      month: "short",
+      year: "numeric",
+    }).format(d);
+    const time = new Intl.DateTimeFormat("fr-FR", {
+      hour: "2-digit",
+      minute: "2-digit",
+    }).format(d);
+    return `${date} à ${time}`;
+  } catch {
+    return "—";
+  }
+}
+
 export function compactNumber(value: number): string {
   return new Intl.NumberFormat("fr-FR", {
     notation: value >= 10_000 ? "compact" : "standard",

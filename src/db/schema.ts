@@ -60,8 +60,9 @@ export const cards = pgTable(
     socialUrl: text("social_url")
       .notNull()
       .default("https://www.facebook.com/sb.medical.cards"),
-    views: integer("views").notNull().default(0),
-    prints: integer("prints").notNull().default(0),
+  views: integer("views").notNull().default(0),
+  prints: integer("prints").notNull().default(0),
+  publishedAt: timestamp("published_at", { withTimezone: true }),
     createdAt: timestamp("created_at", { withTimezone: true })
       .notNull()
       .defaultNow(),

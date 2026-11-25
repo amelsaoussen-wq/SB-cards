@@ -57,6 +57,7 @@ const cardCols = {
   channelClinic: users.clinic,
   channelAdmin: users.isAdmin,
   channelAvatar: users.avatar,
+  publishedAt: cards.publishedAt,
 };
 
 type Row = Awaited<ReturnType<typeof queryRows>>[number];
@@ -82,6 +83,7 @@ function toCommunity(row: Row, clueList: CommunityCard["clues"]): CommunityCard 
     prints: row.prints,
     createdAt: row.createdAt.toISOString(),
     updatedAt: row.updatedAt.toISOString(),
+    publishedAt: row.publishedAt ? row.publishedAt.toISOString() : null,
     clues: clueList,
     channel: {
       id: row.channelId,
