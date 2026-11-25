@@ -14,6 +14,8 @@ import { Crown } from "@/components/ornaments";
 import { Avatar } from "@/components/avatar";
 import { WelcomeModal } from "@/components/welcome-modal";
 import { HealthFlash } from "@/components/health-flash";
+import { StarBanner } from "@/components/star-banner";
+import { starOfTheDay } from "@/lib/leaderboard";
 import { EmptyState } from "@/components/ui";
 import { SPECIALTIES } from "@/lib/constants";
 
@@ -40,6 +42,7 @@ export default async function ExplorePage({
 
   const engagement = await engagementForCards(cards.map((c) => c.id), user?.id);
   const answerStats = await platformAnswerStats();
+  const star = await starOfTheDay();
   const pool = await publishedDiagnosisPool();
 
   return (
@@ -76,8 +79,9 @@ export default async function ExplorePage({
       </header>
 
       <main className="mx-auto w-full max-w-6xl px-5 pb-16">
-        <div className="mb-5">
+        <div className="mb-5 space-y-3">
           <HealthFlash />
+          <StarBanner star={star} />
         </div>
         <div className="text-center">
           <h1 className="font-serif text-3xl font-bold text-plum-900 sm:text-4xl">
@@ -161,7 +165,7 @@ export default async function ExplorePage({
           ) : (
             <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               {cards.map((card) => (
-                <PublicCardTile key={card.id} card={card} engagement={engagement.get(card.id) ?? { likes: 0, comments: 0, liked: false }} loggedIn={!!user} pool={pool} platform={answerStats} />
+                <PublicCardTile key={card.id} card={card} engagement={engagement.get(card.id) ?? { likes: 0, comments: 0, liked: false }} loggedIn={!!user} pool={pool} platform={answerStats} starUserId={star?.userId} />
               ))}
             </div>
           )}

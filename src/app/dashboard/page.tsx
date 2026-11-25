@@ -7,6 +7,8 @@ import { Avatar } from "@/components/avatar";
 import { PageHeader, StatCard } from "@/components/ui";
 import { WelcomeModal } from "@/components/welcome-modal";
 import { HealthFlash } from "@/components/health-flash";
+import { StarBanner } from "@/components/star-banner";
+import { starOfTheDay } from "@/lib/leaderboard";
 
 export const dynamic = "force-dynamic";
 
@@ -27,6 +29,7 @@ export default async function DashboardPage({
     getChannel(user.id),
   ]);
 
+  const star = await starOfTheDay();
   const specialties = Array.from(
     new Set(cards.map((c) => c.specialty)),
   ).sort((a, b) => a.localeCompare(b, "fr"));
@@ -36,6 +39,7 @@ export default async function DashboardPage({
       {params.welcome === "1" && <WelcomeModal name={user.name} />}
 
       <HealthFlash />
+      <StarBanner star={star} />
 
       <PageHeader
         eyebrow="Espace créateur"

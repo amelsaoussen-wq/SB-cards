@@ -9,6 +9,8 @@ import { platformAnswerStats, publishedDiagnosisPool } from "@/lib/quiz";
 import { FollowButton } from "@/components/follow-button";
 import { Crown } from "@/components/ornaments";
 import { Avatar } from "@/components/avatar";
+import { StarBanner } from "@/components/star-banner";
+import { starOfTheDay } from "@/lib/leaderboard";
 import { EmptyState } from "@/components/ui";
 
 export const dynamic = "force-dynamic";
@@ -30,6 +32,7 @@ export default async function ChannelPage({
   const { channel, cardCount, followerCount, cards } = data;
   const engagement = await engagementForCards(cards.map((c) => c.id), user?.id);
   const platform = await platformAnswerStats();
+  const star = await starOfTheDay();
   const pool = await publishedDiagnosisPool();
 
   return (
@@ -59,6 +62,9 @@ export default async function ChannelPage({
             <div>
               <h1 className="flex items-center gap-2 font-serif text-2xl font-bold text-plum-900">
                 {channel.name}
+                {star?.userId === channel.id && (
+                  <span className="rounded-full bg-gold-300/50 px-2 py-0.5 text-[0.6rem] font-bold text-gold-500">⭐ Star du jour</span>
+                )}
                 {channel.isAdmin && (
                   <span className="rounded-full bg-gold-300/40 px-2 py-0.5 text-[0.6rem] font-bold text-gold-500">
                     👑 Compte officiel · SB Cards
@@ -94,7 +100,7 @@ export default async function ChannelPage({
           ) : (
             <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               {cards.map((card) => (
-                <PublicCardTile key={card.id} card={card} engagement={engagement.get(card.id) ?? { likes: 0, comments: 0, liked: false }} loggedIn={!!user} pool={pool} platform={platform} />
+                <PublicCardTile key={card.id} card={card} engagement={engagement.get(card.id) ?? { likes: 0, comments: 0, liked: false }} loggedIn={!!user} pool={pool} platform={platform} starUserId={star?.userId} />
               ))}
             </div>
           )}

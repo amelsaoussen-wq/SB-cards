@@ -23,12 +23,14 @@ export function PublicCardTile({
   loggedIn,
   pool,
   platform,
+  starUserId,
 }: {
   card: CommunityCard;
   engagement: Engagement;
   loggedIn: boolean;
   pool: string[];
   platform: { correct: number; wrong: number };
+  starUserId?: string;
 }) {
   const options = optionsFromPool(pool, card.diagnosis);
 
@@ -59,6 +61,9 @@ export function PublicCardTile({
         >
           <Avatar name={card.channel.name} avatar={card.channel.avatar} className="h-9 w-9 text-[0.6rem]" />
           <span className="truncate">{card.channel.name}</span>
+          {starUserId === card.channel.id && (
+            <span className="shrink-0 text-[0.7rem]" title="Star du jour">⭐</span>
+          )}
           {card.channel.isAdmin && (
             <span className="shrink-0 rounded-full bg-gold-300/40 px-1.5 py-0.5 text-[0.55rem] font-bold text-gold-500">
               👑 Officiel
