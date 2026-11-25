@@ -301,7 +301,7 @@ export function CardEditor({
                   id="diagnosis"
                   value={form.diagnosis}
                   onChange={(event) => update("diagnosis", event.target.value)}
-                  placeholder="Ex. Syndrome de Bart de l’hémoglobine / Alpha-thalassémie majeure"
+                  placeholder=""
                   rows={2}
                   className="sb-textarea font-serif text-base font-semibold"
                   maxLength={180}
