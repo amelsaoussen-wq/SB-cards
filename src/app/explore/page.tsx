@@ -13,6 +13,7 @@ import { FollowButton } from "@/components/follow-button";
 import { Crown } from "@/components/ornaments";
 import { Avatar } from "@/components/avatar";
 import { WelcomeModal } from "@/components/welcome-modal";
+import { HealthFlash } from "@/components/health-flash";
 import { EmptyState } from "@/components/ui";
 import { SPECIALTIES } from "@/lib/constants";
 
@@ -75,6 +76,9 @@ export default async function ExplorePage({
       </header>
 
       <main className="mx-auto w-full max-w-6xl px-5 pb-16">
+        <div className="mb-5">
+          <HealthFlash />
+        </div>
         <div className="text-center">
           <h1 className="font-serif text-3xl font-bold text-plum-900 sm:text-4xl">
             Toutes les cartes de la communauté

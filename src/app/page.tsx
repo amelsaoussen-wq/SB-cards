@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import { HealthFlash } from "@/components/health-flash";
 import { getCurrentUser } from "@/lib/auth";
 import { CardBack, CardFront } from "@/components/card-artwork";
 import { Crown } from "@/components/ornaments";
@@ -92,6 +93,9 @@ export default async function LandingPage() {
       </header>
 
       <main className="mx-auto w-full max-w-6xl px-5 pb-20">
+        <div className="mb-5">
+          <HealthFlash />
+        </div>
         <section className="grid items-center gap-12 py-10 lg:grid-cols-[1.05fr_1fr] lg:py-14">
           <div className="sb-fade-up">
             <span className="sb-chip">

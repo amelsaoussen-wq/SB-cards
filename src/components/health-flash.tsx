@@ -15,12 +15,8 @@ export function HealthFlash() {
   const [expanded, setExpanded] = useState(false);
 
   useEffect(() => {
-    // Aléatoire : ~70 % des entrées, une fois par session.
+    // Affichée immédiatement à la première entrée (une fois par session).
     if (sessionStorage.getItem("sb-flash-shown")) return;
-    if (Math.random() > 0.7) {
-      sessionStorage.setItem("sb-flash-shown", "skip");
-      return;
-    }
     sessionStorage.setItem("sb-flash-shown", "1");
     let active = true;
     fetch("/api/health-flash")
