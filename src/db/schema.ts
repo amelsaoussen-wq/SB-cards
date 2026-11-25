@@ -52,6 +52,7 @@ export const cards = pgTable(
     difficulty: text("difficulty").notNull().default("Intermédiaire"),
     status: text("status").notNull().default("draft"),
     summary: text("summary").notNull().default(""),
+  explanation: text("explanation").notNull().default(""),
     shareCode: text("share_code").notNull().unique(),
     logoInitials: text("logo_initials").notNull().default("SB"),
     footerLabel: text("footer_label")

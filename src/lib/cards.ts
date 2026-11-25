@@ -19,6 +19,7 @@ export type CardRecord = {
   difficulty: string;
   status: CardStatus;
   summary: string;
+  explanation: string;
   shareCode: string;
   logoInitials: string;
   footerLabel: string;
@@ -43,6 +44,7 @@ const cardColumns = {
   difficulty: cards.difficulty,
   status: cards.status,
   summary: cards.summary,
+  explanation: cards.explanation,
   shareCode: cards.shareCode,
   logoInitials: cards.logoInitials,
   footerLabel: cards.footerLabel,
@@ -62,6 +64,7 @@ type CardRowLike = {
   difficulty: string;
   status: string;
   summary: string;
+  explanation: string;
   shareCode: string;
   logoInitials: string;
   footerLabel: string;

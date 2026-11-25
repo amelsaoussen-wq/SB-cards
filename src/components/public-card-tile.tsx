@@ -4,6 +4,7 @@ import type { Engagement } from "@/lib/engagement";
 import { CardFront } from "@/components/card-artwork";
 import { PostBody } from "@/components/post-body";
 import { Avatar } from "@/components/avatar";
+import { ExplainAnswer } from "@/components/explain-answer";
 import { optionsFromPool } from "@/lib/quiz";
 import { formatDateTime } from "@/lib/format";
 
@@ -46,14 +47,7 @@ export function PublicCardTile({
   );
 
   const reveal = (
-    <div className="mx-auto max-w-[230px] rounded-2xl border border-gold-300/60 bg-[linear-gradient(150deg,#fffaf0,#fdf0f6)] px-3 py-2 text-center">
-      <p className="text-[0.6rem] font-bold uppercase tracking-[0.16em] text-gold-500">
-        Réponse
-      </p>
-      <p className="mt-1 font-serif text-sm font-bold leading-snug text-plum-900">
-        {card.diagnosis}
-      </p>
-    </div>
+    <ExplainAnswer diagnosis={card.diagnosis} explanation={card.explanation} />
   );
 
   return (
@@ -96,6 +90,7 @@ export function PublicCardTile({
         initialComments={engagement.comments}
         loggedIn={loggedIn}
         printHref={`/c/${card.shareCode}/print`}
+        explanation={card.explanation}
         front={front}
         reveal={reveal}
       />

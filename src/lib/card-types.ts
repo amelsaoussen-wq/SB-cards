@@ -8,6 +8,7 @@ export type CardInput = {
   difficulty: string;
   status: CardStatus;
   summary: string;
+  explanation: string;
   logoInitials: string;
   footerLabel: string;
   socialUrl: string;

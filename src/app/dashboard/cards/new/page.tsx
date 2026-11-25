@@ -22,6 +22,7 @@ export default async function NewCardPage() {
     difficulty: "Intermédiaire",
     status: "draft",
     summary: "",
+    explanation: "",
     logoInitials: "SB",
     footerLabel: "Suivez notre page sur Facebook",
     socialUrl: "https://www.facebook.com/sb.medical.cards",

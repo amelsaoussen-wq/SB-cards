@@ -7,6 +7,7 @@ import { getOrigin } from "@/lib/origin";
 import { qrDataUrl } from "@/lib/qr";
 import { CardBack, CardFront } from "@/components/card-artwork";
 import { PostBody } from "@/components/post-body";
+import { ExplainAnswer } from "@/components/explain-answer";
 import { buildOptions, platformAnswerStats } from "@/lib/quiz";
 import { engagementForCards } from "@/lib/engagement";
 import { formatDateTime } from "@/lib/format";
@@ -119,20 +120,17 @@ export default async function PublicCardPage({
             reveal={
               <>
                 <CardBack {...artwork} qrDataUrl={qr} className="w-full max-w-[400px]" />
-                <div className="mx-auto max-w-2xl rounded-3xl border border-gold-300/60 bg-[linear-gradient(150deg,#fffaf0,#fdf0f6)] p-6 text-center">
-                  <p className="text-[0.68rem] font-bold uppercase tracking-[0.2em] text-gold-500">
-                    Réponse
-                  </p>
-                  <p className="mt-2 font-serif text-xl font-bold leading-snug text-plum-900 sm:text-2xl">
-                    {card.diagnosis}
-                  </p>
-                  <p className="mt-2 text-xs text-plum-900/50">
-                    {card.clues.length} indices · niveau {card.difficulty} ·{" "}
-                    {card.views.toLocaleString("fr-FR")} lectures
-                  </p>
-                </div>
+                <ExplainAnswer
+                  diagnosis={card.diagnosis}
+                  explanation={card.explanation}
+                />
+                <p className="text-center text-xs text-plum-900/50">
+                  {card.clues.length} indices · niveau {card.difficulty} ·{" "}
+                  {card.views.toLocaleString("fr-FR")} lectures
+                </p>
               </>
             }
+            explanation={card.explanation}
           />
         </div>
 

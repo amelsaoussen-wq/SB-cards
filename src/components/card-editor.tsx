@@ -312,6 +312,23 @@ export function CardEditor({
               </div>
 
               <div>
+                <label htmlFor="explanation" className="sb-label">
+                  Pourquoi ce diagnostic ? (explication)
+                </label>
+                <textarea
+                  id="explanation"
+                  value={form.explanation}
+                  onChange={(event) => update("explanation", event.target.value)}
+                  placeholder="Expliquez le raisonnement : pourquoi ce diagnostic est correct, liens avec les indices…"
+                  rows={4}
+                  className="sb-textarea"
+                  maxLength={2000}
+                />
+                <p className="mt-1 text-[0.68rem] text-plum-900/40">
+                  Affiché quand le lecteur clique sur la réponse.
+                </p>
+              </div>
+              <div>
                 <label htmlFor="summary" className="sb-label">
                   Résumé pédagogique
                 </label>

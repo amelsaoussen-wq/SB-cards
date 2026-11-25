@@ -13,16 +13,19 @@ export function QuizPost({
   cardId,
   options,
   initialPlatform,
+  explanation,
   children,
 }: {
   cardId: string;
   options: string[];
   initialPlatform: { correct: number; wrong: number };
+  explanation: string;
   children: ReactNode;
 }) {
   const [result, setResult] = useState<Result | null>(null);
   const [platform, setPlatform] = useState(initialPlatform);
   const [busy, setBusy] = useState(false);
+  const [showWhy, setShowWhy] = useState(false);
 
   async function choose(option: string) {
     if (busy || result) return;
@@ -97,6 +100,25 @@ export function QuizPost({
               ? "✅ Bonne réponse ! Bravo 🎉"
               : `❌ Mauvaise réponse. La bonne réponse : ${result.diagnosis}`}
           </p>
+        )}
+
+        {result && (
+          <div className="mt-2">
+            <button
+              type="button"
+              onClick={() => setShowWhy((v) => !v)}
+              aria-expanded={showWhy}
+              className="w-full rounded-xl border border-blush-200 bg-white px-3 py-1.5 text-xs font-semibold text-blush-700 transition hover:bg-blush-50"
+            >
+              {showWhy ? "▲ Masquer l’explication" : "💡 Pourquoi ce diagnostic ?"}
+            </button>
+            {showWhy && (
+              <p className="sb-fade-up mt-1 whitespace-pre-line rounded-xl bg-blush-50/70 px-3 py-2 text-xs leading-relaxed text-plum-900/75">
+                {explanation.trim() ||
+                  "Aucune explication rédigée pour cette carte."}
+              </p>
+            )}
+          </div>
         )}
 
         <div className="mt-3 flex items-center justify-center gap-4 rounded-full border border-blush-200 bg-white/80 px-4 py-2 text-xs font-semibold">

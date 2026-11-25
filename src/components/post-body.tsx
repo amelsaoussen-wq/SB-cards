@@ -20,6 +20,7 @@ export function PostBody({
   initialComments,
   loggedIn,
   printHref,
+  explanation,
   front,
   reveal,
 }: {
@@ -31,6 +32,7 @@ export function PostBody({
   initialComments: number;
   loggedIn: boolean;
   printHref: string;
+  explanation: string;
   front: ReactNode;
   reveal: ReactNode;
 }) {
@@ -87,7 +89,12 @@ export function PostBody({
           ⛶
         </button>
         {mode === "quiz" ? (
-          <QuizPost cardId={cardId} options={options} initialPlatform={initialPlatform}>
+          <QuizPost
+            cardId={cardId}
+            options={options}
+            initialPlatform={initialPlatform}
+            explanation={explanation}
+          >
             {sized}
           </QuizPost>
         ) : (

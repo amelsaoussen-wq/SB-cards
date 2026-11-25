@@ -30,6 +30,7 @@ export default async function EditCardPage({
     difficulty: card.difficulty,
     status: card.status,
     summary: card.summary,
+    explanation: card.explanation,
     logoInitials: card.logoInitials,
     footerLabel: card.footerLabel,
     socialUrl: card.socialUrl,
