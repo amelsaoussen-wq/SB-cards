@@ -10,6 +10,7 @@ import { FollowButton } from "@/components/follow-button";
 import { Crown } from "@/components/ornaments";
 import { Avatar } from "@/components/avatar";
 import { StarBanner } from "@/components/star-banner";
+import { BottomBar } from "@/components/bottom-bar";
 import { starOfTheDay } from "@/lib/leaderboard";
 import { EmptyState } from "@/components/ui";
 
@@ -106,6 +107,7 @@ export default async function ChannelPage({
           )}
         </section>
       </main>
+      <BottomBar loggedIn={!!user} />
     </div>
   );
 }

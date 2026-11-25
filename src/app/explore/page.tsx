@@ -15,6 +15,7 @@ import { Avatar } from "@/components/avatar";
 import { WelcomeModal } from "@/components/welcome-modal";
 import { HealthFlash } from "@/components/health-flash";
 import { StarBanner } from "@/components/star-banner";
+import { BottomBar } from "@/components/bottom-bar";
 import { starOfTheDay } from "@/lib/leaderboard";
 import { EmptyState } from "@/components/ui";
 import { SPECIALTIES } from "@/lib/constants";
@@ -171,6 +172,7 @@ export default async function ExplorePage({
           )}
         </section>
       </main>
+      <BottomBar loggedIn={!!user} />
     </div>
   );
 }

@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import { ensureDatabaseReady } from "@/db/bootstrap";
 import { requireUser } from "@/lib/auth";
 import { DashboardShell } from "@/components/dashboard-shell";
+import { BottomBar } from "@/components/bottom-bar";
 
 export const dynamic = "force-dynamic";
 
@@ -26,6 +27,7 @@ export default async function DashboardLayout({
       }}
     >
       {children}
+      <BottomBar loggedIn />
     </DashboardShell>
   );
 }
