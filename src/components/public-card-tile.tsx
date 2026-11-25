@@ -41,7 +41,7 @@ export function PublicCardTile({
       socialUrl={card.socialUrl}
       shareUrl={card.shareCode}
       specialty={card.specialty}
-      className="mx-auto w-full max-w-[230px]"
+      className="w-full"
     />
   );
 

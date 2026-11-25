@@ -37,6 +37,7 @@ export function PostBody({
   // Par défaut RIEN n'est visible : ni options ni réponse.
   // L'utilisateur clique sur 🎯 pour voir les options, ou 👁 pour la réponse.
   const [mode, setMode] = useState<"hidden" | "quiz" | "reveal">("hidden");
+  const [full, setFull] = useState(false);
 
   const toggle = (
     <div
@@ -71,15 +72,28 @@ export function PostBody({
     </div>
   );
 
+  const sized = <div className="mx-auto w-full max-w-[320px]">{front}</div>;
+
   return (
     <div className="w-full">
-      {mode === "quiz" ? (
-        <QuizPost cardId={cardId} options={options} initialPlatform={initialPlatform}>
-          {front}
-        </QuizPost>
-      ) : (
-        <div className="flex justify-center">{front}</div>
-      )}
+      <div className="relative">
+        <button
+          type="button"
+          onClick={() => setFull(true)}
+          title="Plein écran"
+          aria-label="Agrandir en plein écran"
+          className="absolute right-1 top-1 z-10 flex h-8 w-8 items-center justify-center rounded-full bg-white/90 text-plum-900/70 shadow ring-1 ring-blush-200 transition hover:text-blush-700"
+        >
+          ⛶
+        </button>
+        {mode === "quiz" ? (
+          <QuizPost cardId={cardId} options={options} initialPlatform={initialPlatform}>
+            {sized}
+          </QuizPost>
+        ) : (
+          <div className="flex justify-center">{sized}</div>
+        )}
+      </div>
 
       <div className="mt-4">
         <PostActions
@@ -103,6 +117,31 @@ export function PostBody({
       {mode === "reveal" && (
         <div className="mt-6">
           <RevealAnswer>{reveal}</RevealAnswer>
+        </div>
+      )}
+
+      {full && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-plum-900/90 p-4 backdrop-blur-sm"
+          onClick={() => setFull(false)}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Carte en plein écran"
+        >
+          <div
+            className="relative max-h-[94vh] w-full max-w-[440px] overflow-auto"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              type="button"
+              onClick={() => setFull(false)}
+              aria-label="Fermer"
+              className="absolute right-0 top-0 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-white text-plum-900 shadow"
+            >
+              ✕
+            </button>
+            <div className="w-full">{front}</div>
+          </div>
         </div>
       )}
     </div>
