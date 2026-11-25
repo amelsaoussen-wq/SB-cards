@@ -27,7 +27,7 @@ export default async function LoginPage({
       <LoginForm
         error={params.error}
         email={params.email}
-        next={params.next ?? "/dashboard"}
+        next={params.next ?? "/explore"}
       />
     </AuthScreen>
   );

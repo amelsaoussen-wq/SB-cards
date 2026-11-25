@@ -12,6 +12,7 @@ import { platformAnswerStats, publishedDiagnosisPool } from "@/lib/quiz";
 import { FollowButton } from "@/components/follow-button";
 import { Crown } from "@/components/ornaments";
 import { Avatar } from "@/components/avatar";
+import { WelcomeModal } from "@/components/welcome-modal";
 import { EmptyState } from "@/components/ui";
 import { SPECIALTIES } from "@/lib/constants";
 
@@ -22,7 +23,7 @@ export const metadata = { title: "Découvrir — SB Cards" };
 export default async function ExplorePage({
   searchParams,
 }: {
-  searchParams: Promise<{ q?: string; specialty?: string }>;
+  searchParams: Promise<{ q?: string; specialty?: string; welcome?: string }>;
 }) {
   await safeEnsureDatabaseReady();
   const user = await getCurrentUser();
@@ -42,6 +43,7 @@ export default async function ExplorePage({
 
   return (
     <div className="sb-app-bg min-h-screen">
+      {params.welcome === "1" && user && <WelcomeModal name={user.name} />}
       <header className="mx-auto flex w-full max-w-6xl items-center justify-between gap-3 px-5 py-5">
         <Link href="/" className="flex items-center gap-3">
           <span className="relative flex h-11 w-11 items-center justify-center rounded-2xl bg-white ring-1 ring-blush-200">

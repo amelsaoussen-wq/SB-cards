@@ -1,6 +1,6 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 import { Crown } from "@/components/ornaments";
 
@@ -10,6 +10,7 @@ import { Crown } from "@/components/ornaments";
  */
 export function WelcomeModal({ name }: { name: string }) {
   const router = useRouter();
+  const pathname = usePathname();
   const [open, setOpen] = useState(true);
   const firstName = name.trim().split(/\s+/)[0] || name;
 
@@ -17,7 +18,7 @@ export function WelcomeModal({ name }: { name: string }) {
 
   function close() {
     setOpen(false);
-    router.replace("/dashboard");
+    router.replace(pathname);
   }
 
   return (

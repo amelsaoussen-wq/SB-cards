@@ -39,7 +39,7 @@ export function HealthFlash() {
 
   useEffect(() => {
     if (!visible || expanded) return;
-    const t = setTimeout(() => setVisible(false), 5000);
+    const t = setTimeout(() => setVisible(false), 30000);
     return () => clearTimeout(t);
   }, [visible, expanded]);
 
@@ -65,11 +65,11 @@ export function HealthFlash() {
             <p className="font-serif text-sm font-bold text-plum-900">
               {flash.title}
             </p>
-            <p className="mt-0.5 line-clamp-2 text-xs leading-relaxed text-plum-900/65">
-              {flash.short}
+            <p className="mt-0.5 line-clamp-4 text-xs leading-relaxed text-plum-900/65">
+              {flash.full}
             </p>
             <p className="mt-1 text-[0.62rem] font-semibold text-blush-600">
-              👆 Appuyez pour lire · disparaît dans 5 s
+              👆 Appuyez pour lire en grand · disparaît dans 30 s
             </p>
           </button>
           <button

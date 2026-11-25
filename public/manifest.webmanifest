@@ -3,7 +3,7 @@
   "short_name": "SB Cards",
   "description": "Créez, personnalisez et partagez des cartes de raisonnement clinique : un diagnostic, six indices, un design rose & or.",
   "id": "/",
-  "start_url": "/",
+  "start_url": "/explore",
   "scope": "/",
   "display": "standalone",
   "orientation": "portrait",

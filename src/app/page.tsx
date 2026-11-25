@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import { getCurrentUser } from "@/lib/auth";
 import { CardBack, CardFront } from "@/components/card-artwork";
 import { Crown } from "@/components/ornaments";
@@ -46,6 +47,7 @@ const STEPS = [
 
 export default async function LandingPage() {
   const user = await getCurrentUser();
+  if (user) redirect("/explore");
   const sampleQr = await qrDataUrl(SAMPLE.shareUrl);
 
   return (

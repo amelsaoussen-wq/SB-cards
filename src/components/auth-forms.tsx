@@ -103,7 +103,7 @@ function PasswordField({
 export function LoginForm({
   error,
   email: initialEmail,
-  next = "/dashboard",
+  next = "/explore",
 }: {
   error?: string;
   email?: string;

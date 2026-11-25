@@ -11,21 +11,21 @@ export const dynamic = "force-dynamic";
 
 function safeNext(value: string): string {
   if (value.startsWith("/") && !value.startsWith("//")) return value;
-  return "/dashboard";
+  return "/explore";
 }
 
 export async function POST(request: Request) {
   const userAgent = request.headers.get("user-agent") ?? "";
   let email = "";
   let password = "";
-  let next = "/dashboard";
+  let next = "/explore";
 
   try {
     const form = await request.formData();
     email = String(form.get("email") ?? "").trim().toLowerCase();
     // Les espaces parasites (copier-coller / clavier mobile) sont ignorés.
     password = String(form.get("password") ?? "").trim();
-    next = safeNext(String(form.get("next") ?? "/dashboard"));
+    next = safeNext(String(form.get("next") ?? "/explore"));
   } catch {
     redirect("/login?error=missing");
   }
