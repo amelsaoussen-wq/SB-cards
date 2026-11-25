@@ -89,9 +89,8 @@ export default async function ExplorePage({
             Toutes les cartes de la communauté
           </h1>
           <p className="mx-auto mt-2 max-w-2xl text-sm text-plum-900/60">
-            Chaque créateur publie sur sa propre chaîne, mais toutes les cartes
-            enrichissent la bibliothèque SB Cards. Suivez vos chaînes préférées
-            pour retrouver leurs nouveautés.
+            Chaque créateur publie sur sa propre chaîne. Suivez vos chaînes
+            préférées pour retrouver leurs nouveautés.
           </p>
           <div className="mt-4 inline-flex items-center gap-4 rounded-full border border-blush-200 bg-white/80 px-5 py-2 text-sm font-semibold shadow-sm">
             <span className="text-emerald-700">✅ {answerStats.correct} bonnes réponses</span>

@@ -22,7 +22,7 @@ export default async function FeedPage() {
       <PageHeader
         eyebrow="Communauté"
         title="Mes abonnements"
-        description="Les dernières cartes publiées par les chaînes que vous suivez. Tout enrichit la bibliothèque SB Cards."
+        description="Les dernières cartes publiées par les chaînes que vous suivez."
         actions={
           <Link href="/explore" className="sb-btn-primary">
             Découvrir des chaînes
