@@ -121,8 +121,8 @@ export function DashboardShell({
       </Link>
 
       <Link href="/dashboard/cards/new" className="sb-btn-primary w-full">
-        <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-          <path d="M12 5v14M5 12h14" />
+        <svg viewBox="0 0 24 24" className="h-4 w-4" fill="currentColor" aria-hidden="true">
+          <path d="M15 3a9 9 0 1 0 0 18 7.5 7.5 0 0 1 0-18z" />
         </svg>
         Nouvelle carte
       </Link>
@@ -255,7 +255,7 @@ export function DashboardShell({
               href="/dashboard/cards/new"
               className="rounded-xl bg-blush-600 px-3 py-2 text-xs font-bold text-white"
             >
-              + Carte
+              🌙 Carte
             </Link>
           </header>
 

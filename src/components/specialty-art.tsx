@@ -136,7 +136,8 @@ function DefaultArt() {
       <path d="M60 30v40a34 34 0 0 0 68 0V30" fill="none" stroke={P} strokeWidth="10" strokeLinecap="round" />
       <path d="M94 104v22a30 30 0 0 0 30 30h8" fill="none" stroke={P} strokeWidth="10" strokeLinecap="round" />
       <circle cx="146" cy="156" r="20" fill={L} stroke={D} strokeWidth="7" />
-      <path d="M60 190h40M80 170v40" stroke={D} strokeWidth="10" strokeLinecap="round" />
+      {/* هلال (crescent) au lieu de la croix */}
+      <path d="M100 152a44 44 0 1 0 0 88 36 36 0 1 1 0-88z" fill={D} />
     </svg>
   );
 }

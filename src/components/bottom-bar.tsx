@@ -22,23 +22,32 @@ function MedIcon({ d, extra }: { d: string; extra?: React.ReactNode }) {
   );
 }
 
+function Crescent() {
+  return (
+    <svg viewBox="0 0 24 24" className="h-5 w-5" fill="currentColor" aria-hidden="true">
+      <path d="M15 3a9 9 0 1 0 0 18 7.5 7.5 0 0 1 0-18z" />
+    </svg>
+  );
+}
+
 const ICONS = {
   // سماعة طبية
   discover: (
     <MedIcon d="M6 3v5a4 4 0 0 0 8 0V3M10 12v3a4 4 0 0 0 4 4h1" extra={<circle cx="18" cy="19" r="2.5" />} />
   ),
-  // سجل/بطاقة طبية
+  // بطاقة طبية بهلال (بدل الصليب)
   studio: (
-    <MedIcon d="M8 3h8a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2ZM12 8v6M9 11h6" />
+    <MedIcon
+      d="M8 3h8a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z"
+      extra={<path d="M13.6 8.6a4 4 0 1 0 0 6.8 3.2 3.2 0 0 1 0-6.8z" fill="currentColor" stroke="none" />}
+    />
   ),
   // نبض القلب
   feed: (
     <MedIcon d="M12 20C6 15.5 3.5 12 3.5 9.2 3.5 7 5.2 5.3 7.4 5.3c1.7 0 3.2.9 4.6 2.6 1.4-1.7 2.9-2.6 4.6-2.6 2.2 0 3.9 1.7 3.9 3.9 0 2.8-2.5 6.3-8.5 10.8Z" extra={<path d="M7 12h3l1.5-2.5 2 4L15 12h2" />} />
   ),
-  // كبسولة دواء
-  create: (
-    <MedIcon d="M8.5 8.5a4.95 4.95 0 0 1 7 7l-3 3a4.95 4.95 0 0 1-7-7l3-3ZM8.5 15.5l7-7" />
-  ),
+  // هلال للإنشاء
+  create: <Crescent />,
   // صعود للأعلى
   top: <MedIcon d="M12 19V5M6 11l6-6 6 6" />,
 };

@@ -51,7 +51,7 @@ export default async function DashboardPage({
               Ma chaîne publique ↗
             </Link>
             <Link href="/dashboard/cards/new" className="sb-btn-primary">
-              ＋ Nouvelle carte
+              🌙 Nouvelle carte
             </Link>
           </>
         }
@@ -129,7 +129,7 @@ export default async function DashboardPage({
             href="/dashboard/cards/new"
             className="text-xs font-semibold text-blush-700 hover:underline"
           >
-            ＋ Créer
+            🌙 Créer
           </Link>
         </div>
         <CardsBoard
