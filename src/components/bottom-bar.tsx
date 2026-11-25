@@ -22,14 +22,6 @@ function MedIcon({ d, extra }: { d: string; extra?: React.ReactNode }) {
   );
 }
 
-function Crescent() {
-  return (
-    <svg viewBox="0 0 24 24" className="h-5 w-5" fill="currentColor" aria-hidden="true">
-      <path d="M15 3a9 9 0 1 0 0 18 7.5 7.5 0 0 1 0-18z" />
-    </svg>
-  );
-}
-
 const ICONS = {
   // سماعة طبية
   discover: (
@@ -46,8 +38,8 @@ const ICONS = {
   feed: (
     <MedIcon d="M12 20C6 15.5 3.5 12 3.5 9.2 3.5 7 5.2 5.3 7.4 5.3c1.7 0 3.2.9 4.6 2.6 1.4-1.7 2.9-2.6 4.6-2.6 2.2 0 3.9 1.7 3.9 3.9 0 2.8-2.5 6.3-8.5 10.8Z" extra={<path d="M7 12h3l1.5-2.5 2 4L15 12h2" />} />
   ),
-  // هلال للإنشاء
-  create: <Crescent />,
+  // علامة جمع عادية للإنشاء (ليست صليبًا)
+  create: <MedIcon d="M12 5v14M5 12h14" />,
   // صعود للأعلى
   top: <MedIcon d="M12 19V5M6 11l6-6 6 6" />,
 };
