@@ -110,6 +110,16 @@ installation isolée de Playwright (`PLAYWRIGHT_MODULE` pointe vers son `index.m
 Il vérifie également les formulaires réels et la disposition mobile. Les tests
 n’écrivent jamais sur un domaine de production.
 
+### PDF ajouté à la banque privée
+
+Le document fourni par le propriétaire, **Résidanat de médecine — Constantine,
+17 octobre 2026**, contient 150 questions et sa grille de correction. Les 150 QCM
+sont importés automatiquement, une seule fois, au premier accès autorisé après
+le déploiement. Les questions existantes ne sont pas remplacées. Un filtre
+« Document », le numéro original et un lien vers chaque page permettent de les
+retrouver. Les corrigés reprennent la grille du PDF sans inventer d’explications.
+Voir [la provenance et les limites de transcription](docs/residanat-pdf-import.md).
+
 Ne publiez jamais `.env` ni un jeton GitHub. Le contrôle de connexion facultatif
 `scripts/check-github.mjs` lit `GITHUB_TOKEN` depuis les secrets du terminal ; il
 ne publie rien et ne fait pas partie de l’application ou de ses bundles navigateur.

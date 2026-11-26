@@ -68,7 +68,7 @@ export function QuestionEditor({ question, onClose, onSaved }: {
           </div>
           <div>
             <label htmlFor="qcm-prompt" className="sb-label">Énoncé de la question</label>
-            <textarea id="qcm-prompt" required minLength={10} maxLength={3000} rows={4} className="sb-textarea"
+            <textarea id="qcm-prompt" required minLength={3} maxLength={3000} rows={4} className="sb-textarea"
               value={value.prompt} onChange={(event) => setValue({ ...value, prompt: event.target.value })} placeholder="Saisissez votre question…" />
           </div>
           <fieldset className="space-y-3">

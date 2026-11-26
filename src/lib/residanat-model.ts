@@ -1,16 +1,33 @@
 export const RESIDANAT_SPECIALTIES = [
+  "Anatomie pathologique",
+  "Biochimie",
+  "Biologie moléculaire",
   "Cardiologie",
+  "Chirurgie digestive",
+  "Dermatologie",
   "Endocrinologie",
   "Gynécologie-obstétrique",
+  "Gériatrie",
   "Hématologie",
   "Hépato-gastro-entérologie",
+  "Immunologie",
   "Infectiologie",
   "Médecine interne",
-  "Néphrologie",
+  "Médecine légale",
+  "Neurochirurgie",
   "Neurologie",
-  "Pédiatrie",
+  "Néphrologie",
+  "ORL",
+  "Ophtalmologie",
+  "Physiologie",
   "Pneumologie",
+  "Psychiatrie",
+  "Pédiatrie",
+  "Rhumatologie",
+  "Santé publique",
+  "Traumatologie-orthopédie",
   "Urgences",
+  "Urologie",
 ] as const;
 
 export type QcmOption = { id: string; text: string };
@@ -37,6 +54,9 @@ export type PracticeQuestion = {
   multiple: boolean;
   source: string;
   version: number;
+  documentKey: string | null;
+  sourceNumber: number | null;
+  sourcePage: number | null;
   lastResult: QcmFeedback | null;
 };
 export type PracticeStats = {
@@ -44,10 +64,19 @@ export type PracticeStats = {
   correct: number;
   incorrect: number;
 };
+export type PracticeDocument = {
+  id: string;
+  title: string;
+  sourceUrl: string;
+  questionCount: number;
+  remainingCount: number;
+  importedAt: string;
+};
 export type PracticeData = {
   questions: PracticeQuestion[];
   specialties: { name: string; count: number }[];
   stats: PracticeStats;
+  documents: PracticeDocument[];
 };
 export type EditableQuestion = QcmInput & { id: string; version: number };
 
@@ -56,8 +85,8 @@ export const UUID_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0
 export function validateQcm(raw: unknown): { data: QcmInput } | { error: string } {
   if (!raw || typeof raw !== "object") return { error: "Données invalides." };
   const value = raw as Record<string, unknown>;
-  if (typeof value.prompt !== "string" || value.prompt.trim().length < 10 || value.prompt.length > 3000) {
-    return { error: "L’énoncé doit contenir entre 10 et 3 000 caractères." };
+  if (typeof value.prompt !== "string" || value.prompt.trim().length < 3 || value.prompt.length > 3000) {
+    return { error: "L’énoncé doit contenir entre 3 et 3 000 caractères." };
   }
   if (typeof value.specialty !== "string" || !RESIDANAT_SPECIALTIES.includes(value.specialty as typeof RESIDANAT_SPECIALTIES[number])) {
     return { error: "Choisissez une spécialité dans la liste." };

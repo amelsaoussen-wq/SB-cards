@@ -5,13 +5,14 @@ import { useEffect, useRef, useState } from "react";
 import { PageHeader } from "@/components/ui";
 import { QuestionEditor } from "@/components/residanat/question-editor";
 import { practiceRequest, PracticeRequestError } from "@/lib/residanat-client";
-import type { EditableQuestion, PracticeData, PracticeQuestion, PracticeStats, QcmFeedback } from "@/lib/residanat-model";
+import type { EditableQuestion, PracticeData, PracticeQuestion, PracticeStats, QcmFeedback, PracticeDocument } from "@/lib/residanat-model";
 
-type Filters = { q: string; specialty: string };
-const blankFilters: Filters = { q: "", specialty: "" };
+type Filters = { q: string; specialty: string; document: string };
+const blankFilters: Filters = { q: "", specialty: "", document: "" };
 
-function PracticeCard({ question, index, busy, onEdit, onDelete, onResult }: {
+function PracticeCard({ question, sourceDocument, index, busy, onEdit, onDelete, onResult }: {
   question: PracticeQuestion;
+  sourceDocument?: PracticeDocument;
   index: number;
   busy: boolean;
   onEdit: () => void;
@@ -50,7 +51,7 @@ function PracticeCard({ question, index, busy, onEdit, onDelete, onResult }: {
       className={`rounded-3xl border p-4 shadow-soft transition-colors sm:p-6 ${cardTone} ${busy ? "opacity-60" : ""}`}>
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div className="flex flex-wrap items-center gap-2">
-          <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-blush-100 font-serif text-sm font-bold text-blush-800">{String(index + 1).padStart(2, "0")}</span>
+          <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-blush-100 font-serif text-sm font-bold text-blush-800">{String(question.sourceNumber ?? index + 1).padStart(2, "0")}</span>
           <span className="sb-chip">{question.specialty}</span>
           <span className="text-xs text-plum-900/50">{question.multiple ? "Choix multiples" : "Choix unique"}</span>
         </div>
@@ -66,6 +67,14 @@ function PracticeCard({ question, index, busy, onEdit, onDelete, onResult }: {
           <button type="button" className="sb-btn-secondary px-3 py-1.5 text-xs" onClick={() => setConfirmDelete(false)}>Annuler</button>
         </div>
       </div>}
+      {sourceDocument && question.sourceNumber && (
+        <div className="mt-3 flex flex-wrap items-center gap-2 text-xs text-plum-900/55">
+          <span className="rounded-full border border-gold-300/60 bg-amber-50 px-2.5 py-1 font-semibold text-amber-900">PDF · Question {question.sourceNumber}</span>
+          <a href={`${sourceDocument.sourceUrl.split("#")[0]}#page=${question.sourcePage ?? 1}`} target="_blank" rel="noopener noreferrer" className="font-semibold text-blush-700 underline underline-offset-2">
+            Voir l’énoncé · page {question.sourcePage} ↗
+          </a>
+        </div>
+      )}
       <h2 id={`prompt-${question.id}`} className="mt-4 whitespace-pre-wrap font-serif text-lg font-bold leading-relaxed sm:text-xl">{question.prompt}</h2>
       <form onSubmit={submit} className="mt-4">
         <fieldset disabled={pending || !!feedback || busy} aria-labelledby={`prompt-${question.id}`} className="space-y-2.5">
@@ -103,7 +112,7 @@ function PracticeCard({ question, index, busy, onEdit, onDelete, onResult }: {
               {feedback.isCorrect ? "Bonne réponse !" : "Réponse incorrecte — consultez le corrigé."}
             </div>
             <details open className="mt-3 rounded-2xl border border-blush-200/70 bg-white p-4">
-              <summary className="cursor-pointer font-serif text-base font-bold">Comprendre la réponse</summary>
+              <summary className="cursor-pointer font-serif text-base font-bold">{sourceDocument ? question.version > 1 ? "Corrigé personnalisé" : "Corrigé du document" : "Comprendre la réponse"}</summary>
               <p className="mt-3 text-xs font-bold uppercase tracking-wide text-blush-700">Réponse{feedback.correctOptionIds.length > 1 ? "s" : ""} : {feedback.correctOptionIds.join(", ")}</p>
               <p className="mt-2 whitespace-pre-wrap text-sm leading-relaxed text-plum-900/80">{feedback.explanation}</p>
               {question.source && <p className="mt-3 break-words border-t border-blush-100 pt-3 text-xs text-plum-900/50">Source : {question.source}</p>}
@@ -156,6 +165,7 @@ export function ResidanatWorkspace({ initial }: { initial: PracticeData }) {
     const params = new URLSearchParams();
     if (next.q.trim()) params.set("q", next.q.trim());
     if (next.specialty) params.set("specialty", next.specialty);
+    if (next.document) params.set("document", next.document);
     try {
       const result = await practiceRequest<PracticeData>(`/api/residanat?${params}`, { signal: controller.signal });
       setData(result);
@@ -184,7 +194,8 @@ export function ResidanatWorkspace({ initial }: { initial: PracticeData }) {
   }
 
   const attempts = data.stats.correct + data.stats.incorrect;
-  const hasFilters = !!(filters.q.trim() || filters.specialty);
+  const hasFilters = !!(filters.q.trim() || filters.specialty || filters.document);
+  const documents = data.documents ?? [];
 
   return (
     <div className="mx-auto max-w-5xl space-y-6">
@@ -198,6 +209,20 @@ export function ResidanatWorkspace({ initial }: { initial: PracticeData }) {
         </span>
         <span className="text-xs text-plum-900/55">Ces questions ne sont jamais publiques.</span>
       </div>
+      {documents.map((document) => (
+        <section key={document.id} aria-label="Document PDF importé" className="sb-panel border-gold-300/70 p-4 sm:p-5">
+          <p className="text-[0.65rem] font-bold uppercase tracking-widest text-blush-600">Document importé · corrigé inclus</p>
+          <h2 className="mt-1.5 font-serif text-lg font-bold">{document.title}</h2>
+          <p className="mt-2 text-sm text-plum-900/65">{document.questionCount} questions importées · {document.remainingCount} disponibles dans votre banque.</p>
+          <p className="mt-1 text-xs leading-relaxed text-plum-900/55">Réponses reproduites du corrigé type du fichier, sans justification médicale ajoutée. Les numéros du PDF sont conservés ; classement thématique SB Cards.</p>
+          <div className="mt-3 flex flex-wrap gap-2">
+            <button type="button" className="sb-btn-primary text-xs" onClick={() => {
+              const next = { ...blankFilters, document: document.id }; setFilters(next); void reload(next);
+            }}>Voir ces questions</button>
+            <a href={document.sourceUrl} target="_blank" rel="noopener noreferrer" className="sb-btn-secondary text-xs">Ouvrir le PDF source ↗</a>
+          </div>
+        </section>
+      ))}
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-4" aria-label="Statistiques des QCM">
         {[
           { label: "QCM dans la banque", value: data.stats.total, color: "text-plum-900" },
@@ -212,11 +237,11 @@ export function ResidanatWorkspace({ initial }: { initial: PracticeData }) {
       <p className="!mt-2 text-xs text-plum-900/45">Les compteurs incluent toutes vos tentatives enregistrées, y compris les nouvelles tentatives sur une même question.</p>
 
       <section className="sb-panel p-4 sm:p-5" aria-label="Filtres des questions">
-        <form onSubmit={(event) => { event.preventDefault(); void reload(); }} className="grid items-end gap-3 sm:grid-cols-[1fr_220px_auto]">
+        <form onSubmit={(event) => { event.preventDefault(); void reload(); }} className="grid items-end gap-3 sm:grid-cols-2 xl:grid-cols-[minmax(0,1fr)_200px_200px_auto]">
           <div>
             <label htmlFor="residanat-search" className="sb-label">Rechercher une question</label>
             <input id="residanat-search" type="search" maxLength={160} value={filters.q} onChange={(event) => setFilters({ ...filters, q: event.target.value })}
-              placeholder="Un mot de l’énoncé…" className="sb-input" />
+              placeholder="Un mot de l’énoncé ou Q95…" className="sb-input" />
           </div>
           <div>
             <label htmlFor="residanat-specialty-filter" className="sb-label">Spécialité</label>
@@ -225,6 +250,15 @@ export function ResidanatWorkspace({ initial }: { initial: PracticeData }) {
             }}>
               <option value="">Toutes les spécialités</option>
               {data.specialties.map((item) => <option key={item.name} value={item.name}>{item.name} ({item.count})</option>)}
+            </select>
+          </div>
+          <div>
+            <label htmlFor="residanat-document-filter" className="sb-label">Document</label>
+            <select id="residanat-document-filter" value={filters.document} className="sb-input" onChange={(event) => {
+              const next = { ...filters, specialty: "", document: event.target.value }; setFilters(next); void reload(next);
+            }}>
+              <option value="">Toute ma banque</option>
+              {documents.map((item) => <option key={item.id} value={item.id}>{item.title} ({item.remainingCount})</option>)}
             </select>
           </div>
           <button type="submit" disabled={loading} className="sb-btn-primary">{loading ? "Recherche…" : "Rechercher"}</button>
@@ -243,7 +277,7 @@ export function ResidanatWorkspace({ initial }: { initial: PracticeData }) {
       </div>
       <div aria-busy={loading} className="space-y-4">
         {loading ? <div role="status" className="sb-panel space-y-4 p-6"><span className="sr-only">Chargement des questions</span><div className="sb-skeleton h-6 w-3/4" />{[0, 1, 2, 3].map((key) => <div key={key} className="sb-skeleton h-12 w-full" />)}</div>
-        : data.questions.length ? data.questions.map((question, index) => <PracticeCard key={`${question.id}:${question.version}`} question={question} index={index}
+        : data.questions.length ? data.questions.map((question, index) => <PracticeCard key={`${question.id}:${question.version}`} question={question} sourceDocument={documents.find((item) => item.id === question.documentKey)} index={index}
           busy={busyId === question.id} onEdit={() => void edit(question)} onDelete={() => void remove(question)}
           onResult={(feedback, stats) => setData((current) => ({ ...current, stats, questions: current.questions.map((item) => item.id === question.id ? { ...item, lastResult: feedback } : item) }))} />)
         : <div className="rounded-3xl border border-dashed border-blush-300 bg-white/70 px-5 py-12 text-center">
@@ -253,7 +287,7 @@ export function ResidanatWorkspace({ initial }: { initial: PracticeData }) {
         </div>}
       </div>
       <p className="rounded-2xl border border-blush-100 bg-white/70 px-4 py-3 text-xs leading-relaxed text-plum-900/55">
-        Les exemples SB Cards sont des exercices pédagogiques originaux, pas des annales officielles du concours. Vérifiez les corrigés avec vos références de cours à jour ; cet espace ne fournit pas de conseils médicaux personnalisés.
+        Les questions marquées PDF proviennent du document associé, avec sa grille de correction, qui peut contenir des coquilles. Les autres exemples SB Cards sont des exercices pédagogiques originaux. Vérifiez les corrigés avec vos références de cours à jour ; cet espace ne fournit pas de conseils médicaux personnalisés.
       </p>
       {editor && <QuestionEditor question={editor.question} onClose={() => setEditor(null)} onSaved={() => {
         setEditor(null); setToast("Question enregistrée."); setFilters(blankFilters); void reload(blankFilters);

@@ -18,6 +18,20 @@ CREATE TABLE IF NOT EXISTS residanat_questions (
   updated_at timestamptz NOT NULL DEFAULT now()
 );
 CREATE INDEX IF NOT EXISTS residanat_questions_user_specialty_idx ON residanat_questions(user_id, specialty);
+ALTER TABLE residanat_questions ADD COLUMN IF NOT EXISTS document_key text;
+ALTER TABLE residanat_questions ADD COLUMN IF NOT EXISTS source_number integer;
+ALTER TABLE residanat_questions ADD COLUMN IF NOT EXISTS source_page integer;
+CREATE UNIQUE INDEX IF NOT EXISTS residanat_questions_source_unique ON residanat_questions(user_id, document_key, source_number);
+CREATE TABLE IF NOT EXISTS residanat_document_imports (
+  user_id uuid NOT NULL CONSTRAINT residanat_document_imports_user_id_users_id_fk REFERENCES users(id) ON DELETE CASCADE,
+  document_key text NOT NULL,
+  title text NOT NULL,
+  source_url text NOT NULL,
+  source_sha256 text NOT NULL,
+  question_count integer NOT NULL,
+  imported_at timestamptz NOT NULL DEFAULT now(),
+  CONSTRAINT residanat_document_imports_user_id_document_key_pk PRIMARY KEY (user_id, document_key)
+);
 CREATE TABLE IF NOT EXISTS residanat_attempts (
   id uuid PRIMARY KEY,
   user_id uuid NOT NULL CONSTRAINT residanat_attempts_user_id_users_id_fk REFERENCES users(id) ON DELETE CASCADE,

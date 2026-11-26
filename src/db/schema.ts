@@ -4,6 +4,8 @@ import {
   integer,
   jsonb,
   pgTable,
+  primaryKey,
+  uniqueIndex,
   text,
   timestamp,
   uuid,
@@ -195,10 +197,26 @@ export const residanatQuestions = pgTable("residanat_questions", {
   correctOptionIds: jsonb("correct_option_ids").$type<string[]>().notNull(),
   explanation: text("explanation").notNull(),
   source: text("source").notNull().default(""),
+  documentKey: text("document_key"),
+  sourceNumber: integer("source_number"),
+  sourcePage: integer("source_page"),
   version: integer("version").notNull().default(1),
   createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
   updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
-}, (table) => [index("residanat_questions_user_specialty_idx").on(table.userId, table.specialty)]);
+}, (table) => [
+  index("residanat_questions_user_specialty_idx").on(table.userId, table.specialty),
+  uniqueIndex("residanat_questions_source_unique").on(table.userId, table.documentKey, table.sourceNumber),
+]);
+
+export const residanatDocumentImports = pgTable("residanat_document_imports", {
+  userId: uuid("user_id").notNull().references(() => users.id, { onDelete: "cascade" }),
+  documentKey: text("document_key").notNull(),
+  title: text("title").notNull(),
+  sourceUrl: text("source_url").notNull(),
+  sourceSha256: text("source_sha256").notNull(),
+  questionCount: integer("question_count").notNull(),
+  importedAt: timestamp("imported_at", { withTimezone: true }).notNull().defaultNow(),
+}, (table) => [primaryKey({ columns: [table.userId, table.documentKey] })]);
 
 export const residanatAttempts = pgTable("residanat_attempts", {
   id: uuid("id").primaryKey(),

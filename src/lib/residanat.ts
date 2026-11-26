@@ -1,8 +1,8 @@
 import "server-only";
 
-import { and, desc, eq, ilike, sql } from "drizzle-orm";
+import { and, desc, eq, ilike, or, sql } from "drizzle-orm";
 import { db } from "@/db";
-import { residanatAttempts, residanatQuestions, residanatSampleImports } from "@/db/schema";
+import { residanatAttempts, residanatQuestions, residanatSampleImports, residanatDocumentImports } from "@/db/schema";
 import { RESIDANAT_SAMPLES } from "@/lib/residanat-samples";
 import { gradeSelection, type PracticeData, type PracticeStats, type QcmFeedback, type QcmInput } from "@/lib/residanat-model";
 
@@ -29,15 +29,20 @@ export async function getPracticeStats(userId: string): Promise<PracticeStats> {
   return { total: total?.count ?? 0, correct: scores?.correct ?? 0, incorrect: scores?.incorrect ?? 0 };
 }
 
-export async function getPracticeData(userId: string, filters: { q?: string; specialty?: string } = {}): Promise<PracticeData> {
+export async function getPracticeData(userId: string, filters: { q?: string; specialty?: string; document?: string } = {}): Promise<PracticeData> {
   const conditions = [eq(residanatQuestions.userId, userId)];
+  const specialtyConditions = [eq(residanatQuestions.userId, userId)];
+  if (filters.document) specialtyConditions.push(eq(residanatQuestions.documentKey, filters.document));
   if (filters.specialty) conditions.push(eq(residanatQuestions.specialty, filters.specialty));
+  if (filters.document) conditions.push(eq(residanatQuestions.documentKey, filters.document));
   if (filters.q?.trim()) {
     // Literal substring search; percent and underscore are not wildcards supplied by users.
     const text = filters.q.trim().slice(0, 160).replace(/[\\%_]/g, "\\$&");
-    conditions.push(ilike(residanatQuestions.prompt, `%${text}%`));
+    const sourceNumber = filters.q.trim().match(/^(?:q\s*)?([1-9]\d{0,2})$/i);
+    if (sourceNumber) conditions.push(or(ilike(residanatQuestions.prompt, `%${text}%`), eq(residanatQuestions.sourceNumber, Number(sourceNumber[1])))!);
+    else conditions.push(ilike(residanatQuestions.prompt, `%${text}%`));
   }
-  const [rows, specialties, stats] = await Promise.all([
+  const [rows, specialties, stats, imported] = await Promise.all([
     db.select({
       id: residanatQuestions.id,
       specialty: residanatQuestions.specialty,
@@ -45,6 +50,9 @@ export async function getPracticeData(userId: string, filters: { q?: string; spe
       options: residanatQuestions.options,
       multiple: sql<boolean>`jsonb_array_length(${residanatQuestions.correctOptionIds}) > 1`,
       source: residanatQuestions.source,
+      documentKey: residanatQuestions.documentKey,
+      sourceNumber: residanatQuestions.sourceNumber,
+      sourcePage: residanatQuestions.sourcePage,
       version: residanatQuestions.version,
       lastResult: sql<QcmFeedback | null>`(
         select a.feedback from residanat_attempts a
@@ -53,13 +61,24 @@ export async function getPracticeData(userId: string, filters: { q?: string; spe
         order by a.created_at desc, a.id desc limit 1
       )`.mapWith(residanatAttempts.feedback),
     }).from(residanatQuestions).where(and(...conditions))
-      .orderBy(residanatQuestions.specialty, desc(residanatQuestions.createdAt)),
+      .orderBy(residanatQuestions.specialty, desc(residanatQuestions.createdAt), residanatQuestions.sourceNumber),
     db.select({ name: residanatQuestions.specialty, count: sql<number>`count(*)::int` })
-      .from(residanatQuestions).where(eq(residanatQuestions.userId, userId))
+      .from(residanatQuestions).where(and(...specialtyConditions))
       .groupBy(residanatQuestions.specialty).orderBy(residanatQuestions.specialty),
     getPracticeStats(userId),
+    db.select({
+      id: residanatDocumentImports.documentKey,
+      title: residanatDocumentImports.title,
+      sourceUrl: residanatDocumentImports.sourceUrl,
+      questionCount: residanatDocumentImports.questionCount,
+      importedAt: residanatDocumentImports.importedAt,
+      remainingCount: sql<number>`(select count(*)::int from residanat_questions q
+        where q.user_id = ${userId} and q.document_key = "residanat_document_imports"."document_key")`,
+    }).from(residanatDocumentImports).where(eq(residanatDocumentImports.userId, userId))
+      .orderBy(desc(residanatDocumentImports.importedAt)),
   ]);
-  return { questions: rows, specialties, stats };
+  return { questions: rows, specialties, stats,
+    documents: imported.map((item) => ({ ...item, importedAt: item.importedAt.toISOString() })) };
 }
 
 export async function getEditableQuestion(userId: string, id: string) {
