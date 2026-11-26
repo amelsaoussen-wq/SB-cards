@@ -58,3 +58,58 @@ git push -u origin main
 
 **Depuis le site GitHub** : dépôt → *Add file → Upload files* → glissez le
 dossier du projet (sans `node_modules` ni `.next`).
+
+---
+
+## Résidanat — révisions privées du propriétaire
+
+Ouvrir **Mon studio → Résidanat · privé** (ou `/dashboard/residanat`).
+La banque propose recherche et classement par spécialité, création/édition/
+suppression de QCM, réponses simples ou multiples, correction côté serveur,
+explications et compteurs persistants. Une réponse exacte s’affiche en vert ;
+une réponse incorrecte en rouge. Les requêtes répétées d’une même tentative ne
+sont comptées qu’une fois. Les six exemples initiaux sont des exercices
+pédagogiques originaux SB Cards, **pas des annales officielles importées**.
+
+### Accès
+
+- Le propriétaire déjà reconnu par le site conserve l’accès : la session doit
+  correspondre à l’e-mail propriétaire de `src/lib/owner.ts` **et** au drapeau
+  `is_admin` stocké dans PostgreSQL. Le nom de profil ou son rôle descriptif ne
+  donnent aucun droit. Les autres administrateurs ne reçoivent pas automatiquement
+  l’accès à cet espace personnel.
+- `OWNER_USER_ID` est facultatif. S’il est défini, il remplace ce contrôle par une
+  correspondance stricte avec l’UUID du compte dans la **base de production**.
+  Un UUID invalide ou appartenant à une autre base ferme l’accès ; ne recopiez
+  jamais l’UUID d’un bac à sable dans Neon. Après un changement de variable,
+  effectuez un Redeploy.
+- Les pages et **toutes** les routes `/api/residanat/**` vérifient l’accès côté
+  serveur. Sans session : 401 ; autre compte : 403. Le lien est également masqué.
+- Les QCM et leurs tentatives sont séparés des cartes et publications publiques.
+  Aucune question privée n’est publiée dans Découvrir, les chaînes ou les abonnements.
+
+Les trois tables `residanat_questions`, `residanat_attempts` et
+`residanat_sample_imports` se créent de manière idempotente lors du premier accès
+autorisé. Les exemples ne sont importés qu’une fois : une question supprimée ne
+réapparaît pas au rechargement. Les données et mots de passe existants sont conservés.
+
+### Tests locaux
+
+Avec le serveur lancé sur localhost, les dépendances installées et `DATABASE_URL`
+configuré, le script suivant vérifie création, correction, versions, persistance,
+suppression, inscription et contrôle d’accès :
+
+```bash
+npm exec --yes --package=tsx -- tsx scripts/test-residanat.ts
+```
+
+Il utilise une session temporaire sur le compte propriétaire existant, sans
+changer sa clé de connexion, et nettoie seulement ses propres données de test.
+Le test navigateur `scripts/test-residanat-browser.ts` utilise Chromium via une
+installation isolée de Playwright (`PLAYWRIGHT_MODULE` pointe vers son `index.mjs`).
+Il vérifie également les formulaires réels et la disposition mobile. Les tests
+n’écrivent jamais sur un domaine de production.
+
+Ne publiez jamais `.env` ni un jeton GitHub. Le contrôle de connexion facultatif
+`scripts/check-github.mjs` lit `GITHUB_TOKEN` depuis les secrets du terminal ; il
+ne publie rien et ne fait pas partie de l’application ou de ses bundles navigateur.

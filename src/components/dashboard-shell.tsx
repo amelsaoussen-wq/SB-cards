@@ -78,6 +78,7 @@ function initialsOf(name: string): string {
 
 export function DashboardShell({
   user,
+  ownerAccess = false,
   children,
 }: {
   user: {
@@ -89,6 +90,7 @@ export function DashboardShell({
     isAdmin: boolean;
     avatar: string;
   };
+  ownerAccess?: boolean;
   children: ReactNode;
 }) {
   const pathname = usePathname();
@@ -101,8 +103,16 @@ export function DashboardShell({
   const isActive = (item: NavItem) =>
     item.exact ? pathname === item.href : pathname.startsWith(item.href);
 
+  const navigation: NavItem[] = ownerAccess
+    ? [NAV[0], {
+        href: "/dashboard/residanat",
+        label: "Résidanat · privé",
+        icon: <Icon path="M5 3h14v18H5zM8 8h1m3 0h4M8 12h1m3 0h4M8 16h1m3 0h4" />,
+      }, ...NAV.slice(1)]
+    : NAV;
+
   const sidebar = (
-    <div className="flex h-full flex-col gap-6 p-5">
+    <div className="flex h-full flex-col gap-6 overflow-y-auto p-5">
       <Link href="/dashboard" className="flex items-center gap-3">
         <span className="relative flex h-11 w-11 items-center justify-center rounded-2xl bg-[linear-gradient(140deg,#fbeaf2,#f7d0e3)] ring-1 ring-blush-200">
           <Crown className="absolute -top-2.5 h-5 w-8" />
@@ -128,7 +138,7 @@ export function DashboardShell({
       </Link>
 
       <nav className="flex flex-col gap-1" aria-label="Navigation principale">
-        {NAV.map((item) => {
+        {navigation.map((item) => {
           const active = isActive(item);
           return (
             <Link

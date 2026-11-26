@@ -22,4 +22,7 @@ public/sb-cards-source.zip
 
 # captures de vérification locales
 .preview/
+.artifacts/
+playwright-report/
+test-results/
 tsconfig.tsbuildinfo

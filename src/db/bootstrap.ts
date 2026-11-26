@@ -1,7 +1,7 @@
 import "server-only";
 
 import { and, eq, sql } from "drizzle-orm";
-import { db, pool } from "@/db";
+import { db } from "@/db";
 import { cards, clues, users } from "@/db/schema";
 import { hashPassword } from "@/lib/password";
 
@@ -18,16 +18,7 @@ CREATE TABLE IF NOT EXISTS users (
 
 ALTER TABLE users ADD COLUMN IF NOT EXISTS is_admin boolean NOT NULL DEFAULT false;
 ALTER TABLE users ADD COLUMN IF NOT EXISTS avatar text NOT NULL DEFAULT '';
-ALTER TABLE cards ADD COLUMN IF NOT EXISTS published_at timestamptz;
-ALTER TABLE cards ADD COLUMN IF NOT EXISTS explanation text NOT NULL DEFAULT '';
-UPDATE cards SET published_at = updated_at WHERE status = 'published' AND published_at IS NULL;
 UPDATE users SET is_admin = true WHERE lower(email) = 'amelsaoussen@gmail.com';
-
--- Nettoyage des comptes de test créés lors des vérifications (idempotent).
-DELETE FROM users WHERE
-  email LIKE 'userA%@test.fr' OR email LIKE 'userB%@test.fr' OR
-  email LIKE 'chA%@test.fr' OR email LIKE 'chB%@test.fr' OR
-  email LIKE 'inter%@test.fr' OR email = 'verify-live@sb-cards.app';
 
 CREATE TABLE IF NOT EXISTS sessions (
   token text PRIMARY KEY,
@@ -55,6 +46,10 @@ CREATE TABLE IF NOT EXISTS cards (
   created_at timestamptz NOT NULL DEFAULT now(),
   updated_at timestamptz NOT NULL DEFAULT now()
 );
+ALTER TABLE cards ADD COLUMN IF NOT EXISTS published_at timestamptz;
+ALTER TABLE cards ADD COLUMN IF NOT EXISTS explanation text NOT NULL DEFAULT '';
+UPDATE cards SET published_at = updated_at WHERE status = 'published' AND published_at IS NULL;
+
 CREATE INDEX IF NOT EXISTS cards_user_id_idx ON cards(user_id);
 CREATE INDEX IF NOT EXISTS cards_updated_at_idx ON cards(updated_at);
 
@@ -268,12 +263,11 @@ const SEED_CARDS: SeedCard[] = [
 let bootstrapPromise: Promise<void> | null = null;
 
 async function runBootstrap(): Promise<void> {
-  try {
-    await pool.query("CREATE EXTENSION IF NOT EXISTS pgcrypto;");
-  } catch (error) {
-    console.warn("[bootstrap] pgcrypto extension unavailable", error);
-  }
-  await pool.query(DDL);
+  await db.transaction(async (tx) => {
+    // Serialize idempotent schema creation across simultaneous server instances.
+    await tx.execute(sql`select pg_advisory_xact_lock(81420932)`);
+    await tx.execute(sql.raw(DDL));
+  });
 
   // Renomme l'ancienne persona de démo vers la marque officielle (idempotent).
   await db

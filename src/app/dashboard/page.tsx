@@ -9,6 +9,7 @@ import { WelcomeModal } from "@/components/welcome-modal";
 import { HealthFlash } from "@/components/health-flash";
 import { StarBanner } from "@/components/star-banner";
 import { starOfTheDay } from "@/lib/leaderboard";
+import { isSiteOwner } from "@/lib/residanat-access";
 
 export const dynamic = "force-dynamic";
 
@@ -47,6 +48,11 @@ export default async function DashboardPage({
         description="Tout au même endroit : votre chaîne, vos statistiques et vos cartes. Publiez en un clic."
         actions={
           <>
+            {isSiteOwner(user) && (
+              <Link href="/dashboard/residanat" className="sb-btn-secondary">
+                Résidanat · privé
+              </Link>
+            )}
             <Link href={`/ch/${user.id}`} className="sb-btn-secondary">
               Ma chaîne publique ↗
             </Link>

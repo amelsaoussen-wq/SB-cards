@@ -2,11 +2,13 @@ import {
   boolean,
   index,
   integer,
+  jsonb,
   pgTable,
   text,
   timestamp,
   uuid,
 } from "drizzle-orm/pg-core";
+import type { QcmOption, QcmFeedback } from "@/lib/residanat-model";
 
 export const users = pgTable("users", {
   id: uuid("id").primaryKey().defaultRandom(),
@@ -182,6 +184,39 @@ export const authAttempts = pgTable("auth_attempts", {
   createdAt: timestamp("created_at", { withTimezone: true })
     .notNull()
     .defaultNow(),
+});
+
+export const residanatQuestions = pgTable("residanat_questions", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  userId: uuid("user_id").notNull().references(() => users.id, { onDelete: "cascade" }),
+  specialty: text("specialty").notNull(),
+  prompt: text("prompt").notNull(),
+  options: jsonb("options").$type<QcmOption[]>().notNull(),
+  correctOptionIds: jsonb("correct_option_ids").$type<string[]>().notNull(),
+  explanation: text("explanation").notNull(),
+  source: text("source").notNull().default(""),
+  version: integer("version").notNull().default(1),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+}, (table) => [index("residanat_questions_user_specialty_idx").on(table.userId, table.specialty)]);
+
+export const residanatAttempts = pgTable("residanat_attempts", {
+  id: uuid("id").primaryKey(),
+  userId: uuid("user_id").notNull().references(() => users.id, { onDelete: "cascade" }),
+  questionId: uuid("question_id").notNull().references(() => residanatQuestions.id, { onDelete: "cascade" }),
+  questionVersion: integer("question_version").notNull(),
+  selectedOptionIds: jsonb("selected_option_ids").$type<string[]>().notNull(),
+  isCorrect: boolean("is_correct").notNull(),
+  feedback: jsonb("feedback").$type<QcmFeedback>().notNull(),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+}, (table) => [
+  index("residanat_attempts_user_date_idx").on(table.userId, table.createdAt),
+  index("residanat_attempts_question_idx").on(table.questionId),
+]);
+
+export const residanatSampleImports = pgTable("residanat_sample_imports", {
+  userId: uuid("user_id").primaryKey().references(() => users.id, { onDelete: "cascade" }),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
 });
 
 export type UserRow = typeof users.$inferSelect;
