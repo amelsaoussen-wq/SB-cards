@@ -120,6 +120,16 @@ le déploiement. Les questions existantes ne sont pas remplacées. Un filtre
 retrouver. Les corrigés reprennent la grille du PDF sans inventer d’explications.
 Voir [la provenance et les limites de transcription](docs/residanat-pdf-import.md).
 
+Une seconde collection, **Constantine — 25 octobre 2025**, apporte 150 autres
+questions et leur corrigé type (pages 21–22 du fichier). Elle est importée une
+seule fois et reste distincte de 2026 : aucun énoncé, résultat ou changement
+personnel de la première collection n’est écrasé. Utilisez le sélecteur
+« Document » pour choisir l’année, puis filtrez par spécialité ou numéro.
+Voir [la provenance de l’épreuve 2025](docs/residanat-pdf-constantine-2025.md).
+Le test `scripts/test-residanat-2025-import.ts` vérifie toutes les questions et clés,
+ainsi que la conservation des données antérieures ; le test navigateur
+`scripts/test-residanat-2025-browser.ts` vérifie le changement d’année et le corrigé.
+
 Ne publiez jamais `.env` ni un jeton GitHub. Le contrôle de connexion facultatif
 `scripts/check-github.mjs` lit `GITHUB_TOKEN` depuis les secrets du terminal ; il
 ne publie rien et ne fait pas partie de l’application ou de ses bundles navigateur.

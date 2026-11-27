@@ -1,9 +1,11 @@
 export const RESIDANAT_SPECIALTIES = [
   "Anatomie pathologique",
+  "Anesthésie-réanimation",
   "Biochimie",
   "Biologie moléculaire",
   "Cardiologie",
   "Chirurgie digestive",
+  "Chirurgie endocrinienne",
   "Dermatologie",
   "Endocrinologie",
   "Gynécologie-obstétrique",

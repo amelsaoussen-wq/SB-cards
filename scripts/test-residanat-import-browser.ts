@@ -34,7 +34,7 @@ async function main() {
       }
     });
     await page.goto(base + "/dashboard/residanat", { waitUntil: "networkidle" });
-    const collection = page.getByRole("region", { name: "Document PDF importé" });
+    const collection = page.getByRole("region", { name: "Document PDF importé" }).filter({ hasText: "17 octobre 2026" });
     await collection.waitFor();
     assert.match(await collection.innerText(), /150 questions importées/);
     const sourceLink = collection.getByRole("link", { name: "Ouvrir le PDF source ↗" });
