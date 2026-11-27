@@ -18,6 +18,8 @@ CREATE TABLE IF NOT EXISTS residanat_questions (
   updated_at timestamptz NOT NULL DEFAULT now()
 );
 CREATE INDEX IF NOT EXISTS residanat_questions_user_specialty_idx ON residanat_questions(user_id, specialty);
+ALTER TABLE residanat_questions ADD COLUMN IF NOT EXISTS lesson text NOT NULL DEFAULT '';
+CREATE INDEX IF NOT EXISTS residanat_questions_user_lesson_idx ON residanat_questions(user_id, specialty, lesson);
 ALTER TABLE residanat_questions ADD COLUMN IF NOT EXISTS document_key text;
 ALTER TABLE residanat_questions ADD COLUMN IF NOT EXISTS source_number integer;
 ALTER TABLE residanat_questions ADD COLUMN IF NOT EXISTS source_page integer;

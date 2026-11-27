@@ -26,6 +26,15 @@ async function main() {
     const context = await browser.newContext({ viewport: { width: 390, height: 844 } });
     await context.addCookies([{ name: "sb_session", value: token, url: base, httpOnly: true, sameSite: "Lax" }]);
     const page = await context.newPage();
+    async function showLegacyQuestionView() {
+      const all = page.getByRole("button", { name: "Toutes les questions", exact: true });
+      if (await all.count()) await all.click();
+    }
+    async function openSourceDocuments() {
+      const details = page.getByTestId("source-documents");
+      if (await details.count() && await details.getAttribute("open") === null) await details.locator("summary").click();
+    }
+
     page.on("pageerror", (error: Error) => errors.push(error.message));
     page.on("request", (request: { url: () => string; method: () => string; postDataJSON: () => { attemptId?: string } }) => {
       if (request.method() === "POST" && /\/api\/residanat\/[^/]+\/answer$/.test(request.url())) {
@@ -34,6 +43,8 @@ async function main() {
       }
     });
     await page.goto(base + "/dashboard/residanat", { waitUntil: "networkidle" });
+    await showLegacyQuestionView();
+    await openSourceDocuments();
     const collection = page.getByRole("region", { name: "Document PDF importé" }).filter({ hasText: "17 octobre 2026" });
     await collection.waitFor();
     assert.match(await collection.innerText(), /150 questions importées/);
@@ -57,6 +68,7 @@ async function main() {
 
     await page.locator("#residanat-search").fill("");
     await page.locator("#residanat-specialty-filter").selectOption("Anatomie pathologique");
+    await showLegacyQuestionView();
     await page.waitForFunction(() => document.querySelectorAll('[data-testid="qcm-question"]').length === 14);
     const question = page.getByTestId("qcm-question").filter({ has: page.getByRole("heading", { name: "Les ostéomes :", exact: true }) });
     await question.waitFor();

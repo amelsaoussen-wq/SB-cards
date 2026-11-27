@@ -30,11 +30,21 @@ async function main() {
     const context = await browser.newContext({ viewport: { width: 390, height: 844 } });
     await context.addCookies([{ name: "sb_session", value: token, url: base, httpOnly: true, sameSite: "Lax" }]);
     const page = await context.newPage();
+    async function showLegacyQuestionView() {
+      const all = page.getByRole("button", { name: "Toutes les questions", exact: true });
+      if (await all.count()) await all.click();
+    }
+    async function openSourceDocuments() {
+      const details = page.getByTestId("source-documents");
+      if (await details.count() && await details.getAttribute("open") === null) await details.locator("summary").click();
+    }
+
     page.on("pageerror", (error: Error) => errors.push(error.message));
     page.on("request", (r: { url: () => string; method: () => string; postDataJSON: () => { attemptId?: string } }) => {
       if (r.method() === "POST" && /\/api\/residanat\/[^/]+\/answer$/.test(r.url())) { const id = r.postDataJSON()?.attemptId; if (id) attempts.push(id); }
     });
     const initialResponse = await page.goto(base + "/dashboard/residanat", { waitUntil: "networkidle" });
+    await showLegacyQuestionView();
     assert.equal(initialResponse.status(), 200);
     const bytes = (await initialResponse.body()).length;
     assert.ok(bytes < 4000000, "Private page must stay below production response limits");
@@ -45,6 +55,7 @@ async function main() {
     console.log(`PASS browser batch: private mobile view renders only 20 questions (${bytes} uncompressed bytes)`);
 
     for (const exam of exams) {
+      await openSourceDocuments();
       const collection = page.getByRole("region", { name: "Document PDF importé" }).filter({ hasText: exam.title });
       assert.equal(await collection.count(), 1);
       assert.ok((await collection.innerText()).includes(`${exam.questionCount} questions importées`));
@@ -52,6 +63,7 @@ async function main() {
       await page.locator("#residanat-search").fill("");
       const responsePromise = page.waitForResponse((r: { url: () => string; request: () => { method: () => string } }) => r.request().method() === "GET" && r.url().includes("/api/residanat?") && new URL(r.url()).searchParams.get("document") === exam.id && !new URL(r.url()).searchParams.has("q"));
       await page.locator("#residanat-document-filter").selectOption(exam.id);
+      await showLegacyQuestionView();
       const data = await (await responsePromise).json();
       await page.locator(`[data-question-id="${data.questions[0].id}"]`).waitFor();
       assert.equal(await page.getByTestId("qcm-question").count(), 20);

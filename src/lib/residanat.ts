@@ -4,6 +4,7 @@ import { and, desc, eq, ilike, or, sql } from "drizzle-orm";
 import { db } from "@/db";
 import { residanatAttempts, residanatQuestions, residanatSampleImports, residanatDocumentImports } from "@/db/schema";
 import { RESIDANAT_SAMPLES } from "@/lib/residanat-samples";
+import { inferResidanatLesson } from "@/lib/residanat-course-map";
 import { gradeSelection, type PracticeData, type PracticeStats, type QcmFeedback, type QcmInput } from "@/lib/residanat-model";
 
 export class QcmError extends Error {
@@ -14,7 +15,7 @@ export async function seedResidanatExamples(userId: string): Promise<void> {
   await db.transaction(async (tx) => {
     const marker = await tx.insert(residanatSampleImports).values({ userId }).onConflictDoNothing().returning();
     if (!marker.length) return;
-    await tx.insert(residanatQuestions).values(RESIDANAT_SAMPLES.map((question) => ({ ...question, userId })));
+    await tx.insert(residanatQuestions).values(RESIDANAT_SAMPLES.map((question) => ({ ...question, userId, lesson: question.lesson ?? inferResidanatLesson(question.specialty, question.prompt) })));
   });
 }
 
@@ -29,11 +30,12 @@ export async function getPracticeStats(userId: string): Promise<PracticeStats> {
   return { total: total?.count ?? 0, correct: scores?.correct ?? 0, incorrect: scores?.incorrect ?? 0 };
 }
 
-export async function getPracticeData(userId: string, filters: { q?: string; specialty?: string; document?: string } = {}): Promise<PracticeData> {
+export async function getPracticeData(userId: string, filters: { q?: string; specialty?: string; document?: string; lesson?: string } = {}): Promise<PracticeData> {
   const conditions = [eq(residanatQuestions.userId, userId)];
   const specialtyConditions = [eq(residanatQuestions.userId, userId)];
   if (filters.document) specialtyConditions.push(eq(residanatQuestions.documentKey, filters.document));
   if (filters.specialty) conditions.push(eq(residanatQuestions.specialty, filters.specialty));
+  if (filters.lesson) conditions.push(eq(residanatQuestions.lesson, filters.lesson));
   if (filters.document) conditions.push(eq(residanatQuestions.documentKey, filters.document));
   if (filters.q?.trim()) {
     // Literal substring search; percent and underscore are not wildcards supplied by users.
@@ -42,10 +44,11 @@ export async function getPracticeData(userId: string, filters: { q?: string; spe
     if (sourceNumber) conditions.push(or(ilike(residanatQuestions.prompt, `%${text}%`), eq(residanatQuestions.sourceNumber, Number(sourceNumber[1])))!);
     else conditions.push(ilike(residanatQuestions.prompt, `%${text}%`));
   }
-  const [rows, specialties, stats, imported] = await Promise.all([
+  const [rows, specialties, stats, imported, lessons] = await Promise.all([
     db.select({
       id: residanatQuestions.id,
       specialty: residanatQuestions.specialty,
+      lesson: residanatQuestions.lesson,
       prompt: residanatQuestions.prompt,
       options: residanatQuestions.options,
       multiple: sql<boolean>`jsonb_array_length(${residanatQuestions.correctOptionIds}) > 1`,
@@ -62,7 +65,7 @@ export async function getPracticeData(userId: string, filters: { q?: string; spe
       )`.mapWith(residanatAttempts.feedback),
     }).from(residanatQuestions).where(and(...conditions))
       .orderBy(residanatQuestions.specialty, desc(residanatQuestions.createdAt), residanatQuestions.sourceNumber),
-    db.select({ name: residanatQuestions.specialty, count: sql<number>`count(*)::int` })
+    db.select({ name: residanatQuestions.specialty, count: sql<number>`count(*)::int`, lessonCount: sql<number>`count(distinct ${residanatQuestions.lesson})::int` })
       .from(residanatQuestions).where(and(...specialtyConditions))
       .groupBy(residanatQuestions.specialty).orderBy(residanatQuestions.specialty),
     getPracticeStats(userId),
@@ -76,8 +79,12 @@ export async function getPracticeData(userId: string, filters: { q?: string; spe
         where q.user_id = ${userId} and q.document_key = "residanat_document_imports"."document_key")`,
     }).from(residanatDocumentImports).where(eq(residanatDocumentImports.userId, userId))
       .orderBy(desc(residanatDocumentImports.importedAt)),
+    filters.specialty ? db.select({ name: residanatQuestions.lesson, count: sql<number>`count(*)::int` })
+      .from(residanatQuestions)
+      .where(and(...specialtyConditions, eq(residanatQuestions.specialty, filters.specialty)))
+      .groupBy(residanatQuestions.lesson).orderBy(residanatQuestions.lesson) : Promise.resolve([]),
   ]);
-  return { questions: rows, specialties, stats,
+  return { questions: rows, specialties, lessons, stats,
     documents: imported.map((item) => ({ ...item, importedAt: item.importedAt.toISOString() })) };
 }
 
@@ -85,14 +92,14 @@ export async function getEditableQuestion(userId: string, id: string) {
   const [row] = await db.select().from(residanatQuestions)
     .where(and(eq(residanatQuestions.userId, userId), eq(residanatQuestions.id, id))).limit(1);
   if (!row) throw new QcmError("Cette question n’existe plus.", 404);
-  return { id: row.id, specialty: row.specialty, prompt: row.prompt, options: row.options,
+  return { id: row.id, specialty: row.specialty, lesson: row.lesson, prompt: row.prompt, options: row.options,
     correctOptionIds: row.correctOptionIds, explanation: row.explanation, source: row.source, version: row.version };
 }
 
 export async function saveQuestion(userId: string, input: QcmInput, id?: string): Promise<string> {
   const { version, ...data } = input;
   if (!id) {
-    const [row] = await db.insert(residanatQuestions).values({ ...data, userId }).returning({ id: residanatQuestions.id });
+    const [row] = await db.insert(residanatQuestions).values({ ...data, lesson: data.lesson ?? inferResidanatLesson(data.specialty, data.prompt), userId }).returning({ id: residanatQuestions.id });
     return row.id;
   }
   if (!Number.isInteger(version) || !version || version < 1) throw new QcmError("La version de la question est requise.", 400);

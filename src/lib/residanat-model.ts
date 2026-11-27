@@ -1,3 +1,5 @@
+import { cleanLesson, inferResidanatLesson } from "@/lib/residanat-course-map";
+
 export const RESIDANAT_SPECIALTIES = [
   "Anatomie pathologique",
   "Anesthésie-réanimation",
@@ -35,6 +37,7 @@ export const RESIDANAT_SPECIALTIES = [
 export type QcmOption = { id: string; text: string };
 export type QcmInput = {
   specialty: string;
+  lesson?: string;
   prompt: string;
   options: QcmOption[];
   correctOptionIds: string[];
@@ -51,6 +54,7 @@ export type QcmFeedback = {
 export type PracticeQuestion = {
   id: string;
   specialty: string;
+  lesson: string;
   prompt: string;
   options: QcmOption[];
   multiple: boolean;
@@ -76,10 +80,21 @@ export type PracticeDocument = {
 };
 export type PracticeData = {
   questions: PracticeQuestion[];
-  specialties: { name: string; count: number }[];
+  specialties: { name: string; count: number; lessonCount: number }[];
+  lessons: { name: string; count: number }[];
   stats: PracticeStats;
   documents: PracticeDocument[];
 };
+export type PracticeFilters = { q: string; specialty: string; lesson: string; document: string };
+export type PracticeView = "specialties" | "lessons" | "questions";
+export const EMPTY_PRACTICE_FILTERS: PracticeFilters = { q: "", specialty: "", lesson: "", document: "" };
+export function resolvePracticeView(filters: PracticeFilters, requested?: string): PracticeView {
+  if (requested === "questions") return "questions";
+  if (requested === "lessons" && filters.specialty) return "lessons";
+  if (requested === "specialties") return "specialties";
+  if (filters.q.trim() || filters.lesson) return "questions";
+  return filters.specialty ? "lessons" : "specialties";
+}
 export type EditableQuestion = QcmInput & { id: string; version: number };
 
 export const UUID_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
@@ -93,6 +108,11 @@ export function validateQcm(raw: unknown): { data: QcmInput } | { error: string 
   if (typeof value.specialty !== "string" || !RESIDANAT_SPECIALTIES.includes(value.specialty as typeof RESIDANAT_SPECIALTIES[number])) {
     return { error: "Choisissez une spécialité dans la liste." };
   }
+  if (value.lesson !== undefined && (typeof value.lesson !== "string" || cleanLesson(value.lesson).length > 120 || /[\u0000-\u001f\u007f]/.test(value.lesson))) {
+    return { error: "Le nom du cours doit contenir au maximum 120 caractères, sans caractères de contrôle." };
+  }
+  const lesson = value.lesson === undefined ? undefined
+    : cleanLesson(value.lesson as string) || inferResidanatLesson(value.specialty, value.prompt);
   if (!Array.isArray(value.options) || value.options.length < 2 || value.options.length > 6) {
     return { error: "Ajoutez entre 2 et 6 propositions." };
   }
@@ -118,6 +138,7 @@ export function validateQcm(raw: unknown): { data: QcmInput } | { error: string 
   return { data: {
     prompt: value.prompt.trim(),
     specialty: value.specialty,
+    lesson,
     options,
     correctOptionIds: [...value.correctOptionIds].sort(),
     explanation: value.explanation.trim(),

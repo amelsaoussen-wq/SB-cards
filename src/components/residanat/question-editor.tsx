@@ -3,19 +3,27 @@
 import { useEffect, useRef, useState } from "react";
 import { RESIDANAT_SPECIALTIES, validateQcm, type EditableQuestion, type QcmInput } from "@/lib/residanat-model";
 import { practiceRequest } from "@/lib/residanat-client";
+import { inferResidanatLesson, suggestedLessons } from "@/lib/residanat-course-map";
 
 function emptyQuestion(): QcmInput {
-  return { specialty: "Cardiologie", prompt: "", options: ["A", "B", "C", "D"].map((id) => ({ id, text: "" })),
+  return { specialty: "Cardiologie", lesson: "", prompt: "", options: ["A", "B", "C", "D"].map((id) => ({ id, text: "" })),
     correctOptionIds: [], explanation: "", source: "" };
 }
 
-export function QuestionEditor({ question, onClose, onSaved }: {
+function clinicalContent(input: QcmInput): string {
+  return JSON.stringify([input.specialty, input.prompt.trim(), input.options.map((option) => [option.id, option.text.trim()]),
+    [...input.correctOptionIds].sort(), input.explanation.trim(), input.source.trim()]);
+}
+
+export function QuestionEditor({ question, defaultSpecialty, defaultLesson, onClose, onSaved }: {
   question: EditableQuestion | null;
+  defaultSpecialty?: string;
+  defaultLesson?: string;
   onClose: () => void;
-  onSaved: (id: string) => void;
+  onSaved: (id: string, question: QcmInput) => void;
 }) {
   const dialogRef = useRef<HTMLDialogElement>(null);
-  const [value, setValue] = useState<QcmInput>(() => question ?? emptyQuestion());
+  const [value, setValue] = useState<QcmInput>(() => question ?? { ...emptyQuestion(), specialty: defaultSpecialty || "Cardiologie", lesson: defaultLesson || "" });
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
 
@@ -33,10 +41,15 @@ export function QuestionEditor({ question, onClose, onSaved }: {
     if ("error" in validated) { setError(validated.error); return; }
     setSaving(true); setError("");
     try {
+      const classificationOnly = question && clinicalContent(question) === clinicalContent(validated.data);
       const saved = await practiceRequest<{ id: string }>(question ? `/api/residanat/${question.id}` : "/api/residanat", {
-        method: question ? "PUT" : "POST", body: JSON.stringify(validated.data),
+        method: classificationOnly ? "PATCH" : question ? "PUT" : "POST",
+        body: JSON.stringify(classificationOnly ? {
+          lesson: validated.data.lesson ?? question.lesson ?? "",
+          previousLesson: question.lesson ?? "", version: question.version,
+        } : validated.data),
       });
-      onSaved(saved.id);
+      onSaved(saved.id, validated.data);
     } catch (cause) { setError(cause instanceof Error ? cause.message : "Enregistrement impossible."); }
     finally { setSaving(false); }
   }
@@ -62,9 +75,17 @@ export function QuestionEditor({ question, onClose, onSaved }: {
         <fieldset disabled={saving} className="space-y-5 disabled:opacity-70">
           <div>
             <label htmlFor="qcm-specialty" className="sb-label">Spécialité</label>
-            <select id="qcm-specialty" className="sb-input" value={value.specialty} onChange={(event) => setValue({ ...value, specialty: event.target.value })}>
+            <select id="qcm-specialty" className="sb-input" value={value.specialty} onChange={(event) => setValue({ ...value, specialty: event.target.value, lesson: "" })}>
               {RESIDANAT_SPECIALTIES.map((name) => <option key={name}>{name}</option>)}
             </select>
+          </div>
+          <div>
+            <label htmlFor="qcm-lesson" className="sb-label">Cours</label>
+            <input id="qcm-lesson" maxLength={120} list="qcm-lesson-suggestions" className="sb-input"
+              value={value.lesson ?? ""} onChange={(event) => setValue({ ...value, lesson: event.target.value })}
+              placeholder={inferResidanatLesson(value.specialty, value.prompt)} />
+            <datalist id="qcm-lesson-suggestions">{suggestedLessons(value.specialty).map((lesson) => <option key={lesson} value={lesson} />)}</datalist>
+            <p className="mt-1 text-xs text-plum-900/55">Choisissez un cours ou saisissez votre propre intitulé. Si ce champ reste vide, un classement thématique est proposé.</p>
           </div>
           <div>
             <label htmlFor="qcm-prompt" className="sb-label">Énoncé de la question</label>

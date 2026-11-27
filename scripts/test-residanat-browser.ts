@@ -31,8 +31,18 @@ async function main() {
     const context = await browser.newContext({ viewport: { width: 1280, height: 900 } });
     await context.addCookies([{ name: "sb_session", value: token, url: base, httpOnly: true, sameSite: "Lax" }]);
     const page = await context.newPage();
+    async function showLegacyQuestionView() {
+      const all = page.getByRole("button", { name: "Toutes les questions", exact: true });
+      if (await all.count()) await all.click();
+    }
+    async function openSourceDocuments() {
+      const details = page.getByTestId("source-documents");
+      if (await details.count() && await details.getAttribute("open") === null) await details.locator("summary").click();
+    }
+
     page.on("pageerror", (error: Error) => errors.push(error.message));
     await page.goto(base + "/dashboard/residanat", { waitUntil: "networkidle" });
+    await showLegacyQuestionView();
     assert.equal(await page.getByRole("heading", { name: "Résidanat", exact: true }).count(), 1);
     assert.ok(await page.getByRole("link", { name: /Résidanat/ }).isVisible());
     await mkdir(".artifacts", { recursive: true });
@@ -76,6 +86,7 @@ async function main() {
     await page.getByRole("button", { name: "Rechercher", exact: true }).click();
     await page.waitForFunction(() => document.querySelectorAll('[data-testid="qcm-question"]').length === 1);
     await page.locator("#residanat-specialty-filter").selectOption("Cardiologie");
+    await showLegacyQuestionView();
     await page.getByText("Aucune question correspondante", { exact: true }).waitFor();
     await page.getByRole("button", { name: "Voir toutes les questions", exact: true }).click();
     await page.locator("#residanat-search").fill(prompt);
@@ -99,6 +110,7 @@ async function main() {
 
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto(base + "/dashboard/residanat", { waitUntil: "networkidle" });
+    await showLegacyQuestionView();
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth);
     assert.equal(overflow, false, "Mobile page should not overflow horizontally");
     await page.screenshot({ path: ".artifacts/residanat-mobile.png", fullPage: false });

@@ -192,6 +192,7 @@ export const residanatQuestions = pgTable("residanat_questions", {
   id: uuid("id").primaryKey().defaultRandom(),
   userId: uuid("user_id").notNull().references(() => users.id, { onDelete: "cascade" }),
   specialty: text("specialty").notNull(),
+  lesson: text("lesson").notNull().default(""),
   prompt: text("prompt").notNull(),
   options: jsonb("options").$type<QcmOption[]>().notNull(),
   correctOptionIds: jsonb("correct_option_ids").$type<string[]>().notNull(),
@@ -205,6 +206,7 @@ export const residanatQuestions = pgTable("residanat_questions", {
   updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
 }, (table) => [
   index("residanat_questions_user_specialty_idx").on(table.userId, table.specialty),
+  index("residanat_questions_user_lesson_idx").on(table.userId, table.specialty, table.lesson),
   uniqueIndex("residanat_questions_source_unique").on(table.userId, table.documentKey, table.sourceNumber),
 ]);
 

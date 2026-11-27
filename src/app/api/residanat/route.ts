@@ -12,7 +12,7 @@ export async function GET(request: Request) {
     await importOwnerDocument(user);
     const params = new URL(request.url).searchParams;
     return Response.json(await getPracticeData(user.id, {
-      q: params.get("q") ?? "", specialty: params.get("specialty") ?? "", document: params.get("document") ?? "",
+      q: params.get("q") ?? "", specialty: params.get("specialty") ?? "", document: params.get("document") ?? "", lesson: params.get("lesson") ?? "",
     }));
   });
 }

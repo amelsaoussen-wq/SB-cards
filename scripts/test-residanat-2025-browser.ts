@@ -26,6 +26,15 @@ async function main() {
     const context = await browser.newContext({ viewport: { width: 390, height: 844 } });
     await context.addCookies([{ name: "sb_session", value: token, url: base, httpOnly: true, sameSite: "Lax" }]);
     const page = await context.newPage();
+    async function showLegacyQuestionView() {
+      const all = page.getByRole("button", { name: "Toutes les questions", exact: true });
+      if (await all.count()) await all.click();
+    }
+    async function openSourceDocuments() {
+      const details = page.getByTestId("source-documents");
+      if (await details.count() && await details.getAttribute("open") === null) await details.locator("summary").click();
+    }
+
     page.on("pageerror", (error: Error) => errors.push(error.message));
     page.on("request", (request: { url: () => string; method: () => string; postDataJSON: () => { attemptId?: string } }) => {
       if (request.method() === "POST" && /\/api\/residanat\/[^/]+\/answer$/.test(request.url())) {
@@ -34,6 +43,8 @@ async function main() {
       }
     });
     await page.goto(base + "/dashboard/residanat", { waitUntil: "networkidle" });
+    await showLegacyQuestionView();
+    await openSourceDocuments();
     const collection = page.getByRole("region", { name: "Document PDF importé" }).filter({ hasText: "25 octobre 2025" });
     await collection.waitFor();
     assert.match(await collection.innerText(), /150 questions importées/);
@@ -57,6 +68,7 @@ async function main() {
 
     await page.locator("#residanat-search").fill("");
     await page.locator("#residanat-specialty-filter").selectOption("Anatomie pathologique");
+    await showLegacyQuestionView();
     await page.waitForFunction(() => document.querySelectorAll('[data-testid="qcm-question"]').length === 13);
     const question = page.getByTestId("qcm-question").filter({ has: page.getByRole("heading", { name: "Le carcinome épidermoïde :", exact: true }) });
     await question.waitFor();
@@ -86,9 +98,11 @@ async function main() {
     await page.screenshot({ path: ".artifacts/residanat-pdf-2025-desktop.png", fullPage: false });
     assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth), false);
     await page.locator("#residanat-document-filter").selectOption("constantine-2026-10-17");
+    await showLegacyQuestionView();
     await page.getByRole("heading", { name: "Les ostéomes :", exact: true }).waitFor();
     assert.equal(await page.getByTestId("qcm-question").count(), 20);
     await page.locator("#residanat-document-filter").selectOption("constantine-2025-10-25");
+    await showLegacyQuestionView();
     await page.getByRole("heading", { name: "Le carcinome épidermoïde :", exact: true }).waitFor();
     assert.equal(await page.getByTestId("qcm-question").count(), 20);
     console.log("PASS browser 2025: both source years remain independently accessible");

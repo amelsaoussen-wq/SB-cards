@@ -149,3 +149,22 @@ pagination, le rechargement et les corrections colorées.
 Ne publiez jamais `.env` ni un jeton GitHub.
 `scripts/check-github.mjs` lit `GITHUB_TOKEN` depuis les secrets du terminal ; il
 ne publie rien et ne fait pas partie de l’application ou de ses bundles navigateur.
+
+
+## Organisation des révisions par cours
+
+L’entrée de Résidanat affiche désormais le parcours **Spécialité → Cours → QCM**.
+Les cours et leurs compteurs proviennent des questions réellement enregistrées.
+Le filtre de document limite les cours à l’annale choisie. Les références des PDF
+restent disponibles dans « Documents d’origine », et « Toutes les questions »
+permet toujours un entraînement libre paginé.
+
+Le champ « Cours » de l’éditeur est modifiable. Le classement automatique est
+thématique, pas une reproduction prétendue d’un programme universitaire. Son
+remplissage initial et un déplacement de cours seul préservent le contenu des
+questions et les corrections déjà enregistrées. Voir
+[les détails du classement et des tests](docs/residanat-lessons.md).
+
+Les quatre PDF demandés ont été identifiés et vérifiés par leur empreinte et par
+les 510 clés des tableaux de correction ; le lien répété n’est pas importé deux
+fois. Les collections 2025/2026 et les questions personnelles sont conservées.

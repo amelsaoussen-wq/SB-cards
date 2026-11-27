@@ -5,6 +5,8 @@ import { db } from "@/db";
 import { residanatDocumentImports, residanatQuestions } from "@/db/schema";
 import { type SessionUser } from "@/lib/auth";
 import { isSiteOwner } from "@/lib/residanat-access";
+import { ensureQuestionLessons } from "@/lib/residanat-lessons";
+import { inferResidanatLesson } from "@/lib/residanat-course-map";
 import { REVIEWED_DOCUMENTS, reviewedDocumentQuestions } from "@/lib/residanat-document-data";
 
 /** Import only reviewed documents requested by the owner; each collection is atomic and idempotent. */
@@ -28,10 +30,11 @@ export async function importOwnerDocument(user: SessionUser): Promise<void> {
       if (!marker.length) return;
       await tx.insert(residanatQuestions).values(questions.map((question) => ({
         userId: user.id, documentKey: source.id,
-        specialty: question.specialty, prompt: question.prompt, options: question.options,
+        specialty: question.specialty, lesson: question.lesson ?? inferResidanatLesson(question.specialty, question.prompt), prompt: question.prompt, options: question.options,
         correctOptionIds: question.correctOptionIds, explanation: question.explanation,
         source: question.source, sourceNumber: question.sourceNumber, sourcePage: question.sourcePage,
       })));
     });
   }
+  await ensureQuestionLessons(user.id);
 }
