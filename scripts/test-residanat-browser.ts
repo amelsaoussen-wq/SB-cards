@@ -78,6 +78,8 @@ async function main() {
     await page.locator("#residanat-specialty-filter").selectOption("Cardiologie");
     await page.getByText("Aucune question correspondante", { exact: true }).waitFor();
     await page.getByRole("button", { name: "Voir toutes les questions", exact: true }).click();
+    await page.locator("#residanat-search").fill(prompt);
+    await page.getByRole("button", { name: "Rechercher", exact: true }).click();
     await card.waitFor();
     console.log("PASS browser: specialty filters, search and empty-state reset");
 
@@ -111,6 +113,9 @@ async function main() {
     await dialog.waitFor({ state: "detached" });
     console.log("PASS browser: mobile layout, menu and accessible dialog");
 
+    await page.locator("#residanat-search").fill(prompt);
+    await page.getByRole("button", { name: "Rechercher", exact: true }).click();
+    await card.waitFor();
     await card.getByRole("button", { name: "Supprimer la question", exact: true }).click();
     const deletion = page.waitForResponse((response: { url: () => string; status: () => number; request: () => { method: () => string } }) => response.url().endsWith(`/api/residanat/${createdId}`) && response.request().method() === "DELETE");
     await card.getByRole("button", { name: "Confirmer la suppression", exact: true }).click();

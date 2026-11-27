@@ -2,6 +2,10 @@ import "server-only";
 
 import exam2026 from "@/data/residanat/constantine-2026.json";
 import exam2025 from "@/data/residanat/constantine-2025.json";
+import exam2021 from "@/data/residanat/constantine-2021-03.json";
+import exam2022February from "@/data/residanat/constantine-2022-02.json";
+import exam2022December from "@/data/residanat/constantine-2022-12.json";
+import exam2023 from "@/data/residanat/constantine-2023.json";
 import { validateQcm, type QcmInput, type QcmOption } from "@/lib/residanat-model";
 
 type SourceExam = {
@@ -30,6 +34,10 @@ type RegisteredExam = {
 const registry: RegisteredExam[] = [
   { exam: exam2026, reference: "Constantine — 17/10/2026", answerSections: [{ first: 1, last: 100, page: 20 }, { first: 101, last: 150, page: 21 }] },
   { exam: exam2025, reference: "Constantine — 25/10/2025", answerSections: [{ first: 1, last: 100, page: 21 }, { first: 101, last: 150, page: 22 }] },
+  { exam: exam2021, reference: "Constantine — 27/03/2021", answerSections: exam2021.answerSections },
+  { exam: exam2022February, reference: "Constantine — 19/02/2022", answerSections: exam2022February.answerSections },
+  { exam: exam2022December, reference: "Constantine — 10/12/2022", answerSections: exam2022December.answerSections },
+  { exam: exam2023, reference: "Constantine — 28/10/2023", answerSections: exam2023.answerSections },
 ];
 
 if (new Set(registry.map(({ exam }) => exam.id)).size !== registry.length ||
@@ -57,7 +65,7 @@ export function reviewedDocumentQuestions(documentKey: string): ReviewedQuestion
   const registered = registry.find(({ exam }) => exam.id === documentKey);
   if (!registered) throw new Error("Unknown reviewed source document");
   const { exam } = registered;
-  if (exam.questions.length !== 150 || exam.questionCount !== 150) throw new Error("Invalid reviewed document length");
+  if (!Number.isInteger(exam.questionCount) || exam.questionCount < 1 || exam.questionCount > 5000 || exam.questions.length !== exam.questionCount) throw new Error("Invalid reviewed document length");
   const result = exam.questions.map((question, index) => {
     const answerPage = registered.answerSections.find((section) => question.number >= section.first && question.number <= section.last)?.page;
     if (question.number !== index + 1 || question.options.length !== 5 || question.options.map((option) => option.id).join("") !== "ABCDE" ||

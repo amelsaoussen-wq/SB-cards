@@ -12,7 +12,7 @@ function emptyQuestion(): QcmInput {
 export function QuestionEditor({ question, onClose, onSaved }: {
   question: EditableQuestion | null;
   onClose: () => void;
-  onSaved: () => void;
+  onSaved: (id: string) => void;
 }) {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const [value, setValue] = useState<QcmInput>(() => question ?? emptyQuestion());
@@ -33,10 +33,10 @@ export function QuestionEditor({ question, onClose, onSaved }: {
     if ("error" in validated) { setError(validated.error); return; }
     setSaving(true); setError("");
     try {
-      await practiceRequest(question ? `/api/residanat/${question.id}` : "/api/residanat", {
+      const saved = await practiceRequest<{ id: string }>(question ? `/api/residanat/${question.id}` : "/api/residanat", {
         method: question ? "PUT" : "POST", body: JSON.stringify(validated.data),
       });
-      onSaved();
+      onSaved(saved.id);
     } catch (cause) { setError(cause instanceof Error ? cause.message : "Enregistrement impossible."); }
     finally { setSaving(false); }
   }

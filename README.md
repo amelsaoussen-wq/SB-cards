@@ -130,6 +130,22 @@ Le test `scripts/test-residanat-2025-import.ts` vérifie toutes les questions et
 ainsi que la conservation des données antérieures ; le test navigateur
 `scripts/test-residanat-2025-browser.ts` vérifie le changement d’année et le corrigé.
 
-Ne publiez jamais `.env` ni un jeton GitHub. Le contrôle de connexion facultatif
+### Lot d’annales 2021–2023
+
+Quatre autres documents sont ajoutés séparément : **27/03/2021 (120 QCM)**,
+**19/02/2022 (120)**, **10/12/2022 (120)** et **28/10/2023 (150)**. Le lien répété
+dans la demande est ignoré : le lot apporte **510 questions**, sans doublon ni
+remplacement des collections 2025/2026. Les clés viennent des tableaux texte
+« Corrigé Type » des fichiers ; les énoncés sont transcrits des scans avec leurs
+références de page. Voir [la provenance et les limites du lot](docs/residanat-batch-2021-2023.md).
+
+L’affichage est limité à **20 questions par page** pour garder une réponse légère
+sur mobile et Vercel. Les filtres et la page courante sont conservés dans l’URL.
+Le test `scripts/test-residanat-batch.ts` compare les 510 questions et 2 550 choix
+stockés aux données et aux clés natives indépendantes ; le test navigateur
+`scripts/test-residanat-batch-browser.ts` vérifie le changement de document, la
+pagination, le rechargement et les corrections colorées.
+
+Ne publiez jamais `.env` ni un jeton GitHub.
 `scripts/check-github.mjs` lit `GITHUB_TOKEN` depuis les secrets du terminal ; il
 ne publie rien et ne fait pas partie de l’application ou de ses bundles navigateur.

@@ -1,0 +1,3899 @@
+{
+  "id": "constantine-2022-12-10",
+  "title": "Résidanat de médecine — Constantine, 10 décembre 2022",
+  "institution": "Université Salah Boubnider — Constantine 3, Faculté de médecine Pr B. Bensmail",
+  "examDate": "2022-12-10",
+  "sourceUrl": "https://www.ency-education.net/_files/ugd/414868_47d6fee55ee049ddba950bfedc0d0ca6.pdf?index=true",
+  "sourceSha256": "b60c47b159d650fc0509498c254ac020cf410de8082210c2d634f8628994c8c8",
+  "pageCount": 20,
+  "questionCount": 120,
+  "answerPages": [
+    19,
+    20
+  ],
+  "answerSections": [
+    {
+      "first": 1,
+      "last": 80,
+      "page": 19
+    },
+    {
+      "first": 81,
+      "last": 120,
+      "page": 20
+    }
+  ],
+  "notes": "Transcription OCR des annales fournies, avec reprise des passages marqués sur les scans. Les réponses sont celles du corrigé type extrait de la couche texte du PDF, sans justification médicale inventée. Le classement thématique est propre à SB Cards. En cas de doute sur un terme ou une unité, consulter le scan original et le référentiel actuel.",
+  "questions": [
+    {
+      "number": 1,
+      "page": 1,
+      "prompt": "La procalcitonine est une protéine de la phase inflammatoire :",
+      "options": [
+        {
+          "id": "A",
+          "text": "produite par les cellules C de la glande thyroïdienne"
+        },
+        {
+          "id": "B",
+          "text": "précipitée par liaison aux polysaccharides C de la paroi de pneumocoques"
+        },
+        {
+          "id": "C",
+          "text": "a une cinétique lente (demi-vie 3 à 6 jours et une normalisation vers le 10*\"° jour)"
+        },
+        {
+          "id": "D",
+          "text": "a un intérêt au cours de la phase aigüe des processus infectieux"
+        },
+        {
+          "id": "E",
+          "text": "utilisée comme marqueur d'évolution vers la chronicité"
+        }
+      ],
+      "correctOptionIds": [
+        "A",
+        "D"
+      ],
+      "specialty": "Biochimie"
+    },
+    {
+      "number": 2,
+      "page": 1,
+      "prompt": "L’hormone de croissance (GH) :",
+      "options": [
+        {
+          "id": "A",
+          "text": "a une action hyperglycémiante rapide"
+        },
+        {
+          "id": "B",
+          "text": "inhibe la glucokinase hépatique"
+        },
+        {
+          "id": "C",
+          "text": "active la néoglucogénèse"
+        },
+        {
+          "id": "D",
+          "text": "active la lipolyse"
+        },
+        {
+          "id": "E",
+          "text": "active la glycogénolyse"
+        }
+      ],
+      "correctOptionIds": [
+        "B",
+        "C"
+      ],
+      "specialty": "Biochimie"
+    },
+    {
+      "number": 3,
+      "page": 1,
+      "prompt": "Parmi les marqueurs de la résorption osseuse, on retrouve :",
+      "options": [
+        {
+          "id": "A",
+          "text": "la pyridinoline et la déoxypyridinoline"
+        },
+        {
+          "id": "B",
+          "text": "l’ostéocalcine"
+        },
+        {
+          "id": "C",
+          "text": "les télopeptides (NTx et CTx)"
+        },
+        {
+          "id": "D",
+          "text": "la phosphatase acide tartrate résistante"
+        },
+        {
+          "id": "E",
+          "text": "la phosphatase alcaline osseuse"
+        }
+      ],
+      "correctOptionIds": [
+        "A",
+        "C",
+        "D"
+      ],
+      "specialty": "Biochimie"
+    },
+    {
+      "number": 4,
+      "page": 1,
+      "prompt": "La vitamine D :",
+      "options": [
+        {
+          "id": "A",
+          "text": "est une vitamine hydrosoluble"
+        },
+        {
+          "id": "B",
+          "text": "sa forme active est la 25-OH-D3"
+        },
+        {
+          "id": "C",
+          "text": "au niveau plasmatique, est transportée exclusivement par l’albumine"
+        },
+        {
+          "id": "D",
+          "text": "a une double origine, endogène et exogène"
+        },
+        {
+          "id": "E",
+          "text": "subit une seule hydroxylation au niveau du foie"
+        }
+      ],
+      "correctOptionIds": [
+        "D"
+      ],
+      "specialty": "Biochimie"
+    },
+    {
+      "number": 5,
+      "page": 1,
+      "prompt": "Laquelle de ces enzymes est particulièrement sensible à la prise régulière d'alcool ?",
+      "options": [
+        {
+          "id": "A",
+          "text": "La LDH"
+        },
+        {
+          "id": "B",
+          "text": "La gammaglutanyl transférase"
+        },
+        {
+          "id": "C",
+          "text": "la phosphatase alcaline"
+        },
+        {
+          "id": "D",
+          "text": "Les transaminases"
+        },
+        {
+          "id": "E",
+          "text": "La glutamate déshydrogénase"
+        }
+      ],
+      "correctOptionIds": [
+        "B"
+      ],
+      "specialty": "Biochimie"
+    },
+    {
+      "number": 6,
+      "page": 2,
+      "prompt": "Le glucagon:",
+      "options": [
+        {
+          "id": "A",
+          "text": "est secrété par les cellules aipha des ilots de Langerhans"
+        },
+        {
+          "id": "B",
+          "text": "agit au niveau du muscle pour la libération du glucose à partir du glycogène musculaire"
+        },
+        {
+          "id": "C",
+          "text": "active la synthèse du glycogène hépatique"
+        },
+        {
+          "id": "D",
+          "text": "exerce son action à travers un récepteur membranaire couplé à la protéine G"
+        },
+        {
+          "id": "E",
+          "text": "stimule la pompe Na*/K' au niveau musculaire en favorisant la pénétration cellulaire du potassium"
+        }
+      ],
+      "correctOptionIds": [
+        "A",
+        "D"
+      ],
+      "specialty": "Biochimie"
+    },
+    {
+      "number": 7,
+      "page": 2,
+      "prompt": "Une hyponatrémie avec hyperosmolarité plasmatique fait évoquer :",
+      "options": [
+        {
+          "id": "A",
+          "text": "un syndrome de sécrétion inappropriée d’hormone antidiurétique"
+        },
+        {
+          "id": "B",
+          "text": "une insuffisance cardiaque"
+        },
+        {
+          "id": "C",
+          "text": "un syndrome néphrotique"
+        },
+        {
+          "id": "D",
+          "text": "une hypothyroïdie"
+        },
+        {
+          "id": "E",
+          "text": "une insuffisance surrénalienne"
+        }
+      ],
+      "correctOptionIds": [
+        "B",
+        "C"
+      ],
+      "specialty": "Biochimie"
+    },
+    {
+      "number": 8,
+      "page": 2,
+      "prompt": "Le dosage de la thyroglobuline :",
+      "options": [
+        {
+          "id": "A",
+          "text": "permet de faire le diagnostic de cancer de la thyroïde différencié"
+        },
+        {
+          "id": "B",
+          "text": "estutile dans la prise en charge d’un nodule thyroïdien"
+        },
+        {
+          "id": "C",
+          "text": "est utilisé dans la surveillance d’un cancer thyroïdien différencié"
+        },
+        {
+          "id": "D",
+          "text": "n’a aucun intérêt pratique clinique"
+        },
+        {
+          "id": "E",
+          "text": "doit être interprété en tenant compte de la présence des anticorps antithyroglobulines."
+        }
+      ],
+      "correctOptionIds": [
+        "C",
+        "E"
+      ],
+      "specialty": "Biochimie"
+    },
+    {
+      "number": 9,
+      "page": 2,
+      "prompt": "Quelle lipoprotéine est absente du sérum d’un sujet à jeun ?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Chylomicron"
+        },
+        {
+          "id": "B",
+          "text": "LD"
+        },
+        {
+          "id": "C",
+          "text": "VLDL"
+        },
+        {
+          "id": "D",
+          "text": "HDL2"
+        },
+        {
+          "id": "E",
+          "text": "HDL3"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "specialty": "Biochimie"
+    },
+    {
+      "number": 10,
+      "page": 2,
+      "prompt": "Dans la mobilité électrophorétique des lipoprotéines :",
+      "options": [
+        {
+          "id": "A",
+          "text": "les chylomicrons migrent en position alpha"
+        },
+        {
+          "id": "B",
+          "text": "les VLDE migrent en position pré-beta"
+        },
+        {
+          "id": "C",
+          "text": "tes LDL ne migrent pas"
+        },
+        {
+          "id": "D",
+          "text": "les HDL migrent en position beta"
+        },
+        {
+          "id": "E",
+          "text": "les HDL restent sur la ligne de dépôt"
+        }
+      ],
+      "correctOptionIds": [
+        "B"
+      ],
+      "specialty": "Biochimie"
+    },
+    {
+      "number": 11,
+      "page": 2,
+      "prompt": "Le récepteur Fcël :",
+      "options": [
+        {
+          "id": "A",
+          "text": "est de haute affinité pour les Ig£"
+        },
+        {
+          "id": "B",
+          "text": "est de faible affinité pour les ÎgE"
+        },
+        {
+          "id": "C",
+          "text": "est appelé également CD23"
+        },
+        {
+          "id": "D",
+          "text": "est porté uniquement par les mastocytes"
+        },
+        {
+          "id": "E",
+          "text": "joue un rôle important dans les allergies de type"
+        }
+      ],
+      "correctOptionIds": [
+        "A",
+        "E"
+      ],
+      "specialty": "Immunologie"
+    },
+    {
+      "number": 12,
+      "page": 2,
+      "prompt": "Le Th1:",
+      "options": [
+        {
+          "id": "A",
+          "text": "agit par le biais des cytokines"
+        },
+        {
+          "id": "B",
+          "text": "agit par contact cellulaire"
+        },
+        {
+          "id": "C",
+          "text": "est CD3+ CD4+ CD8-"
+        },
+        {
+          "id": "D",
+          "text": "est CD3+ CD4- CD8+"
+        },
+        {
+          "id": "E",
+          "text": "est CD3- CD4+ CD8-"
+        }
+      ],
+      "correctOptionIds": [
+        "A",
+        "C"
+      ],
+      "specialty": "Immunologie"
+    },
+    {
+      "number": 13,
+      "page": 3,
+      "prompt": "NKp30:",
+      "options": [
+        {
+          "id": "A",
+          "text": "est un récepteur NCR inhibiteur"
+        },
+        {
+          "id": "B",
+          "text": "est un analogue de NKG2D"
+        },
+        {
+          "id": "C",
+          "text": "est un récepteur activateur de cellule NK"
+        },
+        {
+          "id": "D",
+          "text": "possède un analogue inhibiteur"
+        },
+        {
+          "id": "E",
+          "text": "interagit avec des ligands viraux comme les KIR activateurs"
+        }
+      ],
+      "correctOptionIds": [
+        "C"
+      ],
+      "specialty": "Immunologie"
+    },
+    {
+      "number": 14,
+      "page": 3,
+      "prompt": "Le centre germinatif :",
+      "options": [
+        {
+          "id": "A",
+          "text": "peut se développer en réponse à une stimulation par le LPS"
+        },
+        {
+          "id": "B",
+          "text": "est issu d’une stimulation extrafoiliculaire"
+        },
+        {
+          "id": "C",
+          "text": "est indispensable à la production d'anticorps IgM de forte affinité"
+        },
+        {
+          "id": "D",
+          "text": "permet la production d'anticorps lgG de faible affinité"
+        },
+        {
+          "id": "E",
+          "text": "constitue avec le manteau le follicule secondaire"
+        }
+      ],
+      "correctOptionIds": [
+        "E"
+      ],
+      "specialty": "Immunologie"
+    },
+    {
+      "number": 15,
+      "page": 3,
+      "prompt": "Le sucre des nucléosides :",
+      "options": [
+        {
+          "id": "A",
+          "text": "est un pentose"
+        },
+        {
+          "id": "B",
+          "text": "est le L-ribose pour l'ARN et le L-désoxyribose pour l'ADN"
+        },
+        {
+          "id": "C",
+          "text": "est en conformation &"
+        },
+        {
+          "id": "D",
+          "text": "a des atomes de carbone numérotés de 1’ à 6’"
+        },
+        {
+          "id": "E",
+          "text": "est porteur d'au moins une fonction hydroxyle"
+        }
+      ],
+      "correctOptionIds": [
+        "A",
+        "E"
+      ],
+      "specialty": "Biologie moléculaire"
+    },
+    {
+      "number": 16,
+      "page": 3,
+      "prompt": "Dans la structure de l'ADN, l’appariement s'effectue entre :",
+      "options": [
+        {
+          "id": "A",
+          "text": "deux brins d'ADN grâce à des liaisons covalentes"
+        },
+        {
+          "id": "B",
+          "text": "deux brins d'ADN grâce à des liaisons hydrogènes"
+        },
+        {
+          "id": "C",
+          "text": "deux brins complémentaires de sens opposé"
+        },
+        {
+          "id": "D",
+          "text": "deux brins identiques et de sens opposé"
+        },
+        {
+          "id": "E",
+          "text": "deux brins complémentaires et de même sens"
+        }
+      ],
+      "correctOptionIds": [
+        "B",
+        "C"
+      ],
+      "specialty": "Biologie moléculaire"
+    },
+    {
+      "number": 17,
+      "page": 3,
+      "prompt": "À propos des étapes de l’élongation de la traduction :",
+      "options": [
+        {
+          "id": "A",
+          "text": "un complexe amino acyl-ARNt se fixe sur le site A du ribosome"
+        },
+        {
+          "id": "B",
+          "text": "une liaison peptidique s'établit entre le groupement amine d'une méthionine et le groupement carboxyl du deuxième acide aminé"
+        },
+        {
+          "id": "C",
+          "text": "l'activité peptidyi transférase est catalysée par une protéine d’une des sous-unités du ribosome"
+        },
+        {
+          "id": "D",
+          "text": "après la formation de la liaison peptidique, P'ARN libre se déplace vers le site E du ribosome"
+        },
+        {
+          "id": "E",
+          "text": "le ribosome se déplace le long de l’ARNm de 5’ vers 3°"
+        }
+      ],
+      "correctOptionIds": [
+        "A",
+        "D",
+        "E"
+      ],
+      "specialty": "Biologie moléculaire"
+    },
+    {
+      "number": 18,
+      "page": 3,
+      "prompt": "Un gène : :",
+      "options": [
+        {
+          "id": "A",
+          "text": "est une portion d'ADN présente en un locus différent pour chaque individu"
+        },
+        {
+          "id": "B",
+          "text": "représente une maladie héréditaire"
+        },
+        {
+          "id": "C",
+          "text": "est une portion d'ADN participant à l'établissement d’un caractère donné"
+        },
+        {
+          "id": "D",
+          "text": "représente une information présente sous forme allèlique en double exemplaire"
+        },
+        {
+          "id": "E",
+          "text": "est traduit en protéine dans sa totalité"
+        }
+      ],
+      "correctOptionIds": [
+        "C",
+        "D"
+      ],
+      "specialty": "Biologie moléculaire"
+    },
+    {
+      "number": 19,
+      "page": 3,
+      "prompt": "En cas d'embolie graisseuse, la lumière des petits vaisseaux des poumons peut être occupée par :",
+      "options": [
+        {
+          "id": "A",
+          "text": "du tissu adipeux parfois mêlé à de petits spicules osseux"
+        },
+        {
+          "id": "B",
+          "text": "des cellules kératinisées"
+        },
+        {
+          "id": "C",
+          "text": "des fragments nécrotiques contenant des colonies microbiennes"
+        },
+        {
+          "id": "D",
+          "text": "des cellules tumorales groupées en amas"
+        },
+        {
+          "id": "E",
+          "text": "du tissu adipeux mêlé à des cellules hématopoïétiques"
+        }
+      ],
+      "correctOptionIds": [
+        "A",
+        "E"
+      ],
+      "specialty": "Anatomie pathologique"
+    },
+    {
+      "number": 20,
+      "page": 4,
+      "prompt": "Le processus inflammatoire :",
+      "options": [
+        {
+          "id": "A",
+          "text": "est un phénomène unitissutaire"
+        },
+        {
+          "id": "B",
+          "text": "est un phénomène pathologique"
+        },
+        {
+          "id": "C",
+          "text": "est d’origine infectieuse et non infectieuse"
+        },
+        {
+          "id": "D",
+          "text": "est un phénomène dont l'objectif est la formation d'une cicatrice"
+        },
+        {
+          "id": "E",
+          "text": "se dérouie dans les tissus conjonctifs vascularisés et non vascularisés"
+        }
+      ],
+      "correctOptionIds": [
+        "C",
+        "E"
+      ],
+      "specialty": "Anatomie pathologique"
+    },
+    {
+      "number": 21,
+      "page": 4,
+      "prompt": "La spécificité du processus inflammatoire est liée :",
+      "options": [
+        {
+          "id": "A",
+          "text": "au type de l'organe ou du tissu atteint"
+        },
+        {
+          "id": "B",
+          "text": "au type des médiateurs présents"
+        },
+        {
+          "id": "C",
+          "text": "à l'aspect de la lésion"
+        },
+        {
+          "id": "D",
+          "text": "autype de cellules présentes"
+        },
+        {
+          "id": "E",
+          "text": "à la dimension de la lésion"
+        }
+      ],
+      "correctOptionIds": [
+        "C",
+        "D"
+      ],
+      "specialty": "Anatomie pathologique"
+    },
+    {
+      "number": 22,
+      "page": 4,
+      "prompt": "L’inflammation spécifique est causée par :",
+      "options": [
+        {
+          "id": "A",
+          "text": "l'Enterobacter pylori"
+        },
+        {
+          "id": "B",
+          "text": "un corps étranger"
+        },
+        {
+          "id": "C",
+          "text": "l'EBV (Epstein Bar Virus)"
+        },
+        {
+          "id": "D",
+          "text": "un Aspergillus"
+        },
+        {
+          "id": "E",
+          "text": "un bacille de Koch"
+        }
+      ],
+      "correctOptionIds": [
+        "B",
+        "E"
+      ],
+      "specialty": "Anatomie pathologique"
+    },
+    {
+      "number": 23,
+      "page": 4,
+      "prompt": "Quel est le 1° élément qui intervient dans le processus inflammatoire ?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Le leucocyte"
+        },
+        {
+          "id": "B",
+          "text": "Le monocyte"
+        },
+        {
+          "id": "C",
+          "text": "la cellule endothéliale"
+        },
+        {
+          "id": "D",
+          "text": "le fibroblaste"
+        },
+        {
+          "id": "E",
+          "text": "l’histamine"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "specialty": "Anatomie pathologique"
+    },
+    {
+      "number": 24,
+      "page": 4,
+      "prompt": "Les cellules endothéliales :",
+      "options": [
+        {
+          "id": "A",
+          "text": "sont impliquées dans Île chimiotactisme"
+        },
+        {
+          "id": "B",
+          "text": "stockent les lysosomes"
+        },
+        {
+          "id": "C",
+          "text": "participent à la phagocytose"
+        },
+        {
+          "id": "D",
+          "text": "participent à la détersion"
+        },
+        {
+          "id": "E",
+          "text": "secrètent des chimiokines"
+        }
+      ],
+      "correctOptionIds": [
+        "A",
+        "E"
+      ],
+      "specialty": "Anatomie pathologique"
+    },
+    {
+      "number": 25,
+      "page": 4,
+      "prompt": "L'infarctus du poumon :",
+      "options": [
+        {
+          "id": "A",
+          "text": "est un infarctus blanc"
+        },
+        {
+          "id": "B",
+          "text": "est un infarctus rouge Car la circulation de l’organe est de type terminale"
+        },
+        {
+          "id": "C",
+          "text": "réalise un foyer rouge, bien limité et de consistance ferme"
+        },
+        {
+          "id": "D",
+          "text": "se caractérise par une congestion capillaire intense"
+        },
+        {
+          "id": "E",
+          "text": "réalise une nécrose ischémique"
+        }
+      ],
+      "correctOptionIds": [
+        "C",
+        "D",
+        "E"
+      ],
+      "specialty": "Anatomie pathologique"
+    },
+    {
+      "number": 26,
+      "page": 4,
+      "prompt": "La médiacalcose de Mënckebereg :",
+      "options": [
+        {
+          "id": "A",
+          "text": "affecte les veines des membres inferieurs"
+        },
+        {
+          "id": "B",
+          "text": "a comme principal facteur de risque l'hypertension artérielle"
+        },
+        {
+          "id": "C",
+          "text": "touche les artères musculaires"
+        },
+        {
+          "id": "D",
+          "text": "est une affection aigüe des vaisseaux"
+        },
+        {
+          "id": "E",
+          "text": "réalise une fibrose calcifiée de la média re ÈS PE de"
+        }
+      ],
+      "correctOptionIds": [
+        "B",
+        "C",
+        "E"
+      ],
+      "specialty": "Anatomie pathologique"
+    },
+    {
+      "number": 27,
+      "page": 5,
+      "prompt": "Le carcinome épidermoïde est une tumeur maligne :",
+      "options": [
+        {
+          "id": "A",
+          "text": "de l’épithélium glandulaire"
+        },
+        {
+          "id": "B",
+          "text": "de nature épithéliale"
+        },
+        {
+          "id": "C",
+          "text": "précédée par des lésions non invasives limitées à lépithélium"
+        },
+        {
+          "id": "D",
+          "text": "dont la maturation est définie par la présence de kératine ou de dyskératose"
+        },
+        {
+          "id": "E",
+          "text": "d’agressivité souvent locale"
+        }
+      ],
+      "correctOptionIds": [
+        "B",
+        "C",
+        "D"
+      ],
+      "specialty": "Anatomie pathologique"
+    },
+    {
+      "number": 28,
+      "page": 5,
+      "prompt": "Les lymphomes malins non hodgkiniens :",
+      "options": [
+        {
+          "id": "A",
+          "text": "se développent dans les ganglions lymphatiques, parfois dans les viscères"
+        },
+        {
+          "id": "B",
+          "text": "se caractérisent par la présence de cellules de Sternberg"
+        },
+        {
+          "id": "C",
+          "text": "sont des tumeurs épithéliales"
+        },
+        {
+          "id": "D",
+          "text": "sont parfois secondaires à l'infection par Epstein Barr virus"
+        },
+        {
+          "id": "E",
+          "text": "nécessitent une étude immunohistochimique (CD3, CD20)"
+        }
+      ],
+      "correctOptionIds": [
+        "A",
+        "D",
+        "E"
+      ],
+      "specialty": "Anatomie pathologique"
+    },
+    {
+      "number": 29,
+      "page": 5,
+      "prompt": "Quels facteurs influencent l'augmentation de l'automatisme sinusal ?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Le système nerveux autonome"
+        },
+        {
+          "id": "B",
+          "text": "L'augmentation de la température"
+        },
+        {
+          "id": "C",
+          "text": "Le système nerveux parasympathique"
+        },
+        {
+          "id": "D",
+          "text": "La digestion"
+        },
+        {
+          "id": "E",
+          "text": "La diminution de la concentration des hormones thyroïdiennes"
+        }
+      ],
+      "correctOptionIds": [
+        "B",
+        "D"
+      ],
+      "specialty": "Physiologie"
+    },
+    {
+      "number": 30,
+      "page": 5,
+      "prompt": "L'amélioration de la précharge peut se faire par :",
+      "options": [
+        {
+          "id": "A",
+          "text": "la diminution de la pression auriculaire droite"
+        },
+        {
+          "id": "B",
+          "text": "l’augmentation de la pression intrathoracique"
+        },
+        {
+          "id": "C",
+          "text": "l'augmentation du tonus veineux"
+        },
+        {
+          "id": "D",
+          "text": "l'augmentation de la pression intrapéricardique"
+        },
+        {
+          "id": "E",
+          "text": "le passage en orthostatisme"
+        }
+      ],
+      "correctOptionIds": [
+        "A",
+        "C"
+      ],
+      "specialty": "Physiologie"
+    },
+    {
+      "number": 31,
+      "page": 5,
+      "prompt": "L'adaptation cardiovasculaire lors d’un exercice musculaire dynamique se fait par une :",
+      "options": [
+        {
+          "id": "A",
+          "text": "augmentation de l'inotropisme"
+        },
+        {
+          "id": "B",
+          "text": "stimulation parasympathique importante"
+        },
+        {
+          "id": "C",
+          "text": "diminution de la précharge"
+        },
+        {
+          "id": "D",
+          "text": "redistribution du sang aux muscles en activité"
+        },
+        {
+          "id": "E",
+          "text": "inhibition du système nerveux sympathique"
+        }
+      ],
+      "correctOptionIds": [
+        "A",
+        "D"
+      ],
+      "specialty": "Physiologie"
+    },
+    {
+      "number": 32,
+      "page": 5,
+      "prompt": "Lors de l'augmentation de l’affinité de l'hémoglobine pour l’O2, on observe :",
+      "options": [
+        {
+          "id": "A",
+          "text": "une hypothermie"
+        },
+        {
+          "id": "B",
+          "text": "une augmentation de la P50"
+        },
+        {
+          "id": "C",
+          "text": "un PH à 7,28"
+        },
+        {
+          "id": "D",
+          "text": "une hypocapnie"
+        },
+        {
+          "id": "E",
+          "text": "uneffet Bohr"
+        }
+      ],
+      "correctOptionIds": [
+        "A",
+        "D"
+      ],
+      "specialty": "Physiologie"
+    },
+    {
+      "number": 33,
+      "page": 5,
+      "prompt": "L’absorption intestinale du fructose nécessite un récepteur :",
+      "options": [
+        {
+          "id": "A",
+          "text": "SGLT1 du côté luminal de l’entérocyte"
+        },
+        {
+          "id": "B",
+          "text": "Glut5 du côté luminal de l’entérocyte"
+        },
+        {
+          "id": "C",
+          "text": "SGLT1 du côté basal de l’entérocyte"
+        },
+        {
+          "id": "D",
+          "text": "Glut2 du côté basal de l’entérocyte"
+        },
+        {
+          "id": "E",
+          "text": "Gluts du côté basal de l’entérocyte"
+        }
+      ],
+      "correctOptionIds": [
+        "B",
+        "D"
+      ],
+      "specialty": "Physiologie"
+    },
+    {
+      "number": 34,
+      "page": 6,
+      "prompt": "Les incrétines :",
+      "options": [
+        {
+          "id": "A",
+          "text": "sont des enzymes salivaires"
+        },
+        {
+          "id": "B",
+          "text": "accélèrent la vidange gastrique"
+        },
+        {
+          "id": "C",
+          "text": "stimulent la sécrétion de l'insuline"
+        },
+        {
+          "id": "D",
+          "text": "stimulent la libération du glucagon"
+        },
+        {
+          "id": "E",
+          "text": "font parties des entérogastrones"
+        }
+      ],
+      "correctOptionIds": [
+        "C",
+        "E"
+      ],
+      "specialty": "Physiologie"
+    },
+    {
+      "number": 35,
+      "page": 6,
+      "prompt": "Les hormones thyroïdiennes :",
+      "options": [
+        {
+          "id": "A",
+          "text": "sont lipophiles"
+        },
+        {
+          "id": "B",
+          "text": "ont une action nucléaire"
+        },
+        {
+          "id": "C",
+          "text": "ont un effet mitochondrial"
+        },
+        {
+          "id": "D",
+          "text": "inhibent les récepteurs adrénergiques"
+        },
+        {
+          "id": "E",
+          "text": "ontuneffet facititateur du métabolisme cellujaire"
+        }
+      ],
+      "correctOptionIds": [
+        "B",
+        "C"
+      ],
+      "specialty": "Physiologie"
+    },
+    {
+      "number": 36,
+      "page": 6,
+      "prompt": "Quelles substances inhibent la transmission neuromusculaire ?",
+      "options": [
+        {
+          "id": "A",
+          "text": "La prostigmine"
+        },
+        {
+          "id": "B",
+          "text": "La nicotine"
+        },
+        {
+          "id": "C",
+          "text": "Les organophosphorés"
+        },
+        {
+          "id": "D",
+          "text": "La bungarotoxine"
+        },
+        {
+          "id": "E",
+          "text": "La toxine botulique"
+        }
+      ],
+      "correctOptionIds": [
+        "C",
+        "D",
+        "E"
+      ],
+      "specialty": "Physiologie"
+    },
+    {
+      "number": 37,
+      "page": 6,
+      "prompt": "Le postpotentiel synaptique inhibiteur est caractérisé par :",
+      "options": [
+        {
+          "id": "A",
+          "text": "une entrée de l'ion sodium"
+        },
+        {
+          "id": "B",
+          "text": "une dépolarisation membranaire"
+        },
+        {
+          "id": "C",
+          "text": "une entrée de f'ion chlore"
+        },
+        {
+          "id": "D",
+          "text": "une entrée de l'ion calcium"
+        },
+        {
+          "id": "E",
+          "text": "une hyperpolarisation"
+        }
+      ],
+      "correctOptionIds": [
+        "C",
+        "D"
+      ],
+      "specialty": "Physiologie"
+    },
+    {
+      "number": 38,
+      "page": 6,
+      "prompt": "La posthypophyse :",
+      "options": [
+        {
+          "id": "A",
+          "text": "secrète de grandes quantités d'ADH en réponse à une hypovolémie"
+        },
+        {
+          "id": "B",
+          "text": "répond à une dilatation du col utérin par la libération de l’ocytocine"
+        },
+        {
+          "id": "C",
+          "text": "répond à une succion du mamelon par la libération de la prolactine"
+        },
+        {
+          "id": "D",
+          "text": "libère l'ADH pour de faibles variations de l’osmolarité"
+        },
+        {
+          "id": "E",
+          "text": "synthétise l’ADH et l'ocytocine uniquement"
+        }
+      ],
+      "correctOptionIds": [
+        "A",
+        "B",
+        "D"
+      ],
+      "specialty": "Physiologie"
+    },
+    {
+      "number": 39,
+      "page": 6,
+      "prompt": "Les cellules de Sertoli jouent un rôle important dans la spermatogenèse par la :",
+      "options": [
+        {
+          "id": "A",
+          "text": "sécrétion du sperme"
+        },
+        {
+          "id": "B",
+          "text": "nutrition des cellules germinales"
+        },
+        {
+          "id": "C",
+          "text": "sécrétion des androgènes"
+        },
+        {
+          "id": "D",
+          "text": "rétroaction négative par l'intermédiaire de l’inhibine"
+        },
+        {
+          "id": "E",
+          "text": "stimulation de la sécrétion de la testostérone"
+        }
+      ],
+      "correctOptionIds": [
+        "D"
+      ],
+      "specialty": "Physiologie"
+    },
+    {
+      "number": 40,
+      "page": 6,
+      "prompt": "Les catécholamines libérées par la médullosurrénale :",
+      "options": [
+        {
+          "id": "A",
+          "text": "inhibent la tyrosine hydroxylase"
+        },
+        {
+          "id": "B",
+          "text": "sont sécrétées en réponse à une hypoglycémie"
+        },
+        {
+          "id": "C",
+          "text": "entrainent une vasodilatation dans les territoires actifs"
+        },
+        {
+          "id": "D",
+          "text": "augmentent la diurèse"
+        },
+        {
+          "id": "E",
+          "text": "accentuent la sensation de faim"
+        }
+      ],
+      "correctOptionIds": [
+        "A",
+        "B",
+        "C"
+      ],
+      "specialty": "Physiologie"
+    },
+    {
+      "number": 41,
+      "page": 7,
+      "prompt": "Les examens complémentaires à réaliser en première intention en présence d’une insuffisance cardiaque chronique sont :",
+      "options": [
+        {
+          "id": "A",
+          "text": "le dosage du BNP et NT-proBNP"
+        },
+        {
+          "id": "B",
+          "text": "une coronarographie"
+        },
+        {
+          "id": "C",
+          "text": "un ECG et une échocardiographie"
+        },
+        {
+          "id": "D",
+          "text": "le dosage des hormones thyroïdiennes et de la ferritinémie"
+        },
+        {
+          "id": "E",
+          "text": "une radiographie du thorax"
+        }
+      ],
+      "correctOptionIds": [
+        "A",
+        "C",
+        "D",
+        "E"
+      ],
+      "specialty": "Cardiologie"
+    },
+    {
+      "number": 42,
+      "page": 7,
+      "prompt": "Selon les recommandations de l'ESC, l’objectif tensionnel chez un patient âgé de moins de 65 ans, hypertendu, coronarien, si le traitement est bien toléré est :",
+      "options": [
+        {
+          "id": "A",
+          "text": "PAS < 120 mmHg et PAD 70-80 mmHg"
+        },
+        {
+          "id": "B",
+          "text": "PAS de 120-130 mmHg et PAD 70-80 mmHg"
+        },
+        {
+          "id": "C",
+          "text": "PAS de 130-140 mmHget PAD < 80 mmHg"
+        },
+        {
+          "id": "D",
+          "text": "PAS de 130-139 mmHg et PAD < 70 mmHg"
+        },
+        {
+          "id": "E",
+          "text": "PAS < 150 mmHg et PAD < 70 mmHg"
+        }
+      ],
+      "correctOptionIds": [
+        "B"
+      ],
+      "specialty": "Cardiologie"
+    },
+    {
+      "number": 43,
+      "page": 7,
+      "prompt": "Il faut hospitaliser une péricardite aigüe :",
+      "options": [
+        {
+          "id": "A",
+          "text": "en cas d'atteinte myocardique"
+        },
+        {
+          "id": "B",
+          "text": "en cas d'atteinte endocardique"
+        },
+        {
+          "id": "C",
+          "text": "quelle que soit l'abondance de l’'épanchement associé"
+        },
+        {
+          "id": "D",
+          "text": "en cas de traitement anticoagulant associé"
+        },
+        {
+          "id": "E",
+          "text": "dès confirmation du diagnostic"
+        }
+      ],
+      "correctOptionIds": [
+        "A",
+        "D"
+      ],
+      "specialty": "Cardiologie"
+    },
+    {
+      "number": 44,
+      "page": 7,
+      "prompt": "L'infarctus du myocarde à la phase aigüe est défini par :",
+      "options": [
+        {
+          "id": "A",
+          "text": "une élévation et/ou une diminution de la troponine avec des symptômes d’ischémie"
+        },
+        {
+          "id": "B",
+          "text": "une élévation et/ou une diminution de la troponine avec des modifications significatives du segment ST"
+        },
+        {
+          "id": "C",
+          "text": "une élévation de la troponine sans cinétique"
+        },
+        {
+          "id": "D",
+          "text": "la détection de modifications significatives du segment ST"
+        },
+        {
+          "id": "E",
+          "text": "la détection d'ondes T négatives"
+        }
+      ],
+      "correctOptionIds": [
+        "A",
+        "B"
+      ],
+      "specialty": "Cardiologie"
+    },
+    {
+      "number": 45,
+      "page": 7,
+      "prompt": "La tuberculose latente est :",
+      "options": [
+        {
+          "id": "A",
+          "text": "dépistée par un test sanguin IGRA"
+        },
+        {
+          "id": "B",
+          "text": "dépistée par une IDR à la tuberculine"
+        },
+        {
+          "id": "C",
+          "text": "confirmée par la présence de BAAR (tuberculose maladie)"
+        },
+        {
+          "id": "D",
+          "text": "dépistée systématiquement avant l'administration de biothérapie"
+        },
+        {
+          "id": "E",
+          "text": "confirmée par la présence de granulome avec nécrose"
+        }
+      ],
+      "correctOptionIds": [
+        "A",
+        "B"
+      ],
+      "specialty": "Pneumologie"
+    },
+    {
+      "number": 46,
+      "page": 7,
+      "prompt": "Un taux de protides pleuraux à 20 g/l avec un LDH pleural à 180 UI/L, lors d’un épanchement pleural liquidien bilatéral, oriente vers :",
+      "options": [
+        {
+          "id": "A",
+          "text": "une néoplasie thoracique"
+        },
+        {
+          "id": "B",
+          "text": "une insuffisance cardiaque"
+        },
+        {
+          "id": "C",
+          "text": "une insuffisance rénale"
+        },
+        {
+          "id": "D",
+          "text": "un syndrome néphrotique"
+        },
+        {
+          "id": "E",
+          "text": "un chylothorax"
+        }
+      ],
+      "correctOptionIds": [
+        "B",
+        "C",
+        "D"
+      ],
+      "specialty": "Pneumologie"
+    },
+    {
+      "number": 47,
+      "page": 8,
+      "prompt": "La sévérité de la dyspnée lors d’un pneumothorax dépend de :",
+      "options": [
+        {
+          "id": "A",
+          "text": "l'abondance de l’épanchement"
+        },
+        {
+          "id": "B",
+          "text": "l’état du poumon sous-jacent"
+        },
+        {
+          "id": "C",
+          "text": "le caractère compressif ou non du pneumothorax"
+        },
+        {
+          "id": "D",
+          "text": "l'ancienneté du pneumothorax"
+        },
+        {
+          "id": "E",
+          "text": "la rapidité de la prise en charge"
+        }
+      ],
+      "correctOptionIds": [
+        "A",
+        "B",
+        "C"
+      ],
+      "specialty": "Pneumologie"
+    },
+    {
+      "number": 48,
+      "page": 8,
+      "prompt": "L'inflammation au cours de l’asthme bronchique allergique est :",
+      "options": [
+        {
+          "id": "A",
+          "text": "persistante même si les symptômes sont intermittents"
+        },
+        {
+          "id": "B",
+          "text": "detype Th2"
+        },
+        {
+          "id": "C",
+          "text": "nécessite une corticothérapie inhalée comme traitement de fond"
+        },
+        {
+          "id": "D",
+          "text": "nécessite une corticothérapie orale comme traitement de fond"
+        },
+        {
+          "id": "E",
+          "text": "nécessite des bronchodilatateurs seuls comme traitement de fond."
+        }
+      ],
+      "correctOptionIds": [
+        "A",
+        "B",
+        "C"
+      ],
+      "specialty": "Pneumologie"
+    },
+    {
+      "number": 49,
+      "page": 8,
+      "prompt": "À propos du sepsis à bacilles Gram négatif :",
+      "options": [
+        {
+          "id": "A",
+          "text": "ilassocie un syndrome de réponse inflammatoire systémique et une infection identifiée (clinique et/ou microbiologique)"
+        },
+        {
+          "id": "B",
+          "text": "c’est un syndrome septique à point de départ iymphatique"
+        },
+        {
+          "id": "C",
+          "text": "la porte d'entrée est systématiquement recherchée"
+        },
+        {
+          "id": "D",
+          "text": "le germe en cause est uniquement mis en évidence dans les hémocultures"
+        },
+        {
+          "id": "E",
+          "text": "le choc septique en est la principale complication à redouter"
+        }
+      ],
+      "correctOptionIds": [
+        "A",
+        "C",
+        "E"
+      ],
+      "specialty": "Infectiologie"
+    },
+    {
+      "number": 50,
+      "page": 8,
+      "prompt": "Le traitement du choléra, dans sa forme commune, fait appel à :",
+      "options": [
+        {
+          "id": "A",
+          "text": "une bi-antibiothérapie associée à un schéma de perfusion simple"
+        },
+        {
+          "id": "B",
+          "text": "une réhydratation bien conduite compensant les pertes liquidiennes engendrées en fonction de la perte pondérale"
+        },
+        {
+          "id": "C",
+          "text": "une mono-antibiothérapie associée au traitement symptomatique"
+        },
+        {
+          "id": "D",
+          "text": "unisolement strict des patients cholériques"
+        },
+        {
+          "id": "E",
+          "text": "des mesures d'hygiène rigoureuses individuelles, collectives et environnementales"
+        }
+      ],
+      "correctOptionIds": [
+        "B",
+        "C",
+        "D",
+        "E"
+      ],
+      "specialty": "Infectiologie"
+    },
+    {
+      "number": 51,
+      "page": 8,
+      "prompt": "Les méningites purulentes sont :",
+      "options": [
+        {
+          "id": "A",
+          "text": "l'association d’un syndrome méningé fébrile et d’un LCR purulent"
+        },
+        {
+          "id": "B",
+          "text": "le plus souvent d’origine bactérienne"
+        },
+        {
+          "id": "C",
+          "text": "d'évolution aigüe ou subaigüe"
+        },
+        {
+          "id": "D",
+          "text": "l'apanage des adultes"
+        },
+        {
+          "id": "E",
+          "text": "traitées exclusivement par des antibiotiques"
+        }
+      ],
+      "correctOptionIds": [
+        "A",
+        "C"
+      ],
+      "specialty": "Infectiologie"
+    },
+    {
+      "number": 52,
+      "page": 8,
+      "prompt": "Un ulcère bulbaire de 9 mm avec caillot adhérent a été objectivé par endoscopie digestive haute chez un jeune fumeur qui présente des épigastralgies depuis une quinzaine de jours. On note la prise d’AINS pour des douleurs dorsales. Quelle serait votre démarche thérapeutique ?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Traitement hémostatique endoscopique associé à un traitement antisécrétoire"
+        },
+        {
+          "id": "B",
+          "text": "Traitement antisécrétoire d’une semaine"
+        },
+        {
+          "id": "C",
+          "text": "Suppression du tabac"
+        },
+        {
+          "id": "D",
+          "text": "Erythromycine"
+        },
+        {
+          "id": "E",
+          "text": "Suture de l’ulcère et vagotomie suprasélective"
+        }
+      ],
+      "correctOptionIds": [
+        "A",
+        "C"
+      ],
+      "specialty": "Hépato-gastro-entérologie"
+    },
+    {
+      "number": 53,
+      "page": 9,
+      "prompt": "La triade caractéristique de la leishmaniose viscérale est :",
+      "options": [
+        {
+          "id": "A",
+          "text": "pâleur, ictère, splénomégalie"
+        },
+        {
+          "id": "B",
+          "text": "pâleur, fièvre, splénomégalie"
+        },
+        {
+          "id": "C",
+          "text": "hépatomégalie, ictère, fièvre"
+        },
+        {
+          "id": "D",
+          "text": "pâleur, ictère, fièvre"
+        },
+        {
+          "id": "E",
+          "text": "hépatomégalie, pâleur, syndrome hémorragique"
+        }
+      ],
+      "correctOptionIds": [
+        "B"
+      ],
+      "specialty": "Pédiatrie"
+    },
+    {
+      "number": 54,
+      "page": 9,
+      "prompt": "Selon les recommandations de !’'ESPGHAN 2020, le diagnostic de maladie cœliaque est confirmé devant :",
+      "options": [
+        {
+          "id": "A",
+          "text": "un taux d’IgA antitransglutaminase< 10 fois la limite supérieure de la normale"
+        },
+        {
+          "id": "B",
+          "text": "une atrophie villositaire partielle à la biopsie duodénale"
+        },
+        {
+          "id": "C",
+          "text": "un taux d'anticorps anti-endomysium positif (EMA- IgA)"
+        },
+        {
+          "id": "D",
+          "text": "un taux d'IgA antitransglutaminase>10 fois la limite supérieure de la normale + taux IgA anti-endomysium positif"
+        },
+        {
+          "id": "E",
+          "text": "un taux d’IgA antitransglutaminase>10 fois la limite supérieure de la normale + taux IgA anti-endomysium positif + groupage HLA à risque (DQ2-DQ8)"
+        }
+      ],
+      "correctOptionIds": [
+        "D"
+      ],
+      "specialty": "Pédiatrie"
+    },
+    {
+      "number": 55,
+      "page": 9,
+      "prompt": "Les complications de la déshydratation aigüe sont :",
+      "options": [
+        {
+          "id": "A",
+          "text": "l’hématome sous-dural"
+        },
+        {
+          "id": "B",
+          "text": "le choc hémorragique"
+        },
+        {
+          "id": "C",
+          "text": "les convulsions"
+        },
+        {
+          "id": "D",
+          "text": "lesinfections"
+        },
+        {
+          "id": "E",
+          "text": "la thrombose des veines rénales"
+        }
+      ],
+      "correctOptionIds": [
+        "A",
+        "C",
+        "E"
+      ],
+      "specialty": "Pédiatrie"
+    },
+    {
+      "number": 56,
+      "page": 9,
+      "prompt": "Quelles sont les causes possibles de déshydratation aigüe chez l'enfant ?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Une gastroentérite"
+        },
+        {
+          "id": "B",
+          "text": "Des brülures"
+        },
+        {
+          "id": "C",
+          "text": "Une dermatite atopique"
+        },
+        {
+          "id": "D",
+          "text": "Un diabète sucré"
+        },
+        {
+          "id": "E",
+          "text": "Une insuffisance surrénale"
+        }
+      ],
+      "correctOptionIds": [
+        "A",
+        "B",
+        "D",
+        "E"
+      ],
+      "specialty": "Pédiatrie"
+    },
+    {
+      "number": 57,
+      "page": 9,
+      "prompt": "Le DAS 28 permet d'évaluer l’activité de la polyarthrite rhumatoïde et prend en compte 4 paramètres. Lesquels ?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Le nombre d’articulations douloureuses"
+        },
+        {
+          "id": "B",
+          "text": "Le nombre d’articulations gonflées"
+        },
+        {
+          "id": "C",
+          "text": "L'évaluation générale du patient"
+        },
+        {
+          "id": "D",
+          "text": "L'évaluation générale du médecin"
+        },
+        {
+          "id": "E",
+          "text": "La VS ou la CRP"
+        }
+      ],
+      "correctOptionIds": [
+        "A",
+        "B",
+        "C",
+        "E"
+      ],
+      "specialty": "Rhumatologie"
+    },
+    {
+      "number": 58,
+      "page": 9,
+      "prompt": "L'état de mal épileptique (EME) électro-encéphalographique :",
+      "options": [
+        {
+          "id": "A",
+          "text": "est de diagnostic facile"
+        },
+        {
+          "id": "B",
+          "text": "peut se voir lors d’un EME tonico-clonique généralisé"
+        },
+        {
+          "id": "C",
+          "text": "ne peut se voir lors d’un EME non convulsif"
+        },
+        {
+          "id": "D",
+          "text": "peut se voir chez des malades comateux"
+        },
+        {
+          "id": "E",
+          "text": "est dominé par les manifestations motrices"
+        }
+      ],
+      "correctOptionIds": [
+        "B",
+        "D"
+      ],
+      "specialty": "Neurologie"
+    },
+    {
+      "number": 59,
+      "page": 9,
+      "prompt": "La névralgie essentielle du trijumeau :",
+      "options": [
+        {
+          "id": "A",
+          "text": "est déclenchée par la stimulation d'une zone gâchette faciale"
+        },
+        {
+          "id": "B",
+          "text": "est caractérisée par l'abolition du réflexe cornéen"
+        },
+        {
+          "id": "C",
+          "text": "est associée à une hypoesthésie thermoalgesique"
+        },
+        {
+          "id": "D",
+          "text": "concerne plus fréquemment la branche mandibulaire"
+        },
+        {
+          "id": "E",
+          "text": "est associée à un ptosis"
+        }
+      ],
+      "correctOptionIds": [
+        "A",
+        "D"
+      ],
+      "specialty": "Neurologie"
+    },
+    {
+      "number": 60,
+      "page": 10,
+      "prompt": "Les syndromes parkinsoniens :",
+      "options": [
+        {
+          "id": "A",
+          "text": "sont des syndromes extra-pyramidaux"
+        },
+        {
+          "id": "B",
+          "text": "peuvent être causés par la prise de neuroleptiques"
+        },
+        {
+          "id": "C",
+          "text": "peuvent être causés par la L-Dopa"
+        },
+        {
+          "id": "D",
+          "text": "peuvent être causés par la maladie de Fahr"
+        },
+        {
+          "id": "E",
+          "text": "sont toujours associés à une atteinte cognitive"
+        }
+      ],
+      "correctOptionIds": [
+        "A",
+        "B",
+        "D"
+      ],
+      "specialty": "Neurologie"
+    },
+    {
+      "number": 61,
+      "page": 10,
+      "prompt": "Le syndrome de la corne antérieure de la moelle s'exprime par :",
+      "options": [
+        {
+          "id": "A",
+          "text": "des fasciculations"
+        },
+        {
+          "id": "B",
+          "text": "une hypoesthésie thermique et douloureuse distale"
+        },
+        {
+          "id": "C",
+          "text": "une amyotrophie"
+        },
+        {
+          "id": "D",
+          "text": "un signe de Romberg"
+        },
+        {
+          "id": "E",
+          "text": "un déficit moteur"
+        }
+      ],
+      "correctOptionIds": [
+        "A",
+        "C",
+        "E"
+      ],
+      "specialty": "Neurologie"
+    },
+    {
+      "number": 62,
+      "page": 10,
+      "prompt": "La psychose provoque des troubles sévères comme :",
+      "options": [
+        {
+          "id": "A",
+          "text": "un détachement de la réalité"
+        },
+        {
+          "id": "B",
+          "text": "des troubles de la mémoire antérograde"
+        },
+        {
+          "id": "C",
+          "text": "des idées irrationnelles"
+        },
+        {
+          "id": "D",
+          "text": "des idées anxieuses"
+        },
+        {
+          "id": "E",
+          "text": "des idées phobiques"
+        }
+      ],
+      "correctOptionIds": [
+        "A",
+        "C"
+      ],
+      "specialty": "Psychiatrie"
+    },
+    {
+      "number": 63,
+      "page": 10,
+      "prompt": "L'agitation :",
+      "options": [
+        {
+          "id": "A",
+          "text": "est une production exagérée d'actes moteurs"
+        },
+        {
+          "id": "B",
+          "text": "est une urgence médicale et psychiatrique"
+        },
+        {
+          "id": "C",
+          "text": "présente plusieurs étiologies"
+        },
+        {
+          "id": "D",
+          "text": "s'accompagne fréquemment d'agressivité"
+        },
+        {
+          "id": "E",
+          "text": "ne nécessite jamais de contention physique"
+        }
+      ],
+      "correctOptionIds": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "specialty": "Psychiatrie"
+    },
+    {
+      "number": 64,
+      "page": 10,
+      "prompt": "Le trouble bipolaire :",
+      "options": [
+        {
+          "id": "A",
+          "text": "touche la régulation et l’équilibration de l'humeur"
+        },
+        {
+          "id": "B",
+          "text": "est caractérisé par l'estime de soi exagérée lors d’un accès maniaque"
+        },
+        {
+          "id": "C",
+          "text": "est composé d'épisodes maniaques et dépressifs uniquement"
+        },
+        {
+          "id": "D",
+          "text": "comporte un épisode maniaque, un épisode dépressif et un épisode hypomaniaque"
+        },
+        {
+          "id": "E",
+          "text": "est traité à base de thymorégulateurs"
+        }
+      ],
+      "correctOptionIds": [
+        "A",
+        "B",
+        "D",
+        "E"
+      ],
+      "specialty": "Psychiatrie"
+    },
+    {
+      "number": 65,
+      "page": 10,
+      "prompt": "Au cours d’une CIVD confirmée, il existe :",
+      "options": [
+        {
+          "id": "A",
+          "text": "une thrombopénie"
+        },
+        {
+          "id": "B",
+          "text": "un allongement précoce du TCA"
+        },
+        {
+          "id": "C",
+          "text": "unallongement du temps de lyse des euglobulines"
+        },
+        {
+          "id": "D",
+          "text": "une diminution du taux des PDF"
+        },
+        {
+          "id": "E",
+          "text": "une hypofibrinogénémie"
+        }
+      ],
+      "correctOptionIds": [
+        "A",
+        "E"
+      ],
+      "specialty": "Hématologie"
+    },
+    {
+      "number": 66,
+      "page": 10,
+      "prompt": "Quels signes cliniques et biologiques témoignent d’une carence martiale ?",
+      "options": [
+        {
+          "id": "A",
+          "text": "La pâleur des téguments"
+        },
+        {
+          "id": "B",
+          "text": "Les troubles des phanères"
+        },
+        {
+          "id": "C",
+          "text": "Un VGM à 90"
+        },
+        {
+          "id": "D",
+          "text": "Un coefficient de saturation de la sidérophiline bas"
+        },
+        {
+          "id": "E",
+          "text": "Un taux de ferritine sérique normal"
+        }
+      ],
+      "correctOptionIds": [
+        "B",
+        "D"
+      ],
+      "specialty": "Hématologie"
+    },
+    {
+      "number": 67,
+      "page": 11,
+      "prompt": "Une splénomégalie peut être directement responsable d’une :",
+      "options": [
+        {
+          "id": "A",
+          "text": "thrombopénie"
+        },
+        {
+          "id": "B",
+          "text": "hypervolémie plasmatique"
+        },
+        {
+          "id": "C",
+          "text": "hémolyse intravasculaire"
+        },
+        {
+          "id": "D",
+          "text": "anémie microcytaire"
+        },
+        {
+          "id": "E",
+          "text": "neutropénie"
+        }
+      ],
+      "correctOptionIds": [
+        "A",
+        "B",
+        "E"
+      ],
+      "specialty": "Hématologie"
+    },
+    {
+      "number": 68,
+      "page": 11,
+      "prompt": "Quels sont les facteurs d’aggravation d’une insuffisance rénale chronique ?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Une dépiétion sodée"
+        },
+        {
+          "id": "B",
+          "text": "La prise d’AINS"
+        },
+        {
+          "id": "C",
+          "text": "Un régime hypoprotidique"
+        },
+        {
+          "id": "D",
+          "text": "Un obstacle de la voie excrétrice"
+        },
+        {
+          "id": "E",
+          "text": "Une hyperkaliémie"
+        }
+      ],
+      "correctOptionIds": [
+        "A",
+        "B",
+        "D"
+      ],
+      "specialty": "Néphrologie"
+    },
+    {
+      "number": 69,
+      "page": 11,
+      "prompt": "La glomérulonéphrite extracapillaire est révélée le plus souvent par :",
+      "options": [
+        {
+          "id": "A",
+          "text": "un syndrome néphrotique impur"
+        },
+        {
+          "id": "B",
+          "text": "un syndrome d’hématurie macroscopique récidivante"
+        },
+        {
+          "id": "C",
+          "text": "un syndrome néphritique aigu"
+        },
+        {
+          "id": "D",
+          "text": "un syndrome de glomérulonéphrite rapidement progressive"
+        },
+        {
+          "id": "E",
+          "text": "un syndrome néphrotique pur"
+        }
+      ],
+      "correctOptionIds": [
+        "D"
+      ],
+      "specialty": "Néphrologie"
+    },
+    {
+      "number": 70,
+      "page": 11,
+      "prompt": "Dans l’hypothyroïdie centrale :",
+      "options": [
+        {
+          "id": "A",
+          "text": "la TSH est élevée et la FT4 est basse"
+        },
+        {
+          "id": "B",
+          "text": "la TSH est basse et la FT4 élevée"
+        },
+        {
+          "id": "C",
+          "text": "la TSH est basse et la FT4 est basse"
+        },
+        {
+          "id": "D",
+          "text": "la TSH est normale et la FTA4 est basse"
+        },
+        {
+          "id": "E",
+          "text": "la TSH est élevée et la FT4 normale"
+        }
+      ],
+      "correctOptionIds": [
+        "C",
+        "D"
+      ],
+      "specialty": "Endocrinologie"
+    },
+    {
+      "number": 71,
+      "page": 11,
+      "prompt": "Dans l’hyperthyroïdie factice :",
+      "options": [
+        {
+          "id": "A",
+          "text": "la Tg est effondrée"
+        },
+        {
+          "id": "B",
+          "text": "la TSH est effondrée"
+        },
+        {
+          "id": "C",
+          "text": "la TSH est normale"
+        },
+        {
+          "id": "D",
+          "text": "la scintigraphie est blanche"
+        },
+        {
+          "id": "E",
+          "text": "la scintigraphie retrouve une zone hyperfixante avec extinction du reste du parenchyme"
+        }
+      ],
+      "correctOptionIds": [
+        "A",
+        "B",
+        "D"
+      ],
+      "specialty": "Endocrinologie"
+    },
+    {
+      "number": 72,
+      "page": 11,
+      "prompt": "Quels sont les signes échographiques évocateurs de la malignité d’un nodule thyroïdien ?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Vascularisation périphérique dominante"
+        },
+        {
+          "id": "B",
+          "text": "Augmentation rapide de volume de plus de 10% en une année"
+        },
+        {
+          "id": "C",
+          "text": "Macrocalcifications périphérique dominantes"
+        },
+        {
+          "id": "D",
+          "text": "Microcalcifications"
+        },
+        {
+          "id": "E",
+          "text": "index de dureté élevé à l'échographie"
+        }
+      ],
+      "correctOptionIds": [
+        "C",
+        "D",
+        "E"
+      ],
+      "specialty": "Endocrinologie"
+    },
+    {
+      "number": 73,
+      "page": 11,
+      "prompt": "Le diagnostic étiologique de l’eczéma de contact allergique fait appel :",
+      "options": [
+        {
+          "id": "A",
+          "text": "à lanamnèse"
+        },
+        {
+          "id": "B",
+          "text": "aux prick tests"
+        },
+        {
+          "id": "C",
+          "text": "aux patch tests"
+        },
+        {
+          "id": "D",
+          "text": "au dosage des IgE totaux"
+        },
+        {
+          "id": "E",
+          "text": "à la biopsie cutanée avec examen anatomopathologique"
+        }
+      ],
+      "correctOptionIds": [
+        "A",
+        "C"
+      ],
+      "specialty": "Dermatologie"
+    },
+    {
+      "number": 74,
+      "page": 12,
+      "prompt": "Le psoriasis peut être déclenché ou aggravé par :",
+      "options": [
+        {
+          "id": "A",
+          "text": "les corticoïdes systémiques"
+        },
+        {
+          "id": "B",
+          "text": "le frottement et le traumatisme physique"
+        },
+        {
+          "id": "C",
+          "text": "l’exposition aux trophallergènes"
+        },
+        {
+          "id": "D",
+          "text": "les infections fongiques à dermatophytes"
+        },
+        {
+          "id": "E",
+          "text": "les infections ORL à streptocoques"
+        }
+      ],
+      "correctOptionIds": [
+        "A",
+        "B",
+        "E"
+      ],
+      "specialty": "Dermatologie"
+    },
+    {
+      "number": 75,
+      "page": 12,
+      "prompt": "L'otite moyenne aigüe peut se compliquer par :",
+      "options": [
+        {
+          "id": "A",
+          "text": "une mastoidite aigüe"
+        },
+        {
+          "id": "B",
+          "text": "une thrombophlébite du sinus caverneux"
+        },
+        {
+          "id": "C",
+          "text": "une paralysie du XI"
+        },
+        {
+          "id": "D",
+          "text": "une labyrinthite"
+        },
+        {
+          "id": "E",
+          "text": "un empyème extradural"
+        }
+      ],
+      "correctOptionIds": [
+        "A",
+        "D",
+        "E"
+      ],
+      "specialty": "ORL"
+    },
+    {
+      "number": 76,
+      "page": 12,
+      "prompt": "Quelles pathologies peuvent se manifester par de volumineuses adénopathies cervicales chroniques ?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Les infections à mycobactéries atypiques"
+        },
+        {
+          "id": "B",
+          "text": "La brucellose"
+        },
+        {
+          "id": "C",
+          "text": "La mononucléose infectieuse"
+        },
+        {
+          "id": "D",
+          "text": "La rougeole"
+        },
+        {
+          "id": "E",
+          "text": "La syphilis"
+        }
+      ],
+      "correctOptionIds": [
+        "A",
+        "B",
+        "E"
+      ],
+      "specialty": "ORL"
+    },
+    {
+      "number": 77,
+      "page": 12,
+      "prompt": "Quelles sont les pathologies fréquemment responsables d’épistaxis ?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Fibrome nasopharyngien"
+        },
+        {
+          "id": "B",
+          "text": "Polypose nasosinusienne"
+        },
+        {
+          "id": "C",
+          "text": "Angiofibrome de la cloison nasale"
+        },
+        {
+          "id": "D",
+          "text": "Adénocarcinome de l’éthmoïde"
+        },
+        {
+          "id": "E",
+          "text": "Sinusite maxitlaire chronique"
+        }
+      ],
+      "correctOptionIds": [
+        "A",
+        "C",
+        "D"
+      ],
+      "specialty": "ORL"
+    },
+    {
+      "number": 78,
+      "page": 12,
+      "prompt": "Une campagne vaccinale de consolidation de l’immunité :",
+      "options": [
+        {
+          "id": "A",
+          "text": "rentre dans le cadre d’une stratégie mobile"
+        },
+        {
+          "id": "B",
+          "text": "rentre dans le cadre d’une stratégie avancée"
+        },
+        {
+          "id": "C",
+          "text": "est une campagne de masse"
+        },
+        {
+          "id": "D",
+          "text": "concerne seulement les enfants non vaccinés"
+        },
+        {
+          "id": "E",
+          "text": "concerne également les enfants vaccinés"
+        }
+      ],
+      "correctOptionIds": [
+        "C",
+        "E"
+      ],
+      "specialty": "Santé publique"
+    },
+    {
+      "number": 79,
+      "page": 12,
+      "prompt": "La colique saturnine se caractérise par :",
+      "options": [
+        {
+          "id": "A",
+          "text": "un trépied associant douleur abdominale diffuse avec vomissements et diarrhée"
+        },
+        {
+          "id": "B",
+          "text": "un tableau d'abdomen chirurgical aigu avec anémie hypochrome et hématie à granulation basophile"
+        },
+        {
+          "id": "C",
+          "text": "un drame abdominal aigu de Dieulafoy avec un état de choc et une HTA"
+        },
+        {
+          "id": "D",
+          "text": "une HTA avec pouls lent dur en fil de fer"
+        },
+        {
+          "id": "E",
+          "text": "un ASP objectivant un mégacôlon transitoire"
+        }
+      ],
+      "correctOptionIds": [
+        "B",
+        "D",
+        "E"
+      ],
+      "specialty": "Médecine interne"
+    },
+    {
+      "number": 80,
+      "page": 12,
+      "prompt": "Une hypercalcémie aigüe sévère peut entrainer :",
+      "options": [
+        {
+          "id": "A",
+          "text": "uncoma"
+        },
+        {
+          "id": "B",
+          "text": "une hypertension artérielle"
+        },
+        {
+          "id": "C",
+          "text": "une tétanie"
+        },
+        {
+          "id": "D",
+          "text": "un syndrome polyuropolydipsique"
+        },
+        {
+          "id": "E",
+          "text": "unsigne de Chvosteck"
+        }
+      ],
+      "correctOptionIds": [
+        "A",
+        "B",
+        "D"
+      ],
+      "specialty": "Endocrinologie"
+    },
+    {
+      "number": 81,
+      "page": 13,
+      "prompt": "L’adénomectomie par voie haute transvésicale :",
+      "options": [
+        {
+          "id": "A",
+          "text": "nécessite une incision sus-ombilicale a L"
+        },
+        {
+          "id": "B",
+          "text": "peut être indiquée en cas de tumeur de vessie associée"
+        },
+        {
+          "id": "C",
+          "text": "est contre-indiquée en cas d'insuffisance rénale chronique obstructive"
+        },
+        {
+          "id": "D",
+          "text": "nécessite une cystotomie"
+        },
+        {
+          "id": "E",
+          "text": "peut se compliquer d'un déficit androgénique en posi-opératoire"
+        }
+      ],
+      "correctOptionIds": [
+        "D"
+      ],
+      "specialty": "Urologie"
+    },
+    {
+      "number": 82,
+      "page": 13,
+      "prompt": "Une colique néphrétique avec urétérohydronéphrose, sans calculs radio-opaques, évoque :",
+      "options": [
+        {
+          "id": "A",
+          "text": "un calcul pyélique cystinique"
+        },
+        {
+          "id": "B",
+          "text": "un syndrome de la jonction pyélo-urétérale"
+        },
+        {
+          "id": "C",
+          "text": "une glomérulonéphrite"
+        },
+        {
+          "id": "D",
+          "text": "un calcul urétéral d'acide urique"
+        },
+        {
+          "id": "E",
+          "text": "une tumeur du trigone vésical"
+        }
+      ],
+      "correctOptionIds": [
+        "D",
+        "E"
+      ],
+      "specialty": "Urologie"
+    },
+    {
+      "number": 83,
+      "page": 13,
+      "prompt": "Le pronostic vital des brûlures est engagé dès que la SCBT est :",
+      "options": [
+        {
+          "id": "A",
+          "text": "de5%"
+        },
+        {
+          "id": "B",
+          "text": ">15%"
+        },
+        {
+          "id": "C",
+          "text": ">30%"
+        },
+        {
+          "id": "D",
+          "text": ">20% et < 30%"
+        },
+        {
+          "id": "E",
+          "text": ">50%"
+        }
+      ],
+      "correctOptionIds": [
+        "B"
+      ],
+      "specialty": "Urgences"
+    },
+    {
+      "number": 84,
+      "page": 13,
+      "prompt": "L'antibioprophylaxie en chirurgie :",
+      "options": [
+        {
+          "id": "A",
+          "text": "complète les mesures d'hygiène périopératoire"
+        },
+        {
+          "id": "B",
+          "text": "est orientée selon le type de chirurgie"
+        },
+        {
+          "id": "C",
+          "text": "doit être débutée 30 mn avant l'intervention"
+        },
+        {
+          "id": "D",
+          "text": "peut être prolongée à 72h"
+        },
+        {
+          "id": "E",
+          "text": "est administrée per os"
+        }
+      ],
+      "correctOptionIds": [
+        "A",
+        "B",
+        "C"
+      ],
+      "specialty": "Anesthésie-réanimation"
+    },
+    {
+      "number": 85,
+      "page": 13,
+      "prompt": "Le risque infectieux en chirurgie :",
+      "options": [
+        {
+          "id": "A",
+          "text": "est déterminé par le degré de contamination bactérienne"
+        },
+        {
+          "id": "B",
+          "text": "dépend de l'état du patient"
+        },
+        {
+          "id": "C",
+          "text": "peut être en lien avec l'intervention"
+        },
+        {
+          "id": "D",
+          "text": "n'est pas majoré par l'existence d'un matériel étranger"
+        },
+        {
+          "id": "E",
+          "text": "augmente avec la durée de l'intervention"
+        }
+      ],
+      "correctOptionIds": [
+        "A",
+        "B",
+        "C",
+        "E"
+      ],
+      "specialty": "Anesthésie-réanimation"
+    },
+    {
+      "number": 86,
+      "page": 13,
+      "prompt": "Les signes cliniques d'infection d'un site opératoire sont :",
+      "options": [
+        {
+          "id": "A",
+          "text": "atténués chez les sujets immunocompétents"
+        },
+        {
+          "id": "B",
+          "text": "l'apparition d'une rougeur"
+        },
+        {
+          "id": "C",
+          "text": "l'installation de douleurs"
+        },
+        {
+          "id": "D",
+          "text": "graves si une zone d'anesthésie apparait au sein de la zone d'inflammation"
+        },
+        {
+          "id": "E",
+          "text": "la persistance de sécrétions"
+        }
+      ],
+      "correctOptionIds": [
+        "B",
+        "C",
+        "D",
+        "E"
+      ],
+      "specialty": "Anesthésie-réanimation"
+    },
+    {
+      "number": 87,
+      "page": 13,
+      "prompt": "Le signe de l'aumêne est :",
+      "options": [
+        {
+          "id": "A",
+          "text": "recherché au cours des luxations antérieures de l'épaule"
+        },
+        {
+          "id": "B",
+          "text": "recherché au cours des luxations postérieures de l'épaule"
+        },
+        {
+          "id": "C",
+          "text": "l'impossibilité pour le patient de placer la main en supination quand le coude est en extension"
+        },
+        {
+          "id": "D",
+          "text": "l'impossibilité de ramener le coude au corps"
+        },
+        {
+          "id": "E",
+          "text": "la saillie sous-cutanée du bord externe de la clavicule"
+        }
+      ],
+      "correctOptionIds": [
+        "B",
+        "C"
+      ],
+      "specialty": "Traumatologie-orthopédie"
+    },
+    {
+      "number": 88,
+      "page": 14,
+      "prompt": "Les moyens d'ostéosynthèse utilisés dans les fractures de l'extrémité inférieure du fémur de l'adulte sont: *",
+      "options": [
+        {
+          "id": "A",
+          "text": "l'enclouage centromédullaire rétrograde"
+        },
+        {
+          "id": "B",
+          "text": "la lame plaque"
+        },
+        {
+          "id": "C",
+          "text": "le clou plaque"
+        },
+        {
+          "id": "D",
+          "text": "le clou gamma"
+        },
+        {
+          "id": "E",
+          "text": "la vis plaque à compression"
+        }
+      ],
+      "correctOptionIds": [
+        "A",
+        "B",
+        "E"
+      ],
+      "specialty": "Traumatologie-orthopédie"
+    },
+    {
+      "number": 89,
+      "page": 14,
+      "prompt": "La tuberculose ostéo-articulaire :",
+      "options": [
+        {
+          "id": "A",
+          "text": "ne survient jamais chez l'enfant"
+        },
+        {
+          "id": "B",
+          "text": "touche fréquemment le membre supérieur"
+        },
+        {
+          "id": "C",
+          "text": "est une atteinte monoarticulaire dans 90% des cas"
+        },
+        {
+          "id": "D",
+          "text": "réalise typiquement une arthrite subaigüe ou chronique"
+        },
+        {
+          "id": "E",
+          "text": "évolue vers l'aggravation progressive sur plusieurs semaines ou plusieurs mois"
+        }
+      ],
+      "correctOptionIds": [
+        "C",
+        "D",
+        "E"
+      ],
+      "specialty": "Traumatologie-orthopédie"
+    },
+    {
+      "number": 90,
+      "page": 14,
+      "prompt": "Le type VI de la classification de Schatzker des fractures de l'extrémité supérieure du tibia est :",
+      "options": [
+        {
+          "id": "A",
+          "text": "une fracture-enfoncement pure du plateau tibial latéral"
+        },
+        {
+          "id": "B",
+          "text": "une fracture-séparation du plateau tibial médial"
+        },
+        {
+          "id": "C",
+          "text": "une fracture bitubérositaire avec une fracture diaphysaire haute"
+        },
+        {
+          "id": "D",
+          "text": "une fracture-séparation pure du plateau tibial latéral"
+        },
+        {
+          "id": "E",
+          "text": "une fracture-séparation-enfoncement du plateau tibia latéral"
+        }
+      ],
+      "correctOptionIds": [
+        "C"
+      ],
+      "specialty": "Traumatologie-orthopédie"
+    },
+    {
+      "number": 91,
+      "page": 14,
+      "prompt": "Les tumeurs bénignes osseuses :",
+      "options": [
+        {
+          "id": "A",
+          "text": "posent parfois des problèmes de diagnostic différentiel avec des tumeurs malignes"
+        },
+        {
+          "id": "B",
+          "text": "sont toujours ostéocondensantes"
+        },
+        {
+          "id": "C",
+          "text": "se localisent toujours sur les épiphyses osseuses"
+        },
+        {
+          "id": "D",
+          "text": "n'entraînent pas de fractures"
+        },
+        {
+          "id": "E",
+          "text": "n'envahissent pas habituellement les parties molles"
+        }
+      ],
+      "correctOptionIds": [
+        "A"
+      ],
+      "specialty": "Traumatologie-orthopédie"
+    },
+    {
+      "number": 92,
+      "page": 14,
+      "prompt": "Dans les traumatismes rachidiens, le score D de Frankel correspond à :",
+      "options": [
+        {
+          "id": "A",
+          "text": "un examen neurologique normal"
+        },
+        {
+          "id": "B",
+          "text": "un déficit moteur et sensitif complet"
+        },
+        {
+          "id": "C",
+          "text": "une force musculaire entre 1 et 2, sensibilité préservée"
+        },
+        {
+          "id": "D",
+          "text": "une force musculaire supérieure à 3, utile, sensibilité normale"
+        },
+        {
+          "id": "E",
+          "text": "un déficit moteur complet et sensitif incomplet"
+        }
+      ],
+      "correctOptionIds": [
+        "D"
+      ],
+      "specialty": "Traumatologie-orthopédie"
+    },
+    {
+      "number": 93,
+      "page": 14,
+      "prompt": "L'importance du déplacement dans le type tête folle\" des fractures du col du fémur est étudiée par la classification de :",
+      "options": [
+        {
+          "id": "A",
+          "text": "Pauwels"
+        },
+        {
+          "id": "B",
+          "text": "Delbet"
+        },
+        {
+          "id": "C",
+          "text": "Garden"
+        },
+        {
+          "id": "D",
+          "text": "tamare"
+        },
+        {
+          "id": "E",
+          "text": "£nder"
+        }
+      ],
+      "correctOptionIds": [
+        "D"
+      ],
+      "specialty": "Traumatologie-orthopédie"
+    },
+    {
+      "number": 94,
+      "page": 14,
+      "prompt": "Les complications immédiates à redouter dans une luxation de l'épaule sont :",
+      "options": [
+        {
+          "id": "A",
+          "text": "l'irréductibilité"
+        },
+        {
+          "id": "B",
+          "text": "l'ankylose de l'épaule"
+        },
+        {
+          "id": "C",
+          "text": "la nécrose de la tête humérale"
+        },
+        {
+          "id": "D",
+          "text": "la paralysie du ptexus brachial"
+        },
+        {
+          "id": "E",
+          "text": "la luxation invétérée de l'épaule"
+        }
+      ],
+      "correctOptionIds": [
+        "A",
+        "D"
+      ],
+      "specialty": "Traumatologie-orthopédie"
+    },
+    {
+      "number": 95,
+      "page": 15,
+      "prompt": "Les fractures de l'humérus proximal :",
+      "options": [
+        {
+          "id": "A",
+          "text": "sont de bon pronostic lorsqu'elles sont engrenées"
+        },
+        {
+          "id": "B",
+          "text": "évoluent souvent vers une nécrose de la tête humérale"
+        },
+        {
+          "id": "C",
+          "text": "peuvent s'accompagner d'une luxation de l'épaule"
+        },
+        {
+          "id": "D",
+          "text": "sont pourvoyeuses de raideur de l'épaule"
+        },
+        {
+          "id": "E",
+          "text": "exigent toujours un traitement chirurgical"
+        }
+      ],
+      "correctOptionIds": [
+        "A",
+        "C",
+        "D"
+      ],
+      "specialty": "Traumatologie-orthopédie"
+    },
+    {
+      "number": 96,
+      "page": 15,
+      "prompt": "La complication la plus fréquente du fibrome sous-muqueux type 1 est :",
+      "options": [
+        {
+          "id": "A",
+          "text": "la torsion"
+        },
+        {
+          "id": "B",
+          "text": "l'infection"
+        },
+        {
+          "id": "C",
+          "text": "les métrorragies"
+        },
+        {
+          "id": "D",
+          "text": "la transformation maligne"
+        },
+        {
+          "id": "E",
+          "text": "la nécrobiose aseptique"
+        }
+      ],
+      "correctOptionIds": [
+        "C"
+      ],
+      "specialty": "Gynécologie-obstétrique"
+    },
+    {
+      "number": 97,
+      "page": 15,
+      "prompt": "Le traitement chirurgical est souvent nécessaire pour le fibrome utérin :",
+      "options": [
+        {
+          "id": "A",
+          "text": "sous-séreux pédiculé"
+        },
+        {
+          "id": "B",
+          "text": "fibreux intracavitaire"
+        },
+        {
+          "id": "C",
+          "text": "del'isthme"
+        },
+        {
+          "id": "D",
+          "text": "intramural"
+        },
+        {
+          "id": "E",
+          "text": "ducol"
+        }
+      ],
+      "correctOptionIds": [
+        "B"
+      ],
+      "specialty": "Gynécologie-obstétrique"
+    },
+    {
+      "number": 98,
+      "page": 15,
+      "prompt": "Quel signe clinique ne fait pas partie du tableau de l'inondation par rupture cataclysmique de grossesse ectopique ?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Douleurs scapulaires"
+        },
+        {
+          "id": "B",
+          "text": "Douleurs hypogastriques"
+        },
+        {
+          "id": "C",
+          "text": "Tachycardie"
+        },
+        {
+          "id": "D",
+          "text": "Contracture abdominale"
+        },
+        {
+          "id": "E",
+          "text": "Douleur du cul-de-sac de Douglas"
+        }
+      ],
+      "correctOptionIds": [
+        "D"
+      ],
+      "specialty": "Gynécologie-obstétrique"
+    },
+    {
+      "number": 99,
+      "page": 15,
+      "prompt": "Une salpingite aigüe peut avoir pour séquelles :",
+      "options": [
+        {
+          "id": "A",
+          "text": "une stérilité tubaire"
+        },
+        {
+          "id": "B",
+          "text": "une grossesse extra-utérine"
+        },
+        {
+          "id": "C",
+          "text": "une infection urinaire chronique"
+        },
+        {
+          "id": "D",
+          "text": "une dyspareunie"
+        },
+        {
+          "id": "E",
+          "text": "des douleurs abdominales"
+        }
+      ],
+      "correctOptionIds": [
+        "A",
+        "B",
+        "D",
+        "E"
+      ],
+      "specialty": "Gynécologie-obstétrique"
+    },
+    {
+      "number": 100,
+      "page": 15,
+      "prompt": "Mme D. consulte pour une tumeur du sein. Quels éléments font penser qu'elle est à haut risque du cancer du sein ?",
+      "options": [
+        {
+          "id": "A",
+          "text": "elle a été opérée d'une mastopathie bénigne"
+        },
+        {
+          "id": "B",
+          "text": "elle aeu4 enfants"
+        },
+        {
+          "id": "C",
+          "text": "elle prend la pilule"
+        },
+        {
+          "id": "D",
+          "text": "sa mère a eu un cancer du sein"
+        },
+        {
+          "id": "E",
+          "text": "elle a eu ses premières règles à 16 ans"
+        }
+      ],
+      "correctOptionIds": [
+        "A",
+        "D"
+      ],
+      "specialty": "Gynécologie-obstétrique"
+    },
+    {
+      "number": 101,
+      "page": 16,
+      "prompt": "Une femme, deuxième geste, césarisée lors de la 1ère grossesse, est adressée en urgence à 34 semaines d à d'aménorrhée pour état de choc avec hémorragie peu abondante, noirâtre. L'examen retrouve une TA élevée à 160/100 mmHg et une contracture utérine. Quel diagnostic est à évoquer ?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Un syndrome du sinus marginal"
+        },
+        {
+          "id": "B",
+          "text": "Une rupture utérine"
+        },
+        {
+          "id": "C",
+          "text": "Un décollement prématuré du placenta normalement inséré"
+        },
+        {
+          "id": "D",
+          "text": "Undécollement prématuré du placenta bas inséré"
+        },
+        {
+          "id": "E",
+          "text": "Uninfarctus myométrial"
+        }
+      ],
+      "correctOptionIds": [
+        "C"
+      ],
+      "specialty": "Gynécologie-obstétrique"
+    },
+    {
+      "number": 102,
+      "page": 16,
+      "prompt": "Devant une hémorragie du 3°\" trimestre de la grossesse, quelles propositions sont compatibles avec le diagnostic de placenta prævia ?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Présence d'accélérations transitoires du rythme cardiaque fœtal"
+        },
+        {
+          "id": "B",
+          "text": "Fibrinogène à 0,9 g/l"
+        },
+        {
+          "id": "C",
+          "text": "Uricémie à 511 mmol/]"
+        },
+        {
+          "id": "D",
+          "text": "Absence de protéinurie"
+        },
+        {
+          "id": "E",
+          "text": "Utérus contracté par intermittence"
+        }
+      ],
+      "correctOptionIds": [
+        "A",
+        "D",
+        "E"
+      ],
+      "specialty": "Gynécologie-obstétrique"
+    },
+    {
+      "number": 103,
+      "page": 16,
+      "prompt": "Devant des métrorragies rouges et abondantes au 3°\" trimestre de la grossesse, sans lésion du col, quel est l'examen complémentaire à demander pour affirmer l'étiologie ?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Une amniocentèse tardive"
+        },
+        {
+          "id": "B",
+          "text": "Un dosage d'estradiol"
+        },
+        {
+          "id": "C",
+          "text": "Une échagraphie"
+        },
+        {
+          "id": "D",
+          "text": "Un enregistrement du rythme cardiaque fœtal"
+        },
+        {
+          "id": "E",
+          "text": "Un dosage de prégnandiol"
+        }
+      ],
+      "correctOptionIds": [
+        "C"
+      ],
+      "specialty": "Gynécologie-obstétrique"
+    },
+    {
+      "number": 104,
+      "page": 16,
+      "prompt": "Sont en faveur d'une fracture de l'étage antérieur de la base du crâne :",
+      "options": [
+        {
+          "id": "A",
+          "text": "une contusion rétromastoïdienne"
+        },
+        {
+          "id": "B",
+          "text": "une ecchymose périorbitaire en lunette"
+        },
+        {
+          "id": "C",
+          "text": "une épistaxis"
+        },
+        {
+          "id": "D",
+          "text": "une otoliquorrhée"
+        },
+        {
+          "id": "E",
+          "text": "une rhinorrhée"
+        }
+      ],
+      "correctOptionIds": [
+        "B",
+        "C",
+        "E"
+      ],
+      "specialty": "Neurochirurgie"
+    },
+    {
+      "number": 105,
+      "page": 16,
+      "prompt": "Sont retrouvés en cas d'embarrure :",
+      "options": [
+        {
+          "id": "A",
+          "text": "un enfoncement osseux"
+        },
+        {
+          "id": "B",
+          "text": "une dure-mère intacte"
+        },
+        {
+          "id": "C",
+          "text": "une lésion du cortex cérébral"
+        },
+        {
+          "id": "D",
+          "text": "une lésion de la substance blanche"
+        },
+        {
+          "id": "E",
+          "text": "une tomodensitométrie normale"
+        }
+      ],
+      "correctOptionIds": [
+        "A",
+        "B"
+      ],
+      "specialty": "Neurochirurgie"
+    },
+    {
+      "number": 106,
+      "page": 16,
+      "prompt": "La découverte d'une lithiase vésiculaire asymptomatique chez une femme de 44 ans impose :",
+      "options": [
+        {
+          "id": "A",
+          "text": "une bili-IRM"
+        },
+        {
+          "id": "B",
+          "text": "une cholécystectomie sous cœlioscopie"
+        },
+        {
+          "id": "C",
+          "text": "une cholécystectomie en urgence"
+        },
+        {
+          "id": "D",
+          "text": "une abstention"
+        },
+        {
+          "id": "E",
+          "text": "une cholécystectomie après 2 mois PR 6 v7 - CI"
+        }
+      ],
+      "correctOptionIds": [
+        "D"
+      ],
+      "specialty": "Chirurgie digestive"
+    },
+    {
+      "number": 107,
+      "page": 17,
+      "prompt": "À propos du kyste hydatique hépatique :",
+      "options": [
+        {
+          "id": "A",
+          "text": "l'indication opératoire dépend uniquement du volume"
+        },
+        {
+          "id": "B",
+          "text": "il peut se compliquer d'une angiocholite aigüe"
+        },
+        {
+          "id": "C",
+          "text": "le kyste du segment 1 peut se compliquer d'une rupture dans la plèvre"
+        },
+        {
+          "id": "D",
+          "text": "le stade OMS CE2 correspond à un kyste simple anéchogène"
+        },
+        {
+          "id": "E",
+          "text": "l'homme peut contracter la maladie uniquement par contact direct avec le chien"
+        }
+      ],
+      "correctOptionIds": [
+        "D"
+      ],
+      "specialty": "Chirurgie digestive"
+    },
+    {
+      "number": 108,
+      "page": 17,
+      "prompt": "Quelles sont les indications de la cholécystectomie prophylactique ?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Un poiype intravésiculaire de11imm"
+        },
+        {
+          "id": "B",
+          "text": "Des anomalies de la jonction biliopancréatique"
+        },
+        {
+          "id": "C",
+          "text": "Des calcifications isolées de la muqueuse vésiculaire"
+        },
+        {
+          "id": "D",
+          "text": "Toute vésicule biliaire microlithiasique"
+        },
+        {
+          "id": "E",
+          "text": "Un enfant avec hémolyse chronique"
+        }
+      ],
+      "correctOptionIds": [
+        "A",
+        "B",
+        "C",
+        "E"
+      ],
+      "specialty": "Chirurgie digestive"
+    },
+    {
+      "number": 109,
+      "page": 17,
+      "prompt": "Devant une douleur de la fosse iliaque droite chez une fille de 17 ans, vous pouvez évoquer :",
+      "options": [
+        {
+          "id": "A",
+          "text": "une appendicite aigüe"
+        },
+        {
+          "id": "B",
+          "text": "une lymphadénite"
+        },
+        {
+          "id": "C",
+          "text": "une diverticulite de Meckel"
+        },
+        {
+          "id": "D",
+          "text": "un cancer de l'angle colique droit"
+        },
+        {
+          "id": "E",
+          "text": "une maladie de Crohn"
+        }
+      ],
+      "correctOptionIds": [
+        "A",
+        "B",
+        "C",
+        "E"
+      ],
+      "specialty": "Chirurgie digestive"
+    },
+    {
+      "number": 110,
+      "page": 17,
+      "prompt": "Quels sont les facteurs de risque de l'adénocarcinome du colon ?",
+      "options": [
+        {
+          "id": "A",
+          "text": "une alimentation riche en graisse"
+        },
+        {
+          "id": "B",
+          "text": "une alimentation riche en viande"
+        },
+        {
+          "id": "C",
+          "text": "l'alcool"
+        },
+        {
+          "id": "D",
+          "text": "l'obésité"
+        },
+        {
+          "id": "E",
+          "text": "une alimentation riche en fibres végétales"
+        }
+      ],
+      "correctOptionIds": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "specialty": "Chirurgie digestive"
+    },
+    {
+      "number": 111,
+      "page": 17,
+      "prompt": "Le syndrome de réponse inflammatoire systémique (SIRS) peut englober :",
+      "options": [
+        {
+          "id": "A",
+          "text": "une température inférieure à 36° ou supérieure à 38°"
+        },
+        {
+          "id": "B",
+          "text": "un pouis supérieur à 70 b/min"
+        },
+        {
+          "id": "C",
+          "text": "une fréquence respiratoire supérieure à 20 cycles/min"
+        },
+        {
+          "id": "D",
+          "text": "des globules blancs < 4000 ou > 12000 éléments/ml"
+        },
+        {
+          "id": "E",
+          "text": "une oligurie"
+        }
+      ],
+      "correctOptionIds": [
+        "A",
+        "C",
+        "D"
+      ],
+      "specialty": "Anesthésie-réanimation"
+    },
+    {
+      "number": 112,
+      "page": 17,
+      "prompt": "Quels signes cliniques sont compatibles avec le diagnostic d'une occlusion basse ?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Début brutal"
+        },
+        {
+          "id": "B",
+          "text": "Vomissements précoces"
+        },
+        {
+          "id": "C",
+          "text": "Arrêt des matières et des gaz précoce et brutal"
+        },
+        {
+          "id": "D",
+          "text": "Absence de péristaltisme"
+        },
+        {
+          "id": "E",
+          "text": "Météorisme important"
+        }
+      ],
+      "correctOptionIds": [
+        "C",
+        "E"
+      ],
+      "specialty": "Chirurgie digestive"
+    },
+    {
+      "number": 113,
+      "page": 17,
+      "prompt": "Un traumatisme abdominal suivi d'une hémorragie digestive, de douleurs abdominales et d'un ictère évoque en priorité :",
+      "options": [
+        {
+          "id": "A",
+          "text": "un traumatisme pancréatique avec pancréatite"
+        },
+        {
+          "id": "B",
+          "text": "une perforation duodénale"
+        },
+        {
+          "id": "C",
+          "text": "un traumatisme hépatique avec hémobilie"
+        },
+        {
+          "id": "D",
+          "text": "une dissection aortique traumatique"
+        },
+        {
+          "id": "E",
+          "text": "un traumatisme du bloc duodénopancréatique"
+        }
+      ],
+      "correctOptionIds": [
+        "C"
+      ],
+      "specialty": "Chirurgie digestive"
+    },
+    {
+      "number": 114,
+      "page": 18,
+      "prompt": "L’examen de choix pour affirmer le diagnostic d’une appendicite aigüe est :",
+      "options": [
+        {
+          "id": "A",
+          "text": "laNFS"
+        },
+        {
+          "id": "B",
+          "text": "l'abdomen sans préparation"
+        },
+        {
+          "id": "C",
+          "text": "l'échographie abdomino-pelvienne"
+        },
+        {
+          "id": "D",
+          "text": "l'examen clinique"
+        },
+        {
+          "id": "E",
+          "text": "la TDM abdomino-pelvienne"
+        }
+      ],
+      "correctOptionIds": [
+        "C"
+      ],
+      "specialty": "Chirurgie digestive"
+    },
+    {
+      "number": 115,
+      "page": 18,
+      "prompt": "Devant un tableau d'occlusion du grêle, quel est l'élément en faveur d'un iléus biliaire ?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Une occlusion proximale 7"
+        },
+        {
+          "id": "B",
+          "text": "Unictère . :"
+        },
+        {
+          "id": "C",
+          "text": "Une grosse vésicule palpable"
+        },
+        {
+          "id": "D",
+          "text": "Une image de “serpent à tête claire\" au transit baryté"
+        },
+        {
+          "id": "E",
+          "text": "Des antécédents de coliques hépatiques et/ou de cholécystite aigüe"
+        }
+      ],
+      "correctOptionIds": [
+        "E"
+      ],
+      "specialty": "Chirurgie digestive"
+    },
+    {
+      "number": 116,
+      "page": 18,
+      "prompt": "Quels signes radiocliniques sont observés lors d'un syndrome de Bouveret ?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Un syndrome infectieux"
+        },
+        {
+          "id": "B",
+          "text": "Des vomissements postprandiaux"
+        },
+        {
+          "id": "C",
+          "text": "Une diarrhée réflexe"
+        },
+        {
+          "id": "D",
+          "text": "Une microlithiase vésiculaire"
+        },
+        {
+          "id": "E",
+          "text": "Un épaississement de la paroi vésiculaire"
+        }
+      ],
+      "correctOptionIds": [
+        "B",
+        "E"
+      ],
+      "specialty": "Chirurgie digestive"
+    },
+    {
+      "number": 117,
+      "page": 18,
+      "prompt": "Quels éléments permettent Je traitement non opératoire d'une péritonite par perforation d'un ulcère duodénal dite \"méthode de TAYLOR\" ?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Un diagnostic certain"
+        },
+        {
+          "id": "B",
+          "text": "Une perforation évoluant depuis plus de 6 heures"
+        },
+        {
+          "id": "C",
+          "text": "La présence d'un état de choc"
+        },
+        {
+          "id": "D",
+          "text": "Une perforation survenue à jeun"
+        },
+        {
+          "id": "E",
+          "text": "Une fièvre"
+        }
+      ],
+      "correctOptionIds": [
+        "A",
+        "D"
+      ],
+      "specialty": "Chirurgie digestive"
+    },
+    {
+      "number": 118,
+      "page": 18,
+      "prompt": "Quels signes cliniques orientent vers une pancréatite aigüe sévère ?",
+      "options": [
+        {
+          "id": "A",
+          "text": "Vomissements"
+        },
+        {
+          "id": "B",
+          "text": "Taches bleues des flancs"
+        },
+        {
+          "id": "C",
+          "text": "Surpoids"
+        },
+        {
+          "id": "D",
+          "text": "Subictère conjonctival"
+        },
+        {
+          "id": "E",
+          "text": "Ecchymoses péri-ombilicales"
+        }
+      ],
+      "correctOptionIds": [
+        "B",
+        "E"
+      ],
+      "specialty": "Chirurgie digestive"
+    },
+    {
+      "number": 119,
+      "page": 18,
+      "prompt": "Une coloscopie chez un patient de 55 ans retrouve une tumeur à 8 cm de la marge anale, dont l'anatomopathologie montre un adénocarcinome lieberkuhnien. Quel est votre bilan d'extension ?",
+      "options": [
+        {
+          "id": "A",
+          "text": "TDM thoraco-abdomino-pelvienne"
+        },
+        {
+          "id": "B",
+          "text": "PETTDM"
+        },
+        {
+          "id": "C",
+          "text": "ACE et CA 19-9"
+        },
+        {
+          "id": "D",
+          "text": "IRM rectale"
+        },
+        {
+          "id": "E",
+          "text": "Scintigraphie osseuse"
+        }
+      ],
+      "correctOptionIds": [
+        "A",
+        "D"
+      ],
+      "specialty": "Chirurgie digestive"
+    },
+    {
+      "number": 120,
+      "page": 18,
+      "prompt": "Le cancer de la thyroïde :",
+      "options": [
+        {
+          "id": "A",
+          "text": "a une incidence en nette augmentation dans le monde"
+        },
+        {
+          "id": "B",
+          "text": "est de type papillaire dans la majorité des cas"
+        },
+        {
+          "id": "C",
+          "text": "est surdiagnostiqué dans les pays développés"
+        },
+        {
+          "id": "D",
+          "text": "a un bon pronostic dans les formes anaplasiques"
+        },
+        {
+          "id": "E",
+          "text": "nécessite une irathérapie complémentaire quel que soit son type histologique"
+        }
+      ],
+      "correctOptionIds": [
+        "A",
+        "B",
+        "C"
+      ],
+      "specialty": "Chirurgie endocrinienne"
+    }
+  ]
+}

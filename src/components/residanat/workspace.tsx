@@ -9,6 +9,7 @@ import type { EditableQuestion, PracticeData, PracticeQuestion, PracticeStats, Q
 
 type Filters = { q: string; specialty: string; document: string };
 const blankFilters: Filters = { q: "", specialty: "", document: "" };
+const PAGE_SIZE = 20;
 
 function PracticeCard({ question, sourceDocument, index, busy, onEdit, onDelete, onResult }: {
   question: PracticeQuestion;
@@ -134,9 +135,15 @@ function PracticeCard({ question, sourceDocument, index, busy, onEdit, onDelete,
   );
 }
 
-export function ResidanatWorkspace({ initial }: { initial: PracticeData }) {
+export function ResidanatWorkspace({ initial, initialFilters = blankFilters, initialPage = 1 }: {
+  initial: PracticeData;
+  initialFilters?: Filters;
+  initialPage?: number;
+}) {
   const [data, setData] = useState(initial);
-  const [filters, setFilters] = useState<Filters>(blankFilters);
+  const [page, setPage] = useState(initialPage);
+  const resultsRef = useRef<HTMLDivElement>(null);
+  const [filters, setFilters] = useState<Filters>(initialFilters);
   const [loading, setLoading] = useState(false);
   const [busyId, setBusyId] = useState<string | null>(null);
   const [editor, setEditor] = useState<{ question: EditableQuestion | null } | null>(null);
@@ -157,7 +164,17 @@ export function ResidanatWorkspace({ initial }: { initial: PracticeData }) {
     setAuthError(cause instanceof PracticeRequestError && (cause.status === 401 || cause.status === 403));
   }
 
-  async function reload(next: Filters = filters) {
+  function rememberLocation(next: Filters, nextPage: number) {
+    const params = new URLSearchParams();
+    if (next.q.trim()) params.set("q", next.q.trim());
+    if (next.specialty) params.set("specialty", next.specialty);
+    if (next.document) params.set("document", next.document);
+    if (nextPage > 1) params.set("page", String(nextPage));
+    const query = params.toString();
+    window.history.replaceState(null, "", query ? `/dashboard/residanat?${query}` : "/dashboard/residanat");
+  }
+
+  async function reload(next: Filters = filters, focusId?: string) {
     queryRequest.current?.abort();
     const controller = new AbortController();
     queryRequest.current = controller;
@@ -169,6 +186,11 @@ export function ResidanatWorkspace({ initial }: { initial: PracticeData }) {
     try {
       const result = await practiceRequest<PracticeData>(`/api/residanat?${params}`, { signal: controller.signal });
       setData(result);
+      const index = focusId ? result.questions.findIndex((question) => question.id === focusId) : 0;
+      const nextPage = Math.floor(Math.max(0, index) / PAGE_SIZE) + 1;
+      setPage(nextPage);
+      rememberLocation(next, nextPage);
+      if (focusId) requestAnimationFrame(() => resultsRef.current?.scrollIntoView({ block: "start" }));
     } catch (cause) { if (!(cause instanceof Error && cause.name === "AbortError")) fail(cause); }
     finally { if (queryRequest.current === controller) setLoading(false); }
   }
@@ -196,6 +218,34 @@ export function ResidanatWorkspace({ initial }: { initial: PracticeData }) {
   const attempts = data.stats.correct + data.stats.incorrect;
   const hasFilters = !!(filters.q.trim() || filters.specialty || filters.document);
   const documents = data.documents ?? [];
+  const totalPages = Math.max(1, Math.ceil(data.questions.length / PAGE_SIZE));
+  const currentPage = Math.min(page, totalPages);
+  const firstIndex = (currentPage - 1) * PAGE_SIZE;
+  const visibleQuestions = data.questions.slice(firstIndex, firstIndex + PAGE_SIZE);
+
+  function changePage(next: number) {
+    const nextPage = Math.min(totalPages, Math.max(1, next));
+    setPage(nextPage);
+    rememberLocation(filters, nextPage);
+    resultsRef.current?.scrollIntoView({ block: "start" });
+  }
+
+  function pagination(label: string) {
+    if (totalPages < 2 || loading) return null;
+    return (
+      <nav aria-label={label} className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-blush-200 bg-white px-3 py-3 sm:px-4">
+        <button type="button" className="sb-btn-secondary px-3 py-2 text-xs" disabled={currentPage === 1 || !!busyId} onClick={() => changePage(currentPage - 1)}>← Précédent</button>
+        <label className="flex items-center gap-2 text-xs font-semibold text-plum-900/60">
+          Page
+          <select aria-label="Choisir une page" value={currentPage} onChange={(event) => changePage(Number(event.target.value))} className="rounded-lg border border-blush-200 bg-white px-2 py-1.5 text-blush-800">
+            {Array.from({ length: totalPages }, (_, index) => <option key={index + 1} value={index + 1}>{index + 1} / {totalPages}</option>)}
+          </select>
+        </label>
+        <button type="button" className="sb-btn-secondary px-3 py-2 text-xs" disabled={currentPage === totalPages || !!busyId} onClick={() => changePage(currentPage + 1)}>Suivant →</button>
+      </nav>
+    );
+  }
+
 
   return (
     <div className="mx-auto max-w-5xl space-y-6">
@@ -214,7 +264,7 @@ export function ResidanatWorkspace({ initial }: { initial: PracticeData }) {
           <p className="text-[0.65rem] font-bold uppercase tracking-widest text-blush-600">Document importé · corrigé inclus</p>
           <h2 className="mt-1.5 font-serif text-lg font-bold">{document.title}</h2>
           <p className="mt-2 text-sm text-plum-900/65">{document.questionCount} questions importées · {document.remainingCount} disponibles dans votre banque.</p>
-          <p className="mt-1 text-xs leading-relaxed text-plum-900/55">Réponses reproduites du corrigé type du fichier, sans justification médicale ajoutée. Les numéros du PDF sont conservés ; classement thématique SB Cards.</p>
+          <p className="mt-1 text-xs leading-relaxed text-plum-900/55">Réponses reproduites du corrigé type du fichier, sans justification médicale ajoutée. Les numéros du PDF sont conservés ; classement thématique SB Cards. Les textes proviennent de scans : consultez le PDF en cas de doute sur un terme ou une unité.</p>
           <div className="mt-3 flex flex-wrap gap-2">
             <button type="button" className="sb-btn-primary text-xs" onClick={() => {
               const next = { ...blankFilters, document: document.id }; setFilters(next); void reload(next);
@@ -271,13 +321,15 @@ export function ResidanatWorkspace({ initial }: { initial: PracticeData }) {
           {authError ? <Link href="/login?next=/dashboard/residanat" className="font-bold underline">Se reconnecter</Link> : <button type="button" onClick={() => void reload()} className="font-bold underline">Réessayer</button>}
         </div>
       </div>}
-      <div className="flex items-center justify-between gap-3">
+      <div ref={resultsRef} className="flex scroll-mt-24 items-center justify-between gap-3">
         <h2 className="font-serif text-xl font-bold">{filters.specialty || "Questions par spécialité"}</h2>
         <span className="text-xs font-medium text-plum-900/50" aria-live="polite">{loading ? "Chargement…" : `${data.questions.length} question${data.questions.length !== 1 ? "s" : ""}`}</span>
       </div>
+      {pagination("Pagination des questions")}
+      {!loading && data.questions.length > 0 && <p className="text-xs text-plum-900/50" aria-live="polite">Questions {firstIndex + 1}–{Math.min(firstIndex + PAGE_SIZE, data.questions.length)} sur {data.questions.length}</p>}
       <div aria-busy={loading} className="space-y-4">
         {loading ? <div role="status" className="sb-panel space-y-4 p-6"><span className="sr-only">Chargement des questions</span><div className="sb-skeleton h-6 w-3/4" />{[0, 1, 2, 3].map((key) => <div key={key} className="sb-skeleton h-12 w-full" />)}</div>
-        : data.questions.length ? data.questions.map((question, index) => <PracticeCard key={`${question.id}:${question.version}`} question={question} sourceDocument={documents.find((item) => item.id === question.documentKey)} index={index}
+        : data.questions.length ? visibleQuestions.map((question, index) => <PracticeCard key={`${question.id}:${question.version}`} question={question} sourceDocument={documents.find((item) => item.id === question.documentKey)} index={firstIndex + index}
           busy={busyId === question.id} onEdit={() => void edit(question)} onDelete={() => void remove(question)}
           onResult={(feedback, stats) => setData((current) => ({ ...current, stats, questions: current.questions.map((item) => item.id === question.id ? { ...item, lastResult: feedback } : item) }))} />)
         : <div className="rounded-3xl border border-dashed border-blush-300 bg-white/70 px-5 py-12 text-center">
@@ -286,11 +338,12 @@ export function ResidanatWorkspace({ initial }: { initial: PracticeData }) {
           <button type="button" className="sb-btn-secondary mt-5" onClick={() => { if (hasFilters) { setFilters(blankFilters); void reload(blankFilters); } else setEditor({ question: null }); }}>{hasFilters ? "Voir toutes les questions" : "+ Ajouter une question"}</button>
         </div>}
       </div>
+      {pagination("Pagination inférieure des questions")}
       <p className="rounded-2xl border border-blush-100 bg-white/70 px-4 py-3 text-xs leading-relaxed text-plum-900/55">
         Les questions marquées PDF proviennent du document associé, avec sa grille de correction, qui peut contenir des coquilles. Les autres exemples SB Cards sont des exercices pédagogiques originaux. Vérifiez les corrigés avec vos références de cours à jour ; cet espace ne fournit pas de conseils médicaux personnalisés.
       </p>
-      {editor && <QuestionEditor question={editor.question} onClose={() => setEditor(null)} onSaved={() => {
-        setEditor(null); setToast("Question enregistrée."); setFilters(blankFilters); void reload(blankFilters);
+      {editor && <QuestionEditor question={editor.question} onClose={() => setEditor(null)} onSaved={(id) => {
+        setEditor(null); setToast("Question enregistrée."); setFilters(blankFilters); void reload(blankFilters, id);
       }} />}
       {toast && <p role="status" className="fixed bottom-5 left-1/2 z-50 max-w-[90vw] -translate-x-1/2 rounded-xl bg-plum-900 px-4 py-3 text-sm font-semibold text-white shadow-lg">{toast}</p>}
     </div>

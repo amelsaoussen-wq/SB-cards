@@ -45,7 +45,7 @@ async function main() {
     console.log("PASS browser import: actual import receipt, source link and mobile layout");
 
     await collection.getByRole("button", { name: "Voir ces questions" }).click();
-    await page.waitForFunction(() => document.querySelectorAll('[data-testid="qcm-question"]').length === 150);
+    await page.waitForFunction(() => document.querySelectorAll('[data-testid="qcm-question"]').length === 20);
     await page.locator("#residanat-search").fill("Q95");
     await page.getByRole("button", { name: "Rechercher", exact: true }).click();
     await page.waitForFunction(() => document.querySelectorAll('[data-testid="qcm-question"]').length === 1);

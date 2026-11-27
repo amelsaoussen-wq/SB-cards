@@ -45,7 +45,7 @@ async function main() {
     console.log("PASS browser 2025: actual import receipt, source link and mobile layout");
 
     await collection.getByRole("button", { name: "Voir ces questions" }).click();
-    await page.waitForFunction(() => document.querySelectorAll('[data-testid="qcm-question"]').length === 150);
+    await page.waitForFunction(() => document.querySelectorAll('[data-testid="qcm-question"]').length === 20);
     await page.locator("#residanat-search").fill("Q64");
     await page.getByRole("button", { name: "Rechercher", exact: true }).click();
     await page.waitForFunction(() => document.querySelectorAll('[data-testid="qcm-question"]').length === 1);
@@ -87,10 +87,10 @@ async function main() {
     assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth), false);
     await page.locator("#residanat-document-filter").selectOption("constantine-2026-10-17");
     await page.getByRole("heading", { name: "Les ostéomes :", exact: true }).waitFor();
-    assert.equal(await page.getByTestId("qcm-question").count(), 150);
+    assert.equal(await page.getByTestId("qcm-question").count(), 20);
     await page.locator("#residanat-document-filter").selectOption("constantine-2025-10-25");
     await page.getByRole("heading", { name: "Le carcinome épidermoïde :", exact: true }).waitFor();
-    assert.equal(await page.getByTestId("qcm-question").count(), 150);
+    assert.equal(await page.getByTestId("qcm-question").count(), 20);
     console.log("PASS browser 2025: both source years remain independently accessible");
     assert.deepEqual(errors, []);
     console.log("PASS browser 2025: saved result survives reload; desktop layout and JavaScript are healthy");
