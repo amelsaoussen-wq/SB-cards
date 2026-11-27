@@ -1,5 +1,9 @@
 # SB Cards — Studio de cartes médicales
 
+**Reprendre le même projet dans une nouvelle conversation :** lire
+[le résumé de passation en arabe](PROJECT_HANDOFF_AR.md). Il distingue les
+fonctionnalités présentes du nouveau PDF encore en attente d’importation.
+
 Générateur de cartes de raisonnement clinique : un diagnostic + six indices,
 avec un design rose & or verrouillé, QR code et impression recto/verso.
 
